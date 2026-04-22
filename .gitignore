@@ -1,0 +1,14 @@
+# Fichiers sensibles - NE JAMAIS commit
+.env
+backend/config/env.php
+
+# Systèmes
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Dépendances
+node_modules/
