@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Connectez-vous à votre compte Vite & Gourmand pour commander et suivre vos commandes.">
+  <title>Connexion — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="menus.html">Nos menus</a></li>
+          <li><a class="nav__lien" href="contact.html">Contact</a></li>
+          <li><a class="nav__lien nav__connexion" href="connexion.html" aria-current="page">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur">
+    <h1>Connexion</h1>
+
+    <form class="formulaire" id="form-connexion" action="#" method="post" novalidate>
+      <div class="champ">
+        <label for="con-email">Adresse mail *</label>
+        <input type="email" id="con-email" name="email" autocomplete="username" required>
+      </div>
+      <div class="champ">
+        <label for="con-password">Mot de passe *</label>
+        <input type="password" id="con-password" name="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn--primaire btn--large">Se connecter</button>
+
+      <hr>
+
+      <!-- Mot de passe oublié : un lien de réinitialisation est envoyé par mail -->
+      <details>
+        <summary>Mot de passe oublié&nbsp;?</summary>
+        <div class="champ" style="margin-top: 1rem;">
+          <label for="con-email-reset">Votre adresse mail *</label>
+          <input type="email" id="con-email-reset" name="email_reset" autocomplete="email">
+          <p class="aide">Nous vous enverrons un lien par mail pour réinitialiser votre mot de passe.</p>
+        </div>
+        <button type="button" class="btn btn--secondaire" id="btn-reset">Recevoir le lien de réinitialisation</button>
+      </details>
+
+      <p>Pas encore de compte&nbsp;? <a href="inscription.html">Créer un compte</a></p>
+    </form>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>
