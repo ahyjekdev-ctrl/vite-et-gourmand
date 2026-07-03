@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 03/07/2026)
 
-**Phase actuelle : Phase 4 — Authentification, faite sur `feature/auth` (en attente de validation avant merge)**
+**Phase actuelle : Phase 5 — Menus dynamiques, faite sur `feature/menus` (en attente de validation avant merge)**
 
-Phases 1 à 3 mergées dans `develop` le 03/07. Phase 4 écrite et **testée de bout en bout (12 scénarios)** : socle PDO + session sécurisée + contrôle des rôles, inscription (validation serveur, bcrypt, mail de bienvenue), connexion/déconnexion, réinitialisation par token à usage unique (1 h), service mail centralisé (journalisé dans `backend/mail/mails.log` en dev), formulaires branchés en `fetch` via `auth.js`. Env local : PHP `pdo_mysql`/`openssl` activés dans php.ini. Côté Alexandre : tester les parcours dans le navigateur, créer le board Trello.
+Phases 1 à 4 mergées dans `develop` le 03/07. Phase 5 écrite et **testée (15 scénarios)** : API menus (liste avec les 5 filtres cumulables, détail complet, référentiels, avis validés), CRUD menus protégé par rôle (401/403 vérifiés, suppression douce), filtres **dynamiques sans rechargement** (`filtres.js`), détail de menu chargé selon `?id=` (`menu-detail.js`), avis de l'accueil chargés depuis l'API (`accueil.js`). Le CRUD plats/horaires est déplacé en Phase 7, avec l'interface employé qui l'utilisera. Côté Alexandre : tester les filtres dans le navigateur, créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -74,9 +74,9 @@ Phases 1 à 3 mergées dans `develop` le 03/07. Phase 4 écrite et **testée de 
 - [x] Test de fumée : les 12 pages + CSS + JS répondent en HTTP 200 via `php -S`
 - [ ] Relecture visuelle par Alexandre (bureau + mobile) *(action Alexandre)*
 
-## Phase 4 — Back : socle & authentification 🔄
+## Phase 4 — Back : socle & authentification ✅
 
-> Branche : `feature/auth` — **en attente de validation avant merge**
+> Branche : `feature/auth` — mergée dans `develop` le 03/07/2026
 
 - [x] `backend/config/database.php` — connexion PDO (requêtes préparées réelles, erreurs en exceptions) + lecture `.env`
 - [x] `backend/config/api.php` — réponses JSON, lecture du corps, politique de mot de passe
@@ -89,16 +89,20 @@ Phases 1 à 3 mergées dans `develop` le 03/07. Phase 4 écrite et **testée de 
 - [x] `frontend/assets/js/auth.js` — connexion (redirection selon rôle), inscription, mot de passe oublié (demande + nouveau mdp via `?token=`)
 - [x] Test de bout en bout : 12 scénarios (mdp faible 422, doublon 409, mauvais mdp 401, rôles, reset complet, token à usage unique, ancien mdp refusé)
 
-## Phase 5 — Menus dynamiques ⬜
+## Phase 5 — Menus dynamiques 🔄
 
-> Branche : `feature/menus`
+> Branche : `feature/menus` — **en attente de validation avant merge**
 
-- [ ] `backend/menus/get-menus.php` — liste + paramètres de filtre
-- [ ] `backend/menus/get-menu.php` — détail complet (plats, allergènes, images, conditions, stock)
-- [ ] `backend/menus/create-menu.php` / `update-menu.php` (+ suppression) — réservé employé/admin
-- [ ] CRUD plats et horaires (espace employé)
-- [ ] `frontend/assets/js/filtres.js` — filtres **dynamiques sans rechargement** (prix max, fourchette, thème, régime, nb personnes)
-- [ ] Affichage accueil : avis validés
+- [x] `backend/menus/get-menus.php` — liste publique + 5 filtres cumulables (prix max, fourchette, thème, régime, nb personnes)
+- [x] `backend/menus/get-menu.php` — détail complet (galerie, plats groupés par type avec allergènes, conditions, stock, seuil de réduction)
+- [x] `backend/menus/get-filtres.php` — thèmes et régimes depuis la base (rien de codé en dur)
+- [x] `backend/menus/create-menu.php` / `update-menu.php` / `delete-menu.php` — réservé employé/admin (`exigerRole`), transactions, suppression douce (`actif = 0`, l'historique des commandes est préservé)
+- [x] `backend/avis/get-avis.php` — avis validés uniquement, nom réduit à l'initiale (RGPD)
+- [x] `frontend/assets/js/filtres.js` — filtres **dynamiques sans rechargement** (fetch + debounce), rendu DOM via `textContent` (anti-XSS)
+- [x] `frontend/assets/js/menu-detail.js` — détail chargé selon `?id=`, bouton commander pré-rempli (`commande.html?menu=X`), gestion menu épuisé
+- [x] `frontend/assets/js/accueil.js` — avis validés de l'accueil chargés depuis l'API
+- [x] Tests : 15 scénarios (filtres seuls et combinés, 404, 401 sans session, 403 pour un client, create/update/delete par employé)
+- [ ] ~~CRUD plats et horaires~~ → déplacé en Phase 7 avec l'interface employé qui l'utilise
 
 ## Phase 6 — Commandes ⬜
 
@@ -125,6 +129,7 @@ Phases 1 à 3 mergées dans `develop` le 03/07. Phase 4 écrite et **testée de 
 > Branche : `feature/avis-espaces`
 
 - [ ] `backend/avis/gestion-avis.php` — dépôt (note 1–5 + commentaire, commande terminée uniquement), validation/refus par employé
+- [ ] CRUD plats et horaires (endpoints + interface employé) *(déplacé depuis la Phase 5)*
 - [ ] Espace utilisateur complet (commandes, suivi, infos perso, avis)
 - [ ] Espace employé complet (menus, plats, horaires, commandes, avis)
 - [ ] Espace admin : création compte employé (mail sans mdp), désactivation compte
@@ -166,6 +171,8 @@ Phases 1 à 3 mergées dans `develop` le 03/07. Phase 4 écrite et **testée de 
 
 | Date | Décision |
 |---|---|
+| 03/07/2026 | Phase 5 sur `feature/menus` : suppression douce des menus (`actif=0`, FK RESTRICT préserve l'historique), rendu DOM en `textContent` uniquement (anti-XSS), filtre « personnes » = menus dont le minimum est accessible pour le nombre de convives saisi. CRUD plats/horaires déplacé en Phase 7 (avec son interface). |
+| 03/07/2026 | Phase 4 mergée dans `develop` après validation. |
 | 03/07/2026 | Phase 4 sur `feature/auth` : API JSON (un endpoint = un fichier), session PHP durcie plutôt que JWT (app même origine, plus simple et révocable), mails journalisés en dev dans `mails.log` (gitignoré), réponse anti-énumération sur login et reset. PHP local : `pdo_mysql`, `openssl`, `curl`, `mbstring` activés. |
 | 03/07/2026 | Phase 3 mergée dans `develop` après validation. |
 | 03/07/2026 | Phase 3 sur `feature/front-statique` : 12 pages statiques + charte appliquée en CSS (variables), burger en JS minimal accessible, visuels de substitution en CSS en attendant les photos. Env local : MariaDB 11.8 + MongoDB 8.3 portables (sans droits admin) dans `C:\Users\ahyje\tools`. |
