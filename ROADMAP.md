@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 03/07/2026)
 
-**Phase actuelle : Phase 3 — Front statique, faite sur `feature/front-statique` (en attente de relecture + validation avant merge)**
+**Phase actuelle : Phase 4 — Authentification, faite sur `feature/auth` (en attente de validation avant merge)**
 
-Phases 1 (conception) et 2 (BDD, testée en local : imports OK, bug validateur Mongo trouvé et corrigé) mergées dans `develop` le 03/07. Phase 3 écrite : 12 pages HTML + `style.css` (charte graphique, mobile-first) + `nav.js` (burger accessible). Environnement local : MariaDB 11.8 et MongoDB 8.3 portables installés dans `C:\Users\ahyje\tools` (scripts `demarrer-bdd.ps1` / `arreter-bdd.ps1`). Côté Alexandre : ouvrir le site en local, créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
+Phases 1 à 3 mergées dans `develop` le 03/07. Phase 4 écrite et **testée de bout en bout (12 scénarios)** : socle PDO + session sécurisée + contrôle des rôles, inscription (validation serveur, bcrypt, mail de bienvenue), connexion/déconnexion, réinitialisation par token à usage unique (1 h), service mail centralisé (journalisé dans `backend/mail/mails.log` en dev), formulaires branchés en `fetch` via `auth.js`. Env local : PHP `pdo_mysql`/`openssl` activés dans php.ini. Côté Alexandre : tester les parcours dans le navigateur, créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -56,9 +56,9 @@ Phases 1 (conception) et 2 (BDD, testée en local : imports OK, bug validateur M
 - [x] Cohérence vérifiée avec le MCD (mêmes entités, mêmes règles)
 - [x] Import testé en local (MariaDB 11.8 + MongoDB 8.3 portables) : 15 tables, prix cohérents, UTF-8 et bcrypt vérifiés ; bug du validateur Mongo (`double` vs `Int32`) trouvé et corrigé
 
-## Phase 3 — Front statique 🔄
+## Phase 3 — Front statique ✅
 
-> Branche : `feature/front-statique` — **en attente de relecture + validation avant merge**
+> Branche : `feature/front-statique` — mergée dans `develop` le 03/07/2026
 
 - [x] Layout commun : header (nav + burger accessible via `nav.js`) + footer (horaires lun→dim, mentions légales, CGV)
 - [x] `index.html` — accueil (présentation, équipe, avis validés des fixtures)
@@ -74,18 +74,20 @@ Phases 1 (conception) et 2 (BDD, testée en local : imports OK, bug validateur M
 - [x] Test de fumée : les 12 pages + CSS + JS répondent en HTTP 200 via `php -S`
 - [ ] Relecture visuelle par Alexandre (bureau + mobile) *(action Alexandre)*
 
-## Phase 4 — Back : socle & authentification ⬜
+## Phase 4 — Back : socle & authentification 🔄
 
-> Branche : `feature/auth`
+> Branche : `feature/auth` — **en attente de validation avant merge**
 
-- [ ] `backend/config/database.php` — connexion PDO + lecture `.env`
-- [ ] `backend/auth/register.php` — inscription (validation mdp fort, rôle « utilisateur », mail de bienvenue)
-- [ ] `backend/auth/login.php` — connexion (session sécurisée)
-- [ ] `backend/auth/logout.php`
-- [ ] `backend/auth/reset-password.php` — token à expiration + mail
-- [ ] `backend/mail/send-mail.php` — service d'envoi centralisé
-- [ ] Middleware / contrôle des rôles côté serveur
-- [ ] `frontend/assets/js/auth.js` — formulaires connexion/inscription
+- [x] `backend/config/database.php` — connexion PDO (requêtes préparées réelles, erreurs en exceptions) + lecture `.env`
+- [x] `backend/config/api.php` — réponses JSON, lecture du corps, politique de mot de passe
+- [x] `backend/config/session.php` — session durcie (httponly, samesite, strict mode) + `exigerRole()` côté serveur
+- [x] `backend/auth/register.php` — validation serveur complète, bcrypt, rôle « utilisateur », mail de bienvenue, anti-doublon (409)
+- [x] `backend/auth/login.php` — message d'erreur unique (anti-énumération), régénération d'ID de session, comptes désactivés refusés
+- [x] `backend/auth/logout.php` — destruction complète (session + cookie)
+- [x] `backend/auth/reset-password.php` — token 64 hex à usage unique, expiration 1 h, réponse identique que le compte existe ou non
+- [x] `backend/mail/send-mail.php` — service centralisé + modèles (journalisé en dev, API branchée en Phase 10)
+- [x] `frontend/assets/js/auth.js` — connexion (redirection selon rôle), inscription, mot de passe oublié (demande + nouveau mdp via `?token=`)
+- [x] Test de bout en bout : 12 scénarios (mdp faible 422, doublon 409, mauvais mdp 401, rôles, reset complet, token à usage unique, ancien mdp refusé)
 
 ## Phase 5 — Menus dynamiques ⬜
 
@@ -164,6 +166,8 @@ Phases 1 (conception) et 2 (BDD, testée en local : imports OK, bug validateur M
 
 | Date | Décision |
 |---|---|
+| 03/07/2026 | Phase 4 sur `feature/auth` : API JSON (un endpoint = un fichier), session PHP durcie plutôt que JWT (app même origine, plus simple et révocable), mails journalisés en dev dans `mails.log` (gitignoré), réponse anti-énumération sur login et reset. PHP local : `pdo_mysql`, `openssl`, `curl`, `mbstring` activés. |
+| 03/07/2026 | Phase 3 mergée dans `develop` après validation. |
 | 03/07/2026 | Phase 3 sur `feature/front-statique` : 12 pages statiques + charte appliquée en CSS (variables), burger en JS minimal accessible, visuels de substitution en CSS en attendant les photos. Env local : MariaDB 11.8 + MongoDB 8.3 portables (sans droits admin) dans `C:\Users\ahyje\tools`. |
 | 03/07/2026 | Phase 2 mergée dans `develop` après test local validé par Alexandre. |
 | 03/07/2026 | Phase 2 sur `feature/database` : statuts en ENUM (lisibilité + intégrité), avis lié à la commande (UNIQUE, un avis par commande terminée), hashs bcrypt réels dans les fixtures, données de démo alignées sur les maquettes. Base Mongo séparée `vite_et_gourmand_stats`. |
