@@ -35,15 +35,15 @@
       <ol>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="menus.html">Nos menus</a></li>
-        <li aria-current="page">Menu Noël Prestige</li>
+        <li aria-current="page" id="fil-ariane-menu">Menu Noël Prestige</li>
       </ol>
     </nav>
 
     <!-- Contenu statique : sera alimenté depuis l'API en Phase 5 -->
     <div class="fiche-menu">
       <section class="galerie" aria-label="Galerie de photos du menu">
-        <div class="visuel visuel--assiette" role="img" aria-label="Photo principale : chapon fermier aux morilles dressé sur plat de service (photo à venir)"></div>
-        <div class="galerie__vignettes">
+        <div class="visuel visuel--assiette" id="galerie-principale" role="img" aria-label="Photo principale : chapon fermier aux morilles dressé sur plat de service (photo à venir)"></div>
+        <div class="galerie__vignettes" id="galerie-vignettes">
           <div class="visuel" role="img" aria-label="Foie gras mi-cuit et chutney de figues en entrée (photo à venir)"></div>
           <div class="visuel" role="img" aria-label="Bûche signature chocolat-praliné (photo à venir)"></div>
           <div class="visuel" role="img" aria-label="Table de fête dressée (photo à venir)"></div>
@@ -53,28 +53,28 @@
       <section aria-labelledby="titre-menu">
         <h1 id="titre-menu">Menu Noël Prestige</h1>
         <p>
-          <span class="badge badge--plein">Thème&nbsp;: Noël</span>
-          <span class="badge">Régime&nbsp;: classique</span>
+          <span class="badge badge--plein" id="badge-theme">Thème&nbsp;: Noël</span>
+          <span class="badge" id="badge-regime">Régime&nbsp;: classique</span>
         </p>
-        <p>Un menu d'exception pour les fêtes&nbsp;: foie gras mi-cuit et son chutney de figues, chapon fermier aux morilles et sa purée truffée, bûche signature chocolat-praliné de la maison.</p>
+        <p id="detail-description">Un menu d'exception pour les fêtes&nbsp;: foie gras mi-cuit et son chutney de figues, chapon fermier aux morilles et sa purée truffée, bûche signature chocolat-praliné de la maison.</p>
 
         <div class="bloc-prix">
-          <p><span class="prix">320&nbsp;€</span> pour 8 personnes (minimum)</p>
-          <p><span class="badge badge--or">−10&nbsp;% à partir de 13 personnes</span></p>
-          <p class="stock">⏳ Plus que 5 commandes disponibles</p>
+          <p><span class="prix" id="detail-prix">320&nbsp;€</span><span id="detail-personnes"> pour 8 personnes (minimum)</span></p>
+          <p><span class="badge badge--or" id="detail-reduction">−10&nbsp;% à partir de 13 personnes</span></p>
+          <p class="stock" id="detail-stock">⏳ Plus que 5 commandes disponibles</p>
         </div>
 
         <!-- Conditions mises en évidence : exigence du cahier des charges -->
         <aside class="conditions" role="note" aria-labelledby="titre-conditions">
           <h2 id="titre-conditions">⚠ Conditions de ce menu — à lire avant de commander</h2>
-          <ul>
+          <ul id="detail-conditions">
             <li>Commande à passer au minimum <strong>7 jours avant</strong> la date de la prestation.</li>
             <li>Conservation au frais <strong>entre 0 et 4&nbsp;°C</strong> jusqu'au service.</li>
           </ul>
         </aside>
 
         <p>
-          <a class="btn btn--primaire" href="commande.html">Commander ce menu</a><br>
+          <a class="btn btn--primaire" id="btn-commander" href="commande.html?menu=1">Commander ce menu</a><br>
           <small>Vous devrez être connecté pour finaliser la commande.</small>
         </p>
       </section>
@@ -83,7 +83,7 @@
     <!-- Composition -->
     <section class="section" aria-labelledby="titre-composition">
       <h2 class="titre-section" id="titre-composition">Composition du menu</h2>
-      <div class="composition">
+      <div class="composition" id="detail-composition">
         <article class="carte">
           <h3>Entrées</h3>
           <ul>
@@ -153,5 +153,6 @@
   </footer>
 
   <script src="assets/js/nav.js"></script>
+  <script src="assets/js/menu-detail.js"></script>
 </body>
 </html>
