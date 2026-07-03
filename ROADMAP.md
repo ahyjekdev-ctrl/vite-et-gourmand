@@ -1,7 +1,14 @@
 # 🗺️ Feuille de route — Vite & Gourmand
 
-> **Fichier de pilotage du projet.** On le met à jour à chaque avancée (Claude comme Alexandre).
+> **Fichier de pilotage du projet.** Mis à jour à chaque avancée.
 > Légende : ✅ fait · 🔄 en cours · ⬜ à faire
+
+## 📅 Dates clés
+
+- **28/07/2026 — rendu de l'ECF** : application déployée, repo public, tous les livrables.
+- **Novembre/décembre 2026 — jury** : dossier projet (20-30 p.) + soutenance orale.
+- Planning de juillet : Phases 2-3 (semaine du 3), Phases 4-5 (semaine du 10), Phases 6-8 (semaine du 17), Phases 9-10 (24 → 28).
+- D'août à novembre : relecture du code, dossier projet, support et répétition de l'oral.
 
 ---
 
