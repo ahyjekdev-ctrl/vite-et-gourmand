@@ -33,6 +33,25 @@
   <main id="contenu" class="conteneur">
     <h1>Connexion</h1>
 
+    <p id="message-auth" role="alert" hidden></p>
+
+    <!-- Nouveau mot de passe : affiché uniquement en arrivant depuis le lien reçu par mail -->
+    <section id="section-reset" hidden aria-labelledby="titre-reset">
+      <form class="formulaire" id="form-reset" action="#" method="post" novalidate>
+        <h2 id="titre-reset">Choisir un nouveau mot de passe</h2>
+        <div class="champ">
+          <label for="rst-password">Nouveau mot de passe *</label>
+          <input type="password" id="rst-password" name="password" autocomplete="new-password" required minlength="10" aria-describedby="aide-rst">
+          <p class="aide" id="aide-rst">Au moins 10 caractères, avec majuscule, minuscule, chiffre et caractère spécial.</p>
+        </div>
+        <div class="champ">
+          <label for="rst-password2">Confirmer le mot de passe *</label>
+          <input type="password" id="rst-password2" name="password_confirmation" autocomplete="new-password" required minlength="10">
+        </div>
+        <button type="submit" class="btn btn--primaire btn--large">Enregistrer le nouveau mot de passe</button>
+      </form>
+    </section>
+
     <form class="formulaire" id="form-connexion" action="#" method="post" novalidate>
       <div class="champ">
         <label for="con-email">Adresse mail *</label>
@@ -86,5 +105,6 @@
   </footer>
 
   <script src="assets/js/nav.js"></script>
+  <script src="assets/js/auth.js"></script>
 </body>
 </html>
