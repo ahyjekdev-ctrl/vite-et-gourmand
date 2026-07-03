@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 03/07/2026)
 
-**Phase actuelle : Phase 2 — Base de données, faite sur `feature/database` (en attente de test local + validation avant merge)**
+**Phase actuelle : Phase 3 — Front statique, faite sur `feature/front-statique` (en attente de relecture + validation avant merge)**
 
-Phase 1 (conception) mergée dans `develop` le 03/07. Phase 2 écrite : `schema.sql` (15 tables fidèles au MCD), `fixtures.sql` (6 menus des maquettes, comptes de démo, commandes avec suivi historisé, avis), `mongodb-config.js` (collection `stats_commandes` avec validation + index). Reste : tester l'import en local (MySQL n'est pas dans le PATH de la machine) et valider le merge. Côté Alexandre aussi : créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
+Phases 1 (conception) et 2 (BDD, testée en local : imports OK, bug validateur Mongo trouvé et corrigé) mergées dans `develop` le 03/07. Phase 3 écrite : 12 pages HTML + `style.css` (charte graphique, mobile-first) + `nav.js` (burger accessible). Environnement local : MariaDB 11.8 et MongoDB 8.3 portables installés dans `C:\Users\ahyje\tools` (scripts `demarrer-bdd.ps1` / `arreter-bdd.ps1`). Côté Alexandre : ouvrir le site en local, créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -46,31 +46,33 @@ Phase 1 (conception) mergée dans `develop` le 03/07. Phase 2 écrite : `schema.
 - [ ] Créer le board Trello + passer en public + lien dans le README *(action Alexandre — checklist §5 de la doc)*
 - [x] Compléter `.env.example` (variables MongoDB : `MONGO_URI`, `MONGO_DB`)
 
-## Phase 2 — Base de données 🔄
+## Phase 2 — Base de données ✅
 
-> Branche : `feature/database` — **en attente de test local + validation avant merge**
+> Branche : `feature/database` — mergée dans `develop` le 03/07/2026
 
 - [x] `database/schema.sql` — 15 tables (role, utilisateur, reset_token, theme, regime, allergene, plat, plat_allergene, menu, image_menu, menu_plat, commande, suivi_commande, avis, horaire)
 - [x] `database/fixtures.sql` — données de démo : 6 menus des maquettes, 21 plats (dont partagés entre menus), comptes de test (**admin José créé ici, pas via l'app**), 6 commandes avec historique de suivi, 4 avis
 - [x] `database/mongodb-config.js` — collection `stats_commandes` (validation de schéma, index, données miroir des fixtures)
 - [x] Cohérence vérifiée avec le MCD (mêmes entités, mêmes règles)
-- [ ] Tester l'import en local : `mysql -u root -p < database/schema.sql` puis `fixtures.sql`, et `mongosh < database/mongodb-config.js` *(action Alexandre — MySQL absent du PATH)*
+- [x] Import testé en local (MariaDB 11.8 + MongoDB 8.3 portables) : 15 tables, prix cohérents, UTF-8 et bcrypt vérifiés ; bug du validateur Mongo (`double` vs `Int32`) trouvé et corrigé
 
-## Phase 3 — Front statique ⬜
+## Phase 3 — Front statique 🔄
 
-> Branche : `feature/front-statique` (ou une branche par groupe de pages)
+> Branche : `feature/front-statique` — **en attente de relecture + validation avant merge**
 
-- [ ] Layout commun : header (nav) + footer (horaires lun→dim, mentions légales, CGV)
-- [ ] `index.html` — accueil (présentation, équipe, avis validés)
-- [ ] `menus.html` — vue globale + zone filtres
-- [ ] `menu-detail.html` — détail complet + conditions mises en évidence + bouton commander
-- [ ] `connexion.html` / `inscription.html`
-- [ ] `commande.html`
-- [ ] `contact.html`
-- [ ] `mentions-legales.html` / `cgv.html` (inclure la clause des 600 € de matériel)
-- [ ] Dashboards : espace utilisateur / employé / admin
-- [ ] `style.css` — responsive mobile-first, conforme charte graphique
-- [ ] Accessibilité RGAA (sémantique, alt, labels, contrastes)
+- [x] Layout commun : header (nav + burger accessible via `nav.js`) + footer (horaires lun→dim, mentions légales, CGV)
+- [x] `index.html` — accueil (présentation, équipe, avis validés des fixtures)
+- [x] `menus.html` — vue globale des 6 menus + zone filtres (les 5 filtres du sujet)
+- [x] `menu-detail.html` — détail complet + conditions mises en évidence + bouton commander
+- [x] `connexion.html` (+ mot de passe oublié) / `inscription.html` (politique de mdp + consentement RGPD)
+- [x] `commande.html` — coordonnées, prestation, menu, nb personnes, récapitulatif de prix
+- [x] `contact.html` — titre, description, mail
+- [x] `mentions-legales.html` / `cgv.html` (clause des 600 € de matériel, réduction 10 %, livraison 5 € + 0,59 €/km)
+- [x] Dashboards : espace utilisateur / employé / admin (squelettes avec données de démo)
+- [x] `style.css` — responsive mobile-first, conforme charte graphique
+- [x] Accessibilité RGAA : sémantique, skip-link, labels visibles, focus visible, aria-current, sr-only, aria-live
+- [x] Test de fumée : les 12 pages + CSS + JS répondent en HTTP 200 via `php -S`
+- [ ] Relecture visuelle par Alexandre (bureau + mobile) *(action Alexandre)*
 
 ## Phase 4 — Back : socle & authentification ⬜
 
@@ -162,6 +164,8 @@ Phase 1 (conception) mergée dans `develop` le 03/07. Phase 2 écrite : `schema.
 
 | Date | Décision |
 |---|---|
+| 03/07/2026 | Phase 3 sur `feature/front-statique` : 12 pages statiques + charte appliquée en CSS (variables), burger en JS minimal accessible, visuels de substitution en CSS en attendant les photos. Env local : MariaDB 11.8 + MongoDB 8.3 portables (sans droits admin) dans `C:\Users\ahyje\tools`. |
+| 03/07/2026 | Phase 2 mergée dans `develop` après test local validé par Alexandre. |
 | 03/07/2026 | Phase 2 sur `feature/database` : statuts en ENUM (lisibilité + intégrité), avis lié à la commande (UNIQUE, un avis par commande terminée), hashs bcrypt réels dans les fixtures, données de démo alignées sur les maquettes. Base Mongo séparée `vite_et_gourmand_stats`. |
 | 03/07/2026 | Phase 1 mergée dans `develop` après validation. |
 | 03/07/2026 | Phase 1 sur `feature/conception` : maquettes en SVG (exportables PDF), MCD enrichi (suivi historisé, galerie d'images, reset tokens), diagrammes en Mermaid (rendus sur GitHub), outil de gestion de projet : **Trello**. |
