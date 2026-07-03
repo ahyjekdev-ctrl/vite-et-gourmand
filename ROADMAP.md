@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 03/07/2026)
 
-**Phase actuelle : Phase 1 — Conception, quasi terminée (branche `feature/conception`, en attente de validation avant merge)**
+**Phase actuelle : Phase 2 — Base de données, faite sur `feature/database` (en attente de test local + validation avant merge)**
 
-Fait sur `feature/conception` : charte graphique, 12 maquettes SVG (wireframes + mockups, bureau + mobile), MCD, diagrammes (cas d'utilisation, séquence, enchaînement des écrans), doc de gestion de projet (Trello). Reste côté Alexandre : créer le board Trello (checklist dans [docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5) et valider le merge. Ensuite : Phase 2 — base de données.
+Phase 1 (conception) mergée dans `develop` le 03/07. Phase 2 écrite : `schema.sql` (15 tables fidèles au MCD), `fixtures.sql` (6 menus des maquettes, comptes de démo, commandes avec suivi historisé, avis), `mongodb-config.js` (collection `stats_commandes` avec validation + index). Reste : tester l'import en local (MySQL n'est pas dans le PATH de la machine) et valider le merge. Côté Alexandre aussi : créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -31,9 +31,9 @@ Fait sur `feature/conception` : charte graphique, 12 maquettes SVG (wireframes +
 - [x] README (démarche d'installation locale)
 - [x] Documentation de pilotage (cahier des charges, livrables, conventions, roadmap)
 
-## Phase 1 — Conception 🔄
+## Phase 1 — Conception ✅
 
-> Branche : `feature/conception` — **en attente de validation avant merge**
+> Branche : `feature/conception` — mergée dans `develop` le 03/07/2026
 
 - [x] **Charte graphique** : palette de couleurs + typographie → [docs/charte-graphique.md](docs/charte-graphique.md) (export PDF en Phase 10)
 - [x] **Wireframes** : 3 maquettes bureautiques + 3 maquettes mobiles → [docs/maquettes/](docs/maquettes/)
@@ -46,14 +46,15 @@ Fait sur `feature/conception` : charte graphique, 12 maquettes SVG (wireframes +
 - [ ] Créer le board Trello + passer en public + lien dans le README *(action Alexandre — checklist §5 de la doc)*
 - [x] Compléter `.env.example` (variables MongoDB : `MONGO_URI`, `MONGO_DB`)
 
-## Phase 2 — Base de données ⬜
+## Phase 2 — Base de données 🔄
 
-> Branche : `feature/database`
+> Branche : `feature/database` — **en attente de test local + validation avant merge**
 
-- [ ] `database/schema.sql` — création des tables (utilisateur, role, menu, plat, theme, regime, allergene, commande, statut/suivi, avis, horaire, images…)
-- [ ] `database/fixtures.sql` — données de test : menus, plats, comptes de démo (utilisateur, employé, **admin José créé ici, pas via l'app**)
-- [ ] `database/mongodb-config.js` — collections statistiques (commandes par menu)
-- [ ] Vérifier la cohérence avec le MCD
+- [x] `database/schema.sql` — 15 tables (role, utilisateur, reset_token, theme, regime, allergene, plat, plat_allergene, menu, image_menu, menu_plat, commande, suivi_commande, avis, horaire)
+- [x] `database/fixtures.sql` — données de démo : 6 menus des maquettes, 21 plats (dont partagés entre menus), comptes de test (**admin José créé ici, pas via l'app**), 6 commandes avec historique de suivi, 4 avis
+- [x] `database/mongodb-config.js` — collection `stats_commandes` (validation de schéma, index, données miroir des fixtures)
+- [x] Cohérence vérifiée avec le MCD (mêmes entités, mêmes règles)
+- [ ] Tester l'import en local : `mysql -u root -p < database/schema.sql` puis `fixtures.sql`, et `mongosh < database/mongodb-config.js` *(action Alexandre — MySQL absent du PATH)*
 
 ## Phase 3 — Front statique ⬜
 
@@ -161,6 +162,8 @@ Fait sur `feature/conception` : charte graphique, 12 maquettes SVG (wireframes +
 
 | Date | Décision |
 |---|---|
+| 03/07/2026 | Phase 2 sur `feature/database` : statuts en ENUM (lisibilité + intégrité), avis lié à la commande (UNIQUE, un avis par commande terminée), hashs bcrypt réels dans les fixtures, données de démo alignées sur les maquettes. Base Mongo séparée `vite_et_gourmand_stats`. |
+| 03/07/2026 | Phase 1 mergée dans `develop` après validation. |
 | 03/07/2026 | Phase 1 sur `feature/conception` : maquettes en SVG (exportables PDF), MCD enrichi (suivi historisé, galerie d'images, reset tokens), diagrammes en Mermaid (rendus sur GitHub), outil de gestion de projet : **Trello**. |
 | 03/07/2026 | Création de la doc de pilotage (cahier des charges, livrables, conventions, roadmap). Règle actée : **aucun merge vers develop/main sans validation d'Alexandre**. |
 | avant | Squelette du projet + branches main/develop + remote GitHub. |
