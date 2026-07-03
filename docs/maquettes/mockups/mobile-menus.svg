@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="1250" viewBox="0 0 375 1250" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2D2A26" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <style>
+    .serif { font-family: Georgia, 'Times New Roman', serif; }
+    .txt   { fill: #2D2A26; }
+    .mut   { fill: #6B645C; }
+    .blanc { fill: #FFFFFF; }
+  </style>
+
+  <rect width="375" height="1250" fill="#FAF4EA"/>
+
+  <!-- ===== HEADER MOBILE ===== -->
+  <rect width="375" height="64" fill="#7B2D35"/>
+  <rect x="20" y="24" width="24" height="3" rx="1.5" fill="#FFFFFF"/>
+  <rect x="20" y="31" width="24" height="3" rx="1.5" fill="#FFFFFF"/>
+  <rect x="20" y="38" width="24" height="3" rx="1.5" fill="#FFFFFF"/>
+  <text x="187" y="40" class="serif blanc" font-size="18" font-style="italic" font-weight="bold" text-anchor="middle">Vite &amp; Gourmand</text>
+  <circle cx="343" cy="28" r="7" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M 331 45 Q 343 34 355 45" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- ===== TITRE + BOUTON FILTRES ===== -->
+  <text x="27" y="110" class="serif txt" font-size="26" font-weight="bold">Nos menus</text>
+  <text x="27" y="135" class="mut" font-size="12">6 menus — mise à jour sans rechargement</text>
+  <!-- Bouton ouvrant le panneau de filtres (accordéon) -->
+  <rect x="27" y="155" width="321" height="46" rx="8" fill="#FFFFFF" stroke="#7B2D35" stroke-width="1.5"/>
+  <text x="47" y="184" font-size="14" font-weight="bold" fill="#7B2D35">☰ Filtres</text>
+  <rect x="255" y="166" width="24" height="24" rx="12" fill="#7B2D35"/>
+  <text x="267" y="183" class="blanc" font-size="12" text-anchor="middle">2</text>
+  <text x="330" y="184" fill="#7B2D35" font-size="13" text-anchor="end">▾</text>
+  <!-- Chips filtres actifs -->
+  <rect x="27" y="212" width="120" height="28" rx="14" fill="#7B2D35"/>
+  <text x="87" y="231" class="blanc" font-size="12" text-anchor="middle">Thème : Noël ✕</text>
+  <rect x="157" y="212" width="110" height="28" rx="14" fill="#7B2D35"/>
+  <text x="212" y="231" class="blanc" font-size="12" text-anchor="middle">Prix ≤ 350 € ✕</text>
+
+  <!-- ===== CARTES MENU (empilées) ===== -->
+  <!-- Carte 1 -->
+  <rect x="27" y="262" width="321" height="290" rx="12" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="27" y="262" width="321" height="130" rx="12" fill="#EAD9C2"/>
+  <rect x="27" y="380" width="321" height="12" fill="#FFFFFF"/>
+  <circle cx="187" cy="327" r="32" fill="#FAF4EA" stroke="#C99B3F" stroke-width="2"/>
+  <text x="47" y="425" class="serif txt" font-size="17" font-weight="bold">Menu Noël Prestige</text>
+  <text x="47" y="448" class="mut" font-size="12">Foie gras, chapon aux morilles, bûche maison.</text>
+  <rect x="47" y="465" width="80" height="24" rx="12" fill="#FAF4EA" stroke="#C99B3F"/>
+  <text x="87" y="481" class="txt" font-size="11" text-anchor="middle">≥ 8 pers.</text>
+  <text x="328" y="483" class="serif" font-size="18" font-weight="bold" fill="#7B2D35" text-anchor="end">320 €</text>
+  <rect x="47" y="502" width="281" height="36" rx="8" fill="#7B2D35"/>
+  <text x="187" y="525" class="blanc" font-size="13" font-weight="bold" text-anchor="middle">Voir le détail</text>
+
+  <!-- Carte 2 -->
+  <rect x="27" y="572" width="321" height="290" rx="12" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="27" y="572" width="321" height="130" rx="12" fill="#E4CFA6"/>
+  <rect x="27" y="690" width="321" height="12" fill="#FFFFFF"/>
+  <circle cx="187" cy="637" r="32" fill="#FAF4EA" stroke="#C99B3F" stroke-width="2"/>
+  <text x="47" y="735" class="serif txt" font-size="17" font-weight="bold">Menu Pâques Gourmand</text>
+  <text x="47" y="758" class="mut" font-size="12">Agneau de sept heures, nid chocolaté.</text>
+  <rect x="47" y="775" width="80" height="24" rx="12" fill="#FAF4EA" stroke="#C99B3F"/>
+  <text x="87" y="791" class="txt" font-size="11" text-anchor="middle">≥ 6 pers.</text>
+  <text x="328" y="793" class="serif" font-size="18" font-weight="bold" fill="#7B2D35" text-anchor="end">180 €</text>
+  <rect x="47" y="812" width="281" height="36" rx="8" fill="#7B2D35"/>
+  <text x="187" y="835" class="blanc" font-size="13" font-weight="bold" text-anchor="middle">Voir le détail</text>
+
+  <!-- Carte 3 -->
+  <rect x="27" y="882" width="321" height="290" rx="12" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="27" y="882" width="321" height="130" rx="12" fill="#EAD9C2"/>
+  <rect x="27" y="1000" width="321" height="12" fill="#FFFFFF"/>
+  <circle cx="187" cy="947" r="32" fill="#FAF4EA" stroke="#C99B3F" stroke-width="2"/>
+  <text x="47" y="1045" class="serif txt" font-size="17" font-weight="bold">Menu Classique Bordelais</text>
+  <text x="47" y="1068" class="mut" font-size="12">Entrecôte à la bordelaise, cannelés maison.</text>
+  <rect x="47" y="1085" width="80" height="24" rx="12" fill="#FAF4EA" stroke="#C99B3F"/>
+  <text x="87" y="1101" class="txt" font-size="11" text-anchor="middle">≥ 6 pers.</text>
+  <text x="328" y="1103" class="serif" font-size="18" font-weight="bold" fill="#7B2D35" text-anchor="end">150 €</text>
+  <rect x="47" y="1122" width="281" height="36" rx="8" fill="#7B2D35"/>
+  <text x="187" y="1145" class="blanc" font-size="13" font-weight="bold" text-anchor="middle">Voir le détail</text>
+
+  <!-- Indication scroll -->
+  <text x="187" y="1205" class="mut" font-size="12" text-anchor="middle" font-style="italic">⌄ 3 autres menus au scroll ⌄</text>
+</svg>
