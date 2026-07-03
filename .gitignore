@@ -2,6 +2,9 @@
 .env
 backend/config/env.php
 
+# Journal des mails en développement
+backend/mail/mails.log
+
 # Systèmes
 .DS_Store
 Thumbs.db
