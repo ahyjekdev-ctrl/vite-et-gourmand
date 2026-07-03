@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="1250" viewBox="0 0 375 1250" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <g id="wcardm">
+      <rect width="321" height="280" fill="#FFFFFF" stroke="#9E9E9E" stroke-width="1.5"/>
+      <rect width="321" height="120" fill="#E8E8E8" stroke="#9E9E9E" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="321" y2="120" stroke="#BDBDBD" stroke-width="1.5"/>
+      <line x1="321" y1="0" x2="0" y2="120" stroke="#BDBDBD" stroke-width="1.5"/>
+      <rect x="20" y="140" width="180" height="14" fill="#D6D6D6"/>
+      <rect x="20" y="165" width="270" height="9" fill="#E0E0E0"/>
+      <rect x="20" y="190" width="80" height="24" fill="none" stroke="#9E9E9E"/>
+      <rect x="230" y="192" width="60" height="18" fill="#D6D6D6"/>
+      <rect x="20" y="228" width="281" height="36" fill="#E8E8E8" stroke="#9E9E9E"/>
+    </g>
+  </defs>
+  <style>
+    .box { fill: #FFFFFF; stroke: #9E9E9E; stroke-width: 1.5; }
+    .boxg { fill: #E8E8E8; stroke: #9E9E9E; stroke-width: 1.5; }
+    .lab { fill: #616161; font-size: 13px; }
+    .labB { fill: #424242; font-size: 14px; font-weight: bold; }
+    .lab-s { fill: #757575; font-size: 11px; }
+    .bar { fill: #D6D6D6; }
+  </style>
+  <rect width="375" height="1250" fill="#F5F5F5"/>
+
+  <!-- HEADER -->
+  <rect class="boxg" x="0" y="0" width="375" height="64"/>
+  <rect x="20" y="24" width="24" height="3" fill="#757575"/>
+  <rect x="20" y="31" width="24" height="3" fill="#757575"/>
+  <rect x="20" y="38" width="24" height="3" fill="#757575"/>
+  <rect class="bar" x="130" y="24" width="115" height="16"/>
+  <circle cx="343" cy="32" r="12" fill="none" stroke="#757575" stroke-width="1.5"/>
+
+  <text x="27" y="105" class="labB">H1 — Nos menus</text>
+  <text x="27" y="128" class="lab-s">compteur résultats — maj dynamique sans rechargement</text>
+
+  <!-- PANNEAU FILTRES (accordéon fermé) -->
+  <rect class="box" x="27" y="145" width="321" height="46"/>
+  <text x="47" y="174" class="lab">☰ Filtres (accordéon) — badge nb actifs</text>
+  <text x="330" y="174" class="lab" text-anchor="end">▾</text>
+  <text x="27" y="215" class="lab-s">contenu déplié : prix max · fourchette · thème · régime · nb pers.</text>
+  <!-- Chips actifs -->
+  <rect class="box" x="27" y="228" width="115" height="26" rx="13"/>
+  <text x="84" y="245" class="lab-s" text-anchor="middle">filtre actif ✕</text>
+  <rect class="box" x="152" y="228" width="115" height="26" rx="13"/>
+  <text x="209" y="245" class="lab-s" text-anchor="middle">filtre actif ✕</text>
+
+  <!-- CARTES (1 colonne) -->
+  <use href="#wcardm" x="27" y="275"/>
+  <use href="#wcardm" x="27" y="575"/>
+  <use href="#wcardm" x="27" y="875"/>
+  <text x="187" y="590" class="lab-s" text-anchor="middle"></text>
+  <text x="187" y="1185" class="lab-s" text-anchor="middle">⌄ scroll — cartes suivantes ⌄</text>
+  <text x="187" y="1210" class="lab-s" text-anchor="middle">carte = image · titre · description · nb pers. min · prix · CTA détail</text>
+</svg>
