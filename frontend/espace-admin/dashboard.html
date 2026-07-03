@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Espace administrateur — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="../index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="../index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="../espace-employe/dashboard.html">Espace employé</a></li>
+          <li><a class="nav__lien" href="dashboard.html" aria-current="page">Administration</a></li>
+          <li><a class="nav__lien nav__connexion" href="../index.html">Déconnexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur dashboard">
+    <h1>Espace administrateur</h1>
+    <p>Connecté en tant que <strong>José Martinez</strong> <small>(contenu de démonstration)</small></p>
+    <p>L'administrateur dispose aussi de toutes les fonctions de l'<a href="../espace-employe/dashboard.html">espace employé</a> (commandes, catalogue, avis).</p>
+
+    <nav class="dashboard__nav" aria-label="Sections de l'espace">
+      <ul>
+        <li><a href="#comptes" aria-current="true">Comptes employés</a></li>
+        <li><a href="#statistiques">Statistiques</a></li>
+      </ul>
+    </nav>
+
+    <!-- Gestion des comptes employés -->
+    <section id="comptes" aria-labelledby="titre-comptes">
+      <h2 id="titre-comptes">Comptes employés</h2>
+      <div class="grille grille--2">
+        <article class="carte">
+          <h3>Créer un compte employé</h3>
+          <form action="#" method="post" novalidate>
+            <div class="champ">
+              <label for="emp-email">Adresse mail de l'employé *</label>
+              <input type="email" id="emp-email" name="email" required>
+              <p class="aide">Elle servira d'identifiant de connexion.</p>
+            </div>
+            <div class="champ">
+              <label for="emp-password">Mot de passe *</label>
+              <input type="password" id="emp-password" name="password" required minlength="10">
+              <p class="aide">L'employé sera notifié par mail de la création de son compte, <strong>sans le mot de passe</strong>&nbsp;: communiquez-le-lui directement.</p>
+            </div>
+            <button type="submit" class="btn btn--primaire">Créer le compte</button>
+          </form>
+        </article>
+        <article class="carte">
+          <h3>Comptes existants</h3>
+          <div class="tableau-defilant">
+            <table class="tableau">
+              <caption class="sr-only">Liste des comptes employés</caption>
+              <thead>
+                <tr><th scope="col">Employé</th><th scope="col">Statut</th><th scope="col">Action</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>julie@vite-et-gourmand.fr</td>
+                  <td><span class="statut statut--accepte">Actif</span></td>
+                  <td><a href="#">Désactiver</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="aide">Un compte désactivé ne peut plus se connecter (départ de l'entreprise), sans perte de l'historique.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Statistiques : données MongoDB, graphique branché en Phase 7 -->
+    <section id="statistiques" aria-labelledby="titre-stats">
+      <h2 id="titre-stats">Statistiques des commandes</h2>
+
+      <form class="filtres" aria-label="Filtres des statistiques">
+        <div class="grille grille--3">
+          <div class="champ">
+            <label for="st-menu">Menu</label>
+            <select id="st-menu" name="menu">
+              <option value="">Tous les menus</option>
+              <option value="1">Menu Noël Prestige</option>
+              <option value="2">Menu Pâques Gourmand</option>
+              <option value="3">Menu Classique Bordelais</option>
+              <option value="4">Menu Végétarien du Marché</option>
+              <option value="5">Menu Vegan Découverte</option>
+              <option value="6">Menu Évènement Grand Format</option>
+            </select>
+          </div>
+          <div class="champ">
+            <label for="st-debut">Du</label>
+            <input type="date" id="st-debut" name="debut" value="2026-06-01">
+          </div>
+          <div class="champ">
+            <label for="st-fin">Au</label>
+            <input type="date" id="st-fin" name="fin" value="2026-06-30">
+          </div>
+        </div>
+      </form>
+
+      <div class="grille grille--2">
+        <article class="carte">
+          <h3>Nombre de commandes par menu</h3>
+          <!-- Le graphique (canvas) sera alimenté par MongoDB en Phase 7 -->
+          <div class="visuel" role="img" aria-label="Graphique en barres comparant le nombre de commandes par menu (données de la base MongoDB, à venir)">
+            <p><em>Graphique comparatif — chargé depuis MongoDB</em></p>
+          </div>
+        </article>
+        <article class="carte">
+          <h3>Chiffre d'affaires par menu</h3>
+          <div class="tableau-defilant">
+            <table class="tableau">
+              <caption class="sr-only">Chiffre d'affaires par menu sur la période sélectionnée</caption>
+              <thead>
+                <tr><th scope="col">Menu</th><th scope="col">Commandes</th><th scope="col">CA</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Évènement Grand Format</td><td>1</td><td>628,47&nbsp;€</td></tr>
+                <tr><td>Noël Prestige</td><td>1</td><td>468,00&nbsp;€</td></tr>
+                <tr><td>Vegan Découverte</td><td>1</td><td>261,00&nbsp;€</td></tr>
+                <tr><td>Pâques Gourmand</td><td>1</td><td>180,00&nbsp;€</td></tr>
+                <tr><td>Classique Bordelais</td><td>1</td><td>159,72&nbsp;€</td></tr>
+                <tr><td>Végétarien du Marché</td><td>1</td><td>150,90&nbsp;€</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="../mentions-legales.html">Mentions légales</a></li>
+          <li><a href="../cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="../assets/js/nav.js"></script>
+</body>
+</html>
