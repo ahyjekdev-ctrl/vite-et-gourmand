@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Menu Noël Prestige : foie gras mi-cuit, chapon fermier aux morilles, bûche signature. 320 € pour 8 personnes, chez Vite & Gourmand à Bordeaux.">
+  <title>Menu Noël Prestige — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="menus.html" aria-current="page">Nos menus</a></li>
+          <li><a class="nav__lien" href="contact.html">Contact</a></li>
+          <li><a class="nav__lien nav__connexion" href="connexion.html">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur">
+    <nav class="fil-ariane" aria-label="Fil d'Ariane">
+      <ol>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="menus.html">Nos menus</a></li>
+        <li aria-current="page">Menu Noël Prestige</li>
+      </ol>
+    </nav>
+
+    <!-- Contenu statique : sera alimenté depuis l'API en Phase 5 -->
+    <div class="fiche-menu">
+      <section class="galerie" aria-label="Galerie de photos du menu">
+        <div class="visuel visuel--assiette" role="img" aria-label="Photo principale : chapon fermier aux morilles dressé sur plat de service (photo à venir)"></div>
+        <div class="galerie__vignettes">
+          <div class="visuel" role="img" aria-label="Foie gras mi-cuit et chutney de figues en entrée (photo à venir)"></div>
+          <div class="visuel" role="img" aria-label="Bûche signature chocolat-praliné (photo à venir)"></div>
+          <div class="visuel" role="img" aria-label="Table de fête dressée (photo à venir)"></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="titre-menu">
+        <h1 id="titre-menu">Menu Noël Prestige</h1>
+        <p>
+          <span class="badge badge--plein">Thème&nbsp;: Noël</span>
+          <span class="badge">Régime&nbsp;: classique</span>
+        </p>
+        <p>Un menu d'exception pour les fêtes&nbsp;: foie gras mi-cuit et son chutney de figues, chapon fermier aux morilles et sa purée truffée, bûche signature chocolat-praliné de la maison.</p>
+
+        <div class="bloc-prix">
+          <p><span class="prix">320&nbsp;€</span> pour 8 personnes (minimum)</p>
+          <p><span class="badge badge--or">−10&nbsp;% à partir de 13 personnes</span></p>
+          <p class="stock">⏳ Plus que 5 commandes disponibles</p>
+        </div>
+
+        <!-- Conditions mises en évidence : exigence du cahier des charges -->
+        <aside class="conditions" role="note" aria-labelledby="titre-conditions">
+          <h2 id="titre-conditions">⚠ Conditions de ce menu — à lire avant de commander</h2>
+          <ul>
+            <li>Commande à passer au minimum <strong>7 jours avant</strong> la date de la prestation.</li>
+            <li>Conservation au frais <strong>entre 0 et 4&nbsp;°C</strong> jusqu'au service.</li>
+          </ul>
+        </aside>
+
+        <p>
+          <a class="btn btn--primaire" href="commande.html">Commander ce menu</a><br>
+          <small>Vous devrez être connecté pour finaliser la commande.</small>
+        </p>
+      </section>
+    </div>
+
+    <!-- Composition -->
+    <section class="section" aria-labelledby="titre-composition">
+      <h2 class="titre-section" id="titre-composition">Composition du menu</h2>
+      <div class="composition">
+        <article class="carte">
+          <h3>Entrées</h3>
+          <ul>
+            <li>
+              <span class="plat__titre">Foie gras mi-cuit, chutney de figues</span>
+              <span class="pastille">gluten</span> <span class="pastille">lactose</span>
+            </li>
+            <li>
+              <span class="plat__titre">Velouté de châtaignes</span>
+              <span class="pastille">lactose</span> <span class="pastille">fruits à coque</span>
+            </li>
+          </ul>
+        </article>
+        <article class="carte">
+          <h3>Plats</h3>
+          <ul>
+            <li>
+              <span class="plat__titre">Chapon fermier aux morilles</span>
+              <span class="pastille">lactose</span>
+            </li>
+            <li>
+              <span class="plat__titre">Purée truffée de la maison</span>
+              <span class="pastille">lactose</span>
+            </li>
+          </ul>
+        </article>
+        <article class="carte">
+          <h3>Desserts</h3>
+          <ul>
+            <li>
+              <span class="plat__titre">Bûche signature chocolat-praliné</span>
+              <span class="pastille">gluten</span> <span class="pastille">lactose</span> <span class="pastille">fruits à coque</span>
+            </li>
+            <li>
+              <span class="plat__titre">Mignardises de fête</span>
+              <span class="pastille">gluten</span> <span class="pastille">lactose</span> <span class="pastille">œufs</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+      <p><small>La liste des allergènes est indicative&nbsp;: signalez toute allergie lors de la commande.</small></p>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>

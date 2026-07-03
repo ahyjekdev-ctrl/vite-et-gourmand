@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Commandez votre menu traiteur Vite & Gourmand : livraison à Bordeaux et alentours.">
+  <title>Commander — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="menus.html">Nos menus</a></li>
+          <li><a class="nav__lien" href="contact.html">Contact</a></li>
+          <li><a class="nav__lien nav__connexion" href="connexion.html">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur">
+    <h1>Commander un menu</h1>
+    <p>Les champs marqués d'un astérisque (<span aria-hidden="true">*</span><span class="sr-only">obligatoire</span>) sont obligatoires.</p>
+
+    <!-- Formulaire statique : pré-remplissage et calcul du prix branchés en Phase 6 -->
+    <form class="formulaire" id="form-commande" action="#" method="post" novalidate>
+      <fieldset>
+        <legend>Vos coordonnées</legend>
+        <p class="aide">Ces informations proviennent de votre compte&nbsp;; elles seront pré-remplies automatiquement.</p>
+        <div class="champ">
+          <label for="cmd-nom">Nom *</label>
+          <input type="text" id="cmd-nom" name="nom" autocomplete="family-name" required>
+        </div>
+        <div class="champ">
+          <label for="cmd-prenom">Prénom *</label>
+          <input type="text" id="cmd-prenom" name="prenom" autocomplete="given-name" required>
+        </div>
+        <div class="champ">
+          <label for="cmd-email">Adresse mail *</label>
+          <input type="email" id="cmd-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="champ">
+          <label for="cmd-gsm">Numéro de GSM *</label>
+          <input type="tel" id="cmd-gsm" name="telephone" autocomplete="tel" required>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>La prestation</legend>
+        <div class="champ">
+          <label for="cmd-adresse">Adresse de livraison *</label>
+          <input type="text" id="cmd-adresse" name="adresse_livraison" autocomplete="street-address" required>
+        </div>
+        <div class="champ">
+          <label for="cmd-ville">Ville *</label>
+          <input type="text" id="cmd-ville" name="ville_livraison" required>
+          <p class="aide">Livraison offerte dans Bordeaux. Hors Bordeaux&nbsp;: 5&nbsp;€ + 0,59&nbsp;€ par kilomètre parcouru.</p>
+        </div>
+        <div class="champ">
+          <label for="cmd-date">Date de la prestation *</label>
+          <input type="date" id="cmd-date" name="date_prestation" required>
+        </div>
+        <div class="champ">
+          <label for="cmd-heure">Heure de livraison souhaitée *</label>
+          <input type="time" id="cmd-heure" name="heure_livraison" required>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Votre menu</legend>
+        <div class="champ">
+          <label for="cmd-menu">Menu choisi *</label>
+          <select id="cmd-menu" name="menu_id" required>
+            <option value="">— Choisir un menu —</option>
+            <option value="1" selected>Menu Noël Prestige — 320&nbsp;€ (8 pers. min)</option>
+            <option value="2">Menu Pâques Gourmand — 180&nbsp;€ (6 pers. min)</option>
+            <option value="3">Menu Classique Bordelais — 150&nbsp;€ (6 pers. min)</option>
+            <option value="4">Menu Végétarien du Marché — 140&nbsp;€ (6 pers. min)</option>
+            <option value="5">Menu Vegan Découverte — 145&nbsp;€ (6 pers. min)</option>
+            <option value="6">Menu Évènement Grand Format — 550&nbsp;€ (20 pers. min)</option>
+          </select>
+          <p class="aide">Pré-sélectionné si vous arrivez depuis la fiche d'un menu.</p>
+        </div>
+        <div class="champ">
+          <label for="cmd-personnes">Nombre de personnes *</label>
+          <input type="number" id="cmd-personnes" name="nb_personnes" min="8" value="8" required aria-describedby="aide-personnes">
+          <p class="aide" id="aide-personnes">Minimum pour ce menu&nbsp;: 8 personnes. <strong>−10&nbsp;% dès 5 personnes au-dessus du minimum.</strong></p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Détail du prix</legend>
+        <table class="recap-prix" aria-live="polite">
+          <tbody>
+            <tr><th scope="row">Menu (8 personnes × 40&nbsp;€)</th><td>320,00&nbsp;€</td></tr>
+            <tr><th scope="row">Réduction (−10&nbsp;%)</th><td>0,00&nbsp;€</td></tr>
+            <tr><th scope="row">Livraison</th><td>0,00&nbsp;€</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><th scope="row">Total</th><td>320,00&nbsp;€</td></tr>
+          </tfoot>
+        </table>
+        <p class="aide">Le détail est recalculé automatiquement selon le nombre de personnes et la ville de livraison.</p>
+      </fieldset>
+
+      <button type="submit" class="btn btn--primaire btn--large">Valider ma commande</button>
+      <p><small>Un mail de confirmation vous sera envoyé après validation.</small></p>
+    </form>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>

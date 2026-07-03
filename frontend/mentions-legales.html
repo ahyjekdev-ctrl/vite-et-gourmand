@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mentions légales du site Vite & Gourmand, traiteur à Bordeaux.">
+  <title>Mentions légales — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="menus.html">Nos menus</a></li>
+          <li><a class="nav__lien" href="contact.html">Contact</a></li>
+          <li><a class="nav__lien nav__connexion" href="connexion.html">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur contenu-texte">
+    <h1>Mentions légales</h1>
+
+    <h2>Éditeur du site</h2>
+    <p>
+      <strong>Vite &amp; Gourmand</strong> — entreprise de traiteur événementiel<br>
+      12 rue des Faures, 33000 Bordeaux<br>
+      Représentée par Julie Bernard et José Martinez<br>
+      Contact&nbsp;: via la <a href="contact.html">page de contact</a>
+    </p>
+    <p><small>SIRET, forme juridique et capital&nbsp;: à compléter par l'exploitant. Site réalisé dans le cadre d'un projet de formation (ECF — Titre professionnel Développeur Web et Web Mobile).</small></p>
+
+    <h2>Hébergement</h2>
+    <p>Hébergeur&nbsp;: <em>(à compléter lors du déploiement — nom, adresse et téléphone de l'hébergeur)</em></p>
+
+    <h2>Protection des données personnelles (RGPD)</h2>
+    <p>Les données collectées via le formulaire d'inscription (nom, prénom, adresse mail et postale, numéro de GSM) et lors des commandes sont utilisées <strong>uniquement</strong> pour la gestion de votre compte, de vos commandes et de leur livraison. Elles ne sont ni cédées ni vendues à des tiers.</p>
+    <p>Les mots de passe sont stockés sous forme chiffrée (hachage bcrypt)&nbsp;: personne, pas même l'équipe, ne peut les lire.</p>
+    <p>Conformément au Règlement général sur la protection des données (RGPD) et à la loi «&nbsp;Informatique et Libertés&nbsp;», vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données. Pour l'exercer, adressez votre demande via la <a href="contact.html">page de contact</a>. Vous pouvez également introduire une réclamation auprès de la <a href="https://www.cnil.fr">CNIL</a>.</p>
+
+    <h2>Cookies</h2>
+    <p>Le site utilise uniquement un cookie de session, strictement nécessaire au fonctionnement de l'espace connecté (authentification). Aucun cookie publicitaire ou de mesure d'audience n'est déposé.</p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>L'ensemble des contenus du site (textes, visuels, logo) est la propriété de Vite &amp; Gourmand. Toute reproduction sans autorisation préalable est interdite.</p>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="mentions-legales.html" aria-current="page">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>
