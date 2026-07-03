@@ -7,9 +7,9 @@
 
 ## 📍 Où on en est (mis à jour le 03/07/2026)
 
-**Phase actuelle : Phase 1 — Conception**
+**Phase actuelle : Phase 1 — Conception, quasi terminée (branche `feature/conception`, en attente de validation avant merge)**
 
-Le squelette du projet existe (arborescence, branches Git, remote GitHub) mais **tous les fichiers de code sont vides**. La documentation de pilotage vient d'être créée. Prochaine étape : maquettes + charte graphique + MCD, puis la base de données.
+Fait sur `feature/conception` : charte graphique, 12 maquettes SVG (wireframes + mockups, bureau + mobile), MCD, diagrammes (cas d'utilisation, séquence, enchaînement des écrans), doc de gestion de projet (Trello). Reste côté Alexandre : créer le board Trello (checklist dans [docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5) et valider le merge. Ensuite : Phase 2 — base de données.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -26,17 +26,18 @@ Le squelette du projet existe (arborescence, branches Git, remote GitHub) mais *
 
 ## Phase 1 — Conception 🔄
 
-> Branche suggérée : travail hors code, directement documenté dans `docs/`
+> Branche : `feature/conception` — **en attente de validation avant merge**
 
-- [ ] **Charte graphique** : palette de couleurs + typographie (export PDF à terme)
-- [ ] **Wireframes** : 3 maquettes bureautiques + 3 maquettes mobiles
-- [ ] **Mockups** : versions finalisées des mêmes écrans
-- [ ] Schéma d'enchaînement des maquettes
-- [ ] **MCD** (modèle conceptuel de données) — s'appuyer sur l'annexe 1 de l'ECF, la corriger/compléter
-- [ ] Diagramme de cas d'utilisation
-- [ ] Diagramme de séquence (ex. : parcours commande)
-- [ ] Mise en place de l'outil de gestion de projet (Trello / Notion) + lien dans le README
-- [ ] Compléter `.env.example` (variables MongoDB manquantes : `MONGO_URI`, `MONGO_DB`)
+- [x] **Charte graphique** : palette de couleurs + typographie → [docs/charte-graphique.md](docs/charte-graphique.md) (export PDF en Phase 10)
+- [x] **Wireframes** : 3 maquettes bureautiques + 3 maquettes mobiles → [docs/maquettes/](docs/maquettes/)
+- [x] **Mockups** : versions finalisées des mêmes écrans (accueil, menus, détail)
+- [x] Schéma d'enchaînement des maquettes → [docs/conception/diagrammes.md](docs/conception/diagrammes.md) §4
+- [x] **MCD** (modèle conceptuel de données) — annexe 1 de l'ECF corrigée/complétée → [docs/conception/mcd.md](docs/conception/mcd.md)
+- [x] Diagramme de cas d'utilisation → [docs/conception/diagrammes.md](docs/conception/diagrammes.md)
+- [x] Diagramme de séquence (parcours commande + cycle de vie employé)
+- [x] Choix de l'outil de gestion de projet : **Trello** → [docs/gestion-de-projet.md](docs/gestion-de-projet.md)
+- [ ] Créer le board Trello + passer en public + lien dans le README *(action Alexandre — checklist §5 de la doc)*
+- [x] Compléter `.env.example` (variables MongoDB : `MONGO_URI`, `MONGO_DB`)
 
 ## Phase 2 — Base de données ⬜
 
@@ -153,5 +154,6 @@ Le squelette du projet existe (arborescence, branches Git, remote GitHub) mais *
 
 | Date | Décision |
 |---|---|
+| 03/07/2026 | Phase 1 sur `feature/conception` : maquettes en SVG (exportables PDF), MCD enrichi (suivi historisé, galerie d'images, reset tokens), diagrammes en Mermaid (rendus sur GitHub), outil de gestion de projet : **Trello**. |
 | 03/07/2026 | Création de la doc de pilotage (cahier des charges, livrables, conventions, roadmap). Règle actée : **aucun merge vers develop/main sans validation d'Alexandre**. |
 | avant | Squelette du projet + branches main/develop + remote GitHub. |
