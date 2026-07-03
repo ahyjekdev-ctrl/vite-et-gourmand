@@ -62,7 +62,7 @@ L'application permet aux visiteurs de consulter les menus du traiteur, de filtre
 
 4. **Initialiser MongoDB** (collections de statistiques)
    ```bash
-   mongosh < database/mongodb-config.js
+   mongosh --quiet database/mongodb-config.js
    ```
 
 5. **Lancer le serveur de développement** (depuis la racine du projet, pour servir le front **et** le back)

@@ -3,7 +3,8 @@
 // Collection de statistiques alimentant l'espace administrateur :
 //   - nombre de commandes par menu (graphique comparatif)
 //   - chiffre d'affaires par menu, filtrable par menu et par période
-// Usage : mongosh < database/mongodb-config.js
+// Usage : mongosh --quiet database/mongodb-config.js
+//         (exécution en mode fichier : s'arrête avec un code d'erreur si un problème survient)
 // ============================================================
 
 const db = connect("mongodb://localhost:27017/vite_et_gourmand_stats");
@@ -22,8 +23,10 @@ db.createCollection("stats_commandes", {
         menu_id:       { bsonType: "int",    description: "menu_id MySQL correspondant" },
         titre_menu:    { bsonType: "string" },
         date_commande: { bsonType: "date" },
-        nb_personnes:  { bsonType: "int",    minimum: 1 },
-        prix_total:    { bsonType: "double", minimum: 0 },
+        // "number" accepte int, long, double et decimal : un montant rond (468.0)
+        // est sérialisé en Int32 par mongosh/PHP, un "double" strict le rejetterait
+        nb_personnes:  { bsonType: "number", minimum: 1 },
+        prix_total:    { bsonType: "number", minimum: 0 },
         statut:        { enum: ["cree", "accepte", "en_preparation", "en_livraison",
                                 "livre", "attente_materiel", "terminee", "annulee"] }
       }
