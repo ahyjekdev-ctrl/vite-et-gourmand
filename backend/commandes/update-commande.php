@@ -20,6 +20,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../config/api.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/session.php';
+require_once __DIR__ . '/../config/mongo.php';
 require_once __DIR__ . '/../mail/send-mail.php';
 require_once __DIR__ . '/calcul-prix.php';
 
@@ -116,6 +117,8 @@ if ($action === 'annuler') {
     restituerStock($pdo, (int) $commande['menu_id']);
     $pdo->commit();
 
+    statsMajCommande($commande['numero_commande'], ['statut' => 'annulee']);
+
     repondre(200, ['message' => 'Commande annulée.']);
 }
 
@@ -181,6 +184,11 @@ if ($action === 'modifier') {
         'id'              => $commandeId,
     ]);
 
+    statsMajCommande($commande['numero_commande'], [
+        'nb_personnes' => $nb,
+        'prix_total'   => $prix['prix_total'],
+    ]);
+
     repondre(200, ['message' => 'Commande mise à jour.', 'prix' => $prix]);
 }
 
@@ -230,6 +238,8 @@ if ($action === 'changer_statut') {
         ->execute($parametres);
     ajouterSuivi($pdo, $commandeId, $nouveau);
     $pdo->commit();
+
+    statsMajCommande($commande['numero_commande'], ['statut' => $nouveau]);
 
     // Mails automatiques liés au statut
     if ($nouveau === 'attente_materiel') {

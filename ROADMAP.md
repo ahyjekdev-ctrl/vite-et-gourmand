@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 07/07/2026)
 
-**Phase actuelle : Phase 7 — Avis & espaces. Partie 7a faite sur `feature/avis-espaces` (en attente de validation avant merge) ; reste 7b : stats MongoDB**
+**Phase actuelle : Phase 7 terminée — 7b (stats MongoDB) sur `feature/stats-mongodb`, en attente de validation avant merge**
 
-Phases 1 à 6 mergées dans `develop` + premier merge `develop` → `main`. **7a écrite et testée** : dépôt d'avis (commande terminée, un seul par commande) et modération, CRUD plats/horaires, les trois espaces branchés sur l'API (module commun `espace-commun.js`, garde par rôle), comptes employés (création avec mail **sans** mot de passe, désactivation → connexion refusée), profil modifiable. **Reste 7b** : extension PHP mongodb + stats (nb commandes/CA par menu, graphique, filtres période). Côté Alexandre : tester les 3 espaces dans le navigateur, créer le board Trello.
+Phases 1 à 7a mergées dans `develop`. **7b écrite et testée** : extension PHP `mongodb` 2.3.3 installée, composant d'accès NoSQL (`backend/config/mongo.php`), écritures miroir automatiques à chaque création/évolution de commande, endpoint d'agrégation admin (`get-stats.php`, commandes annulées exclues), graphique en barres **canvas natif** + tableau CA avec filtres par menu et par période dans l'espace admin. Prochaines étapes : Phase 8 (contact) — rapide, puis 9 (sécurité/RGAA) et 10 (déploiement + livrables). Côté Alexandre : tester les stats dans l'espace admin, créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -139,8 +139,9 @@ Phases 1 à 6 mergées dans `develop` + premier merge `develop` → `main`. **7a
 - [x] Espace admin : création compte employé (mail **sans** mot de passe — vérifié : 0 occurrence dans le journal), désactivation/réactivation
 - [x] Module front commun aux espaces (`espace-commun.js`) : garde par rôle, appels API, formats, badges — rendu DOM en `textContent` (anti-XSS)
 - [x] Tests 7a : 16 scénarios (409 avis en double/commande non terminée, 403 modération client et gestion employés, mail sans mdp, connexion refusée après désactivation, menus inactifs invisibles du public…)
-- [ ] **7b — Statistiques MongoDB** : extension PHP mongodb, insertion des stats à la commande, nb de commandes par menu + **graphique** comparatif
-- [ ] **7b** — Chiffre d'affaires par menu, filtres par menu et par période
+- [x] **7b — Statistiques MongoDB** : extension PHP mongodb 2.3.3 (DLL PECL), `backend/config/mongo.php` (insertions best effort, agrégations), stats insérées/mises à jour à chaque événement de commande, nb de commandes par menu en **graphique canvas natif** (aucune librairie externe)
+- [x] **7b** — Chiffre d'affaires par menu (`get-stats.php`, admin uniquement), filtres cumulables par menu et par période, annulées exclues, totaux vérifiés (1 848,09 € sur les fixtures)
+- [x] Tests 7b : 7 scénarios (403 employé, agrégations exactes, filtres, insertion auto à la commande, maj du statut Mongo à chaque transition, annulée exclue des stats)
 
 ## Phase 8 — Contact ⬜
 
@@ -177,6 +178,8 @@ Phases 1 à 6 mergées dans `develop` + premier merge `develop` → `main`. **7a
 
 | Date | Décision |
 |---|---|
+| 08/07/2026 | Phase 7b sur `feature/stats-mongodb` : extension PHP mongodb via DLL PECL (2.3.3, 8.5-ts-vs17-x64), écritures statistiques « best effort » (Mongo en panne n'empêche jamais une vente), clé de rapprochement `numero_commande` + index unique côté Mongo, graphique en canvas natif (pas de dépendance externe, données accessibles dans le tableau voisin). |
+| 07/07/2026 | Phase 7a mergée dans `develop` après test navigateur validé. |
 | 07/07/2026 | Phase 6 mergée dans `develop` après test navigateur validé, puis **premier merge `develop` → `main`** : `main` porte désormais une version stable et testée (phases 1-6). Ajout d'un `index.php` à la racine (redirection vers l'accueil). |
 | 07/07/2026 | Phase 6 sur `feature/commandes` : calcul de prix dans un composant partagé (création/modification cohérentes), verrou `FOR UPDATE` sur le stock, transitions de statut en liste blanche, stock restitué à l'annulation. Bug corrigé : un paramètre nommé PDO ne peut pas être réutilisé avec `EMULATE_PREPARES` désactivé (filtre client de l'espace employé). Stats MongoDB reportées en Phase 7 (extension PHP à installer). |
 | 03/07/2026 | Phase 5 sur `feature/menus` : suppression douce des menus (`actif=0`, FK RESTRICT préserve l'historique), rendu DOM en `textContent` uniquement (anti-XSS), filtre « personnes » = menus dont le minimum est accessible pour le nombre de convives saisi. CRUD plats/horaires déplacé en Phase 7 (avec son interface). |
