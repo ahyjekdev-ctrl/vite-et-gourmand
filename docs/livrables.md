@@ -52,18 +52,18 @@ Format : **20 à 30 pages max** (hors page de garde, sommaire, annexes) — **an
 - [ ] Captures d'écran des interfaces (web + mobile)
 - [ ] Extraits de code : interfaces statiques
 - [ ] Extraits de code : partie dynamique
-- [ ] Éléments de **sécurité côté front**
-- [ ] **Jeu d'essai** de la fonctionnalité la plus représentative (données en entrée / attendues / obtenues + analyse des écarts)
-- [ ] **Veille sécurité front** (vulnérabilités trouvées, failles corrigées)
+- [x] Éléments de **sécurité côté front** → [veille-securite.md](veille-securite.md) (CSP, anti-XSS, RGAA)
+- [x] **Jeu d'essai** de la fonctionnalité la plus représentative → [jeux-essai.md](jeux-essai.md) (filtres dynamiques + commande)
+- [x] **Veille sécurité front** (vulnérabilités trouvées, failles corrigées) → [veille-securite.md](veille-securite.md)
 
 ### Volet Back-end (Activité type 2)
 - [ ] Liste des compétences du référentiel couvertes
 - [ ] Présentation de la base de données (schéma conceptuel, schéma physique, script de création)
 - [ ] Extraits de code : composants métier
 - [ ] Extraits de code : composants d'accès aux données
-- [ ] Éléments de **sécurité côté back**
-- [ ] **Jeu d'essai** de la fonctionnalité back la plus représentative + analyse des écarts
-- [ ] **Veille sécurité back**
+- [x] Éléments de **sécurité côté back** → [veille-securite.md](veille-securite.md) (OWASP Top 10, PDO, sessions)
+- [x] **Jeu d'essai** de la fonctionnalité back la plus représentative + analyse des écarts → [jeux-essai.md](jeux-essai.md) (création de commande)
+- [x] **Veille sécurité back** → [veille-securite.md](veille-securite.md)
 - [ ] Annexes : code des composants métier et d'accès aux données les plus significatifs
 
 ### Production complémentaire

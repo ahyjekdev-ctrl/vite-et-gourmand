@@ -68,13 +68,17 @@ Exemples : `feat: filtres dynamiques sur la vue globale des menus`, `db: table c
 - Contrôle des rôles **côté serveur** sur chaque endpoint (jamais de confiance au front).
 
 ### Front
-- Échappement de toute donnée affichée (`htmlspecialchars`) — anti XSS.
+- Rendu de toute donnée dynamique via `textContent` / création DOM — **jamais `innerHTML`** (anti XSS).
 - Validation des formulaires côté client (UX) **et** côté serveur (sécurité).
-- Token CSRF sur les formulaires sensibles.
+- **CSP `default-src 'self'`** sur chaque page (bloque tout script/style/ressource externe) → aucun style inline, aucun script inline.
+- Défense CSRF : cookie de session `SameSite=Lax` + `Content-Type: application/json` exigé par l'API.
 
 ### Configuration
 - Secrets dans `.env` (jamais commité — voir `.gitignore`).
 - `.env.example` maintenu à jour à chaque nouvelle variable.
+- **Ne jamais servir les fichiers sensibles** : en dev via `router.php` (liste blanche), en prod via `.htaccess`. Lancer le serveur avec `php -S localhost:8000 router.php`.
+- `display_errors` désactivé sur l'API : les erreurs vont au journal, jamais au client.
+- Détails et vulnérabilités corrigées : [veille-securite.md](veille-securite.md) ; jeux d'essai : [jeux-essai.md](jeux-essai.md).
 
 ### RGPD
 - Seules les données nécessaires sont collectées.
