@@ -79,6 +79,6 @@ Format : **20 à 30 pages max** (hors page de garde, sommaire, annexes) — **an
 
 ### Activité type 2 — Back-end sécurisé
 - [x] Mettre en place une base de données relationnelle → schema.sql + fixtures.sql testés
-- [ ] Développer des composants d'accès aux données **SQL et NoSQL** → SQL ✅ (PDO préparé) ; NoSQL *(Phase 7 : stats MongoDB)*
+- [x] Développer des composants d'accès aux données **SQL et NoSQL** → SQL : PDO préparé ; NoSQL : `backend/config/mongo.php` (driver MongoDB, agrégations, écritures miroir)
 - [x] Développer des composants métier côté serveur → règles d'authentification, politique de mdp, CRUD menus *(commandes en Phase 6)*
 - [ ] Documenter le déploiement d'une application dynamique *(Phase 10)*
