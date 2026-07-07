@@ -23,7 +23,7 @@
         <ul class="nav__liste" id="menu-principal">
           <li><a class="nav__lien" href="../index.html">Accueil</a></li>
           <li><a class="nav__lien" href="dashboard.html" aria-current="page">Espace employé</a></li>
-          <li><a class="nav__lien nav__connexion" href="../index.html">Déconnexion</a></li>
+          <li><a class="nav__lien nav__connexion" href="../index.html" id="lien-deconnexion">Déconnexion</a></li>
         </ul>
       </nav>
     </div>
@@ -31,21 +31,24 @@
 
   <main id="contenu" class="conteneur dashboard">
     <h1>Espace employé</h1>
-    <p>Connectée en tant que <strong>Julie Bernard</strong> <small>(contenu de démonstration)</small></p>
+    <p id="salutation">Chargement…</p>
+    <p id="message-espace" role="alert" hidden></p>
 
     <nav class="dashboard__nav" aria-label="Sections de l'espace">
       <ul>
-        <li><a href="#commandes" aria-current="true">Commandes</a></li>
-        <li><a href="#catalogue">Menus, plats &amp; horaires</a></li>
+        <li><a href="#commandes">Commandes</a></li>
         <li><a href="#moderation">Avis à modérer</a></li>
+        <li><a href="#menus">Menus</a></li>
+        <li><a href="#plats">Plats</a></li>
+        <li><a href="#horaires">Horaires</a></li>
       </ul>
     </nav>
 
-    <!-- Gestion des commandes : filtre par statut ou par client -->
+    <!-- ==================== COMMANDES ==================== -->
     <section id="commandes" aria-labelledby="titre-commandes">
       <h2 id="titre-commandes">Commandes</h2>
 
-      <form class="filtres" aria-label="Filtrer les commandes">
+      <form class="filtres" aria-label="Filtrer les commandes" onsubmit="return false">
         <div class="grille grille--2">
           <div class="champ">
             <label for="fc-statut">Filtrer par statut</label>
@@ -63,14 +66,14 @@
           </div>
           <div class="champ">
             <label for="fc-client">Filtrer par client</label>
-            <input type="search" id="fc-client" name="client" placeholder="Nom ou mail du client">
+            <input type="search" id="fc-client" name="client" placeholder="Nom, prénom ou mail">
           </div>
         </div>
       </form>
 
       <div class="tableau-defilant">
         <table class="tableau">
-          <caption class="sr-only">Commandes en cours et passées</caption>
+          <caption class="sr-only">Commandes avec statut et actions possibles</caption>
           <thead>
             <tr>
               <th scope="col">N°</th>
@@ -79,78 +82,152 @@
               <th scope="col">Prestation</th>
               <th scope="col">Total</th>
               <th scope="col">Statut</th>
-              <th scope="col">Action</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>CMD-2026-0006</td>
-              <td>Jean Dupont</td>
-              <td>Pâques Gourmand</td>
-              <td>18/07 à 12h00</td>
-              <td>180,00&nbsp;€</td>
-              <td><span class="statut statut--cree">En attente</span></td>
-              <td><a href="#">Accepter</a></td>
-            </tr>
-            <tr>
-              <td>CMD-2026-0005</td>
-              <td>Marc Lefevre</td>
-              <td>Évènement Grand Format</td>
-              <td>28/06 à 18h00</td>
-              <td>628,47&nbsp;€</td>
-              <td><span class="statut statut--alerte">Attente matériel</span></td>
-              <td><a href="#">Matériel restitué</a></td>
-            </tr>
-            <tr>
-              <td>CMD-2026-0004</td>
-              <td>Jean Dupont</td>
-              <td>Vegan Découverte</td>
-              <td>27/06 à 12h30</td>
-              <td>261,00&nbsp;€</td>
-              <td><span class="statut statut--terminee">Terminée</span></td>
-              <td>—</td>
-            </tr>
+          <tbody id="tbody-commandes">
+            <tr><td colspan="7">Chargement des commandes…</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="aide">⚠ Une commande ne peut être modifiée ou annulée qu'<strong>après avoir contacté le client</strong> (appel GSM ou mail)&nbsp;: le motif et le mode de contact sont alors obligatoires.</p>
+      <p class="aide">⚠ Une commande ne peut être modifiée ou annulée qu'<strong>après avoir contacté le client</strong> (appel GSM ou mail) : le motif et le mode de contact sont alors obligatoires.</p>
     </section>
 
-    <!-- Gestion du catalogue -->
-    <section id="catalogue" aria-labelledby="titre-catalogue">
-      <h2 id="titre-catalogue">Menus, plats &amp; horaires</h2>
-      <div class="grille grille--3">
-        <article class="carte">
-          <h3>Menus</h3>
-          <p>6 menus actifs. Créer, modifier ou supprimer un menu (titre, images, plats, conditions, stock…).</p>
-          <a class="btn btn--secondaire btn--large" href="#">Gérer les menus</a>
-        </article>
-        <article class="carte">
-          <h3>Plats</h3>
-          <p>21 plats au catalogue (entrées, plats, desserts) avec leurs allergènes.</p>
-          <a class="btn btn--secondaire btn--large" href="#">Gérer les plats</a>
-        </article>
-        <article class="carte">
-          <h3>Horaires</h3>
-          <p>Horaires affichés dans le pied de page du site, du lundi au dimanche.</p>
-          <a class="btn btn--secondaire btn--large" href="#">Gérer les horaires</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Modération des avis -->
+    <!-- ==================== AVIS ==================== -->
     <section id="moderation" aria-labelledby="titre-moderation">
       <h2 id="titre-moderation">Avis à modérer</h2>
-      <article class="carte">
-        <p class="avis__note" aria-hidden="true">★★★★★</p>
-        <p><span class="sr-only">Note : 5 sur 5. </span>«&nbsp;Le menu vegan est une vraie découverte, la pavlova est incroyable.&nbsp;»</p>
-        <p class="avis__auteur">Jean D. — commande CMD-2026-0004</p>
-        <p>
-          <button type="button" class="btn btn--primaire">Valider</button>
-          <button type="button" class="btn btn--secondaire">Refuser</button>
-        </p>
-      </article>
+      <div class="grille grille--3" id="zone-avis">
+        <p>Chargement des avis…</p>
+      </div>
       <p class="aide">Seuls les avis validés apparaissent sur la page d'accueil.</p>
+    </section>
+
+    <!-- ==================== MENUS ==================== -->
+    <section id="menus" aria-labelledby="titre-menus">
+      <h2 id="titre-menus">Menus</h2>
+      <div class="tableau-defilant">
+        <table class="tableau">
+          <caption class="sr-only">Catalogue des menus, y compris désactivés</caption>
+          <thead>
+            <tr>
+              <th scope="col">Titre</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Minimum</th>
+              <th scope="col">Stock</th>
+              <th scope="col">État</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-menus">
+            <tr><td colspan="6">Chargement des menus…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details>
+        <summary>➕ Créer un nouveau menu</summary>
+        <form class="formulaire" id="form-nouveau-menu" action="#" method="post" novalidate>
+          <div class="champ">
+            <label for="nm-titre">Titre *</label>
+            <input type="text" id="nm-titre" required>
+          </div>
+          <div class="champ">
+            <label for="nm-description">Description *</label>
+            <textarea id="nm-description" rows="3" required></textarea>
+          </div>
+          <div class="champ">
+            <label for="nm-conditions">Conditions du menu *</label>
+            <textarea id="nm-conditions" rows="2" required placeholder="Ex. : Commande à passer au minimum 5 jours avant la prestation."></textarea>
+          </div>
+          <div class="grille grille--3">
+            <div class="champ">
+              <label for="nm-prix">Prix (€) *</label>
+              <input type="number" id="nm-prix" min="0" step="0.01" required>
+            </div>
+            <div class="champ">
+              <label for="nm-min">Personnes minimum *</label>
+              <input type="number" id="nm-min" min="1" required>
+            </div>
+            <div class="champ">
+              <label for="nm-stock">Stock (commandes possibles) *</label>
+              <input type="number" id="nm-stock" min="0" required>
+            </div>
+          </div>
+          <div class="grille grille--2">
+            <div class="champ">
+              <label for="nm-theme">Thème *</label>
+              <select id="nm-theme" required></select>
+            </div>
+            <div class="champ">
+              <label for="nm-regime">Régime *</label>
+              <select id="nm-regime" required></select>
+            </div>
+          </div>
+          <fieldset class="champ">
+            <legend>Plats du menu * (un plat peut appartenir à plusieurs menus)</legend>
+            <div id="nm-plats"></div>
+          </fieldset>
+          <button type="submit" class="btn btn--primaire">Créer le menu</button>
+        </form>
+      </details>
+    </section>
+
+    <!-- ==================== PLATS ==================== -->
+    <section id="plats" aria-labelledby="titre-plats">
+      <h2 id="titre-plats">Plats</h2>
+      <div class="tableau-defilant">
+        <table class="tableau">
+          <caption class="sr-only">Catalogue des plats et allergènes</caption>
+          <thead>
+            <tr>
+              <th scope="col">Plat</th>
+              <th scope="col">Type</th>
+              <th scope="col">Allergènes</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-plats">
+            <tr><td colspan="4">Chargement des plats…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details open>
+        <summary>➕ Créer ou modifier un plat</summary>
+        <form class="formulaire" id="form-plat" action="#" method="post" novalidate>
+          <input type="hidden" id="pl-id" value="">
+          <div class="grille grille--2">
+            <div class="champ">
+              <label for="pl-titre">Titre du plat *</label>
+              <input type="text" id="pl-titre" required>
+            </div>
+            <div class="champ">
+              <label for="pl-type">Type *</label>
+              <select id="pl-type" required>
+                <option value="entree">Entrée</option>
+                <option value="plat">Plat</option>
+                <option value="dessert">Dessert</option>
+              </select>
+            </div>
+          </div>
+          <fieldset class="champ">
+            <legend>Allergènes</legend>
+            <div id="pl-allergenes"></div>
+          </fieldset>
+          <button type="submit" class="btn btn--primaire">Enregistrer le plat</button>
+          <p class="aide">Cliquer « Modifier » dans le tableau pré-remplit ce formulaire.</p>
+        </form>
+      </details>
+    </section>
+
+    <!-- ==================== HORAIRES ==================== -->
+    <section id="horaires" aria-labelledby="titre-horaires-section">
+      <h2 id="titre-horaires-section">Horaires d'ouverture</h2>
+      <form class="formulaire" onsubmit="return false">
+        <p class="aide">Heure d'ouverture puis de fermeture. Laisser les deux champs vides = fermé ce jour-là.</p>
+        <div id="zone-horaires">Chargement des horaires…</div>
+        <button type="button" class="btn btn--primaire" id="btn-horaires">Enregistrer les horaires</button>
+      </form>
     </section>
   </main>
 
@@ -179,5 +256,7 @@
   </footer>
 
   <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/espace-commun.js"></script>
+  <script src="../assets/js/espace-employe.js"></script>
 </body>
 </html>

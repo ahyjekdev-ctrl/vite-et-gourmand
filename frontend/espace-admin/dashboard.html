@@ -24,7 +24,7 @@
           <li><a class="nav__lien" href="../index.html">Accueil</a></li>
           <li><a class="nav__lien" href="../espace-employe/dashboard.html">Espace employé</a></li>
           <li><a class="nav__lien" href="dashboard.html" aria-current="page">Administration</a></li>
-          <li><a class="nav__lien nav__connexion" href="../index.html">Déconnexion</a></li>
+          <li><a class="nav__lien nav__connexion" href="../index.html" id="lien-deconnexion">Déconnexion</a></li>
         </ul>
       </nav>
     </div>
@@ -32,7 +32,8 @@
 
   <main id="contenu" class="conteneur dashboard">
     <h1>Espace administrateur</h1>
-    <p>Connecté en tant que <strong>José Martinez</strong> <small>(contenu de démonstration)</small></p>
+    <p id="salutation">Chargement…</p>
+    <p id="message-espace" role="alert" hidden></p>
     <p>L'administrateur dispose aussi de toutes les fonctions de l'<a href="../espace-employe/dashboard.html">espace employé</a> (commandes, catalogue, avis).</p>
 
     <nav class="dashboard__nav" aria-label="Sections de l'espace">
@@ -48,7 +49,7 @@
       <div class="grille grille--2">
         <article class="carte">
           <h3>Créer un compte employé</h3>
-          <form action="#" method="post" novalidate>
+          <form id="form-employe" action="#" method="post" novalidate>
             <div class="champ">
               <label for="emp-email">Adresse mail de l'employé *</label>
               <input type="email" id="emp-email" name="email" required>
@@ -56,7 +57,7 @@
             </div>
             <div class="champ">
               <label for="emp-password">Mot de passe *</label>
-              <input type="password" id="emp-password" name="password" required minlength="10">
+              <input type="password" id="emp-password" name="password" required minlength="10" autocomplete="new-password">
               <p class="aide">L'employé sera notifié par mail de la création de son compte, <strong>sans le mot de passe</strong>&nbsp;: communiquez-le-lui directement.</p>
             </div>
             <button type="submit" class="btn btn--primaire">Créer le compte</button>
@@ -70,12 +71,8 @@
               <thead>
                 <tr><th scope="col">Employé</th><th scope="col">Statut</th><th scope="col">Action</th></tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>julie@vite-et-gourmand.fr</td>
-                  <td><span class="statut statut--accepte">Actif</span></td>
-                  <td><a href="#">Désactiver</a></td>
-                </tr>
+              <tbody id="tbody-employes">
+                <tr><td colspan="3">Chargement des comptes…</td></tr>
               </tbody>
             </table>
           </div>
@@ -169,5 +166,7 @@
   </footer>
 
   <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/espace-commun.js"></script>
+  <script src="../assets/js/espace-admin.js"></script>
 </body>
 </html>
