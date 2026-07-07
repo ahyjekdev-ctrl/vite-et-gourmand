@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Créez votre compte Vite & Gourmand pour commander vos menus traiteur à Bordeaux.">
+  <title>Créer un compte — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="menus.html">Nos menus</a></li>
+          <li><a class="nav__lien" href="contact.html">Contact</a></li>
+          <li><a class="nav__lien nav__connexion" href="connexion.html">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur">
+    <h1>Créer un compte</h1>
+    <p>Les champs marqués d'un astérisque (<span aria-hidden="true">*</span><span class="sr-only">obligatoire</span>) sont obligatoires.</p>
+    <p id="message-auth" role="alert" hidden></p>
+
+    <form class="formulaire" id="form-inscription" action="#" method="post" novalidate>
+      <fieldset>
+        <legend>Vos informations</legend>
+        <div class="champ">
+          <label for="ins-nom">Nom *</label>
+          <input type="text" id="ins-nom" name="nom" autocomplete="family-name" required>
+        </div>
+        <div class="champ">
+          <label for="ins-prenom">Prénom *</label>
+          <input type="text" id="ins-prenom" name="prenom" autocomplete="given-name" required>
+        </div>
+        <div class="champ">
+          <label for="ins-gsm">Numéro de GSM *</label>
+          <input type="tel" id="ins-gsm" name="telephone" autocomplete="tel" required>
+        </div>
+        <div class="champ">
+          <label for="ins-email">Adresse mail *</label>
+          <input type="email" id="ins-email" name="email" autocomplete="email" required>
+          <p class="aide">Elle vous servira d'identifiant de connexion.</p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Votre adresse postale</legend>
+        <div class="champ">
+          <label for="ins-adresse">Adresse *</label>
+          <input type="text" id="ins-adresse" name="adresse" autocomplete="street-address" required>
+        </div>
+        <div class="champ">
+          <label for="ins-ville">Ville *</label>
+          <input type="text" id="ins-ville" name="ville" autocomplete="address-level2" required>
+        </div>
+        <div class="champ">
+          <label for="ins-cp">Code postal *</label>
+          <input type="text" id="ins-cp" name="code_postal" inputmode="numeric" autocomplete="postal-code" required>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Votre mot de passe</legend>
+        <div class="champ">
+          <label for="ins-password">Mot de passe *</label>
+          <input type="password" id="ins-password" name="password" autocomplete="new-password"
+                 required minlength="10" aria-describedby="aide-password">
+          <p class="aide" id="aide-password">Au moins 10 caractères, avec au minimum&nbsp;: une majuscule, une minuscule, un chiffre et un caractère spécial.</p>
+        </div>
+        <div class="champ">
+          <label for="ins-password2">Confirmer le mot de passe *</label>
+          <input type="password" id="ins-password2" name="password_confirmation" autocomplete="new-password" required minlength="10">
+        </div>
+      </fieldset>
+
+      <div class="champ">
+        <label>
+          <input type="checkbox" name="consentement" required style="width: auto;">
+          J'accepte que mes données soient utilisées pour la gestion de mon compte et de mes commandes, conformément aux <a href="mentions-legales.html">mentions légales</a> (RGPD). *
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn--primaire btn--large">Créer mon compte</button>
+      <p><small>Un mail de bienvenue vous sera envoyé après l'inscription.</small></p>
+      <p>Déjà inscrit&nbsp;? <a href="connexion.html">Se connecter</a></p>
+    </form>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

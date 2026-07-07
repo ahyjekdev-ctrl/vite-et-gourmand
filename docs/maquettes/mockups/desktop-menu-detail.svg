@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1330" viewBox="0 0 1440 1330" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#2D2A26" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <style>
+    .serif { font-family: Georgia, 'Times New Roman', serif; }
+    .txt   { fill: #2D2A26; }
+    .mut   { fill: #6B645C; }
+    .blanc { fill: #FFFFFF; }
+    .pill  { fill: #F0EAE0; }
+  </style>
+
+  <rect width="1440" height="1330" fill="#FAF4EA"/>
+
+  <!-- ===== HEADER ===== -->
+  <rect width="1440" height="80" fill="#7B2D35"/>
+  <text x="60" y="50" class="serif blanc" font-size="26" font-style="italic" font-weight="bold">Vite &amp; Gourmand</text>
+  <text x="950" y="48" class="blanc" font-size="16">Accueil</text>
+  <text x="1050" y="48" class="blanc" font-size="16" font-weight="bold">Nos menus</text>
+  <rect x="1045" y="58" width="83" height="3" fill="#C99B3F"/>
+  <text x="1175" y="48" class="blanc" font-size="16">Contact</text>
+  <rect x="1265" y="22" width="120" height="38" rx="8" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="1325" y="46" class="blanc" font-size="15" text-anchor="middle">Connexion</text>
+
+  <!-- Fil d'Ariane -->
+  <text x="60" y="120" class="mut" font-size="13">Accueil  ›  Nos menus  ›  <tspan fill="#7B2D35" font-weight="bold">Menu Noël Prestige</tspan></text>
+
+  <!-- ===== GALERIE ===== -->
+  <rect x="60" y="145" width="620" height="380" rx="12" fill="#EAD9C2" filter="url(#sh)"/>
+  <circle cx="370" cy="335" r="90" fill="#FAF4EA" stroke="#C99B3F" stroke-width="3"/>
+  <circle cx="370" cy="335" r="65" fill="#FFFFFF" stroke="#E4CFA6" stroke-width="2"/>
+  <text x="370" y="505" class="mut" font-size="13" text-anchor="middle" font-style="italic">Photo principale — chapon aux morilles</text>
+  <!-- Vignettes -->
+  <rect x="60" y="545" width="196" height="110" rx="8" fill="#E4CFA6"/>
+  <rect x="272" y="545" width="196" height="110" rx="8" fill="#EAD9C2"/>
+  <rect x="484" y="545" width="196" height="110" rx="8" fill="#E4CFA6"/>
+  <text x="370" y="680" class="mut" font-size="12" text-anchor="middle" font-style="italic">Galerie d'images (3 photos)</text>
+
+  <!-- ===== INFOS MENU ===== -->
+  <text x="740" y="185" class="serif txt" font-size="36" font-weight="bold">Menu Noël Prestige</text>
+  <!-- Badges -->
+  <rect x="740" y="205" width="130" height="30" rx="15" fill="#7B2D35"/>
+  <text x="805" y="225" class="blanc" font-size="13" text-anchor="middle">Thème : Noël</text>
+  <rect x="885" y="205" width="150" height="30" rx="15" fill="none" stroke="#7B2D35" stroke-width="1.5"/>
+  <text x="960" y="225" font-size="13" fill="#7B2D35" text-anchor="middle">Régime : classique</text>
+
+  <text x="740" y="275" class="txt" font-size="15">Un menu d'exception pour les fêtes : foie gras mi-cuit et son chutney</text>
+  <text x="740" y="298" class="txt" font-size="15">de figues, chapon fermier aux morilles et sa purée truffée,</text>
+  <text x="740" y="321" class="txt" font-size="15">bûche signature chocolat-praliné de la maison.</text>
+
+  <!-- Bloc prix -->
+  <rect x="740" y="350" width="640" height="110" rx="12" fill="#FFFFFF" filter="url(#sh)"/>
+  <text x="770" y="400" class="serif" font-size="30" font-weight="bold" fill="#7B2D35">320 €</text>
+  <text x="880" y="400" class="mut" font-size="15">pour 8 personnes (minimum)</text>
+  <rect x="770" y="415" width="240" height="28" rx="14" fill="#C99B3F"/>
+  <text x="890" y="434" font-size="13" font-weight="bold" fill="#2D2A26" text-anchor="middle">−10 % à partir de 13 personnes</text>
+  <text x="1350" y="434" class="mut" font-size="13" text-anchor="end">⏳ Plus que 5 commandes disponibles</text>
+
+  <!-- Encart conditions (mise en évidence obligatoire) -->
+  <rect x="740" y="485" width="640" height="120" rx="8" fill="#FBEFEA"/>
+  <rect x="740" y="485" width="6" height="120" fill="#B3261E"/>
+  <text x="770" y="518" font-size="15" font-weight="bold" fill="#B3261E">⚠ Conditions de ce menu — à lire avant de commander</text>
+  <text x="770" y="548" class="txt" font-size="14">• Commande à passer au minimum 7 jours avant la date de la prestation.</text>
+  <text x="770" y="572" class="txt" font-size="14">• Conservation au frais entre 0 et 4 °C jusqu'au service.</text>
+
+  <!-- Bouton commander -->
+  <rect x="740" y="630" width="300" height="54" rx="8" fill="#7B2D35"/>
+  <text x="890" y="664" class="blanc" font-size="17" font-weight="bold" text-anchor="middle">Commander ce menu</text>
+  <text x="1070" y="664" class="mut" font-size="13">Connexion requise pour commander</text>
+
+  <!-- ===== COMPOSITION DU MENU ===== -->
+  <rect y="730" width="1440" height="440" fill="#FFFFFF"/>
+  <text x="720" y="795" class="serif txt" font-size="28" font-weight="bold" text-anchor="middle">Composition du menu</text>
+  <rect x="670" y="810" width="100" height="3" fill="#C99B3F"/>
+
+  <!-- Entrées -->
+  <rect x="100" y="845" width="380" height="280" rx="12" fill="#FAF4EA" filter="url(#sh)"/>
+  <text x="290" y="885" class="serif" font-size="20" font-weight="bold" fill="#7B2D35" text-anchor="middle">Entrées</text>
+  <text x="130" y="925" class="txt" font-size="14" font-weight="bold">Foie gras mi-cuit, chutney de figues</text>
+  <rect x="130" y="938" width="60" height="22" rx="11" class="pill"/>
+  <text x="160" y="953" class="mut" font-size="11" text-anchor="middle">lactose</text>
+  <rect x="196" y="938" width="56" height="22" rx="11" class="pill"/>
+  <text x="224" y="953" class="mut" font-size="11" text-anchor="middle">gluten</text>
+  <text x="130" y="1000" class="txt" font-size="14" font-weight="bold">Velouté de châtaignes</text>
+  <rect x="130" y="1013" width="110" height="22" rx="11" class="pill"/>
+  <text x="185" y="1028" class="mut" font-size="11" text-anchor="middle">fruits à coque</text>
+
+  <!-- Plats -->
+  <rect x="530" y="845" width="380" height="280" rx="12" fill="#FAF4EA" filter="url(#sh)"/>
+  <text x="720" y="885" class="serif" font-size="20" font-weight="bold" fill="#7B2D35" text-anchor="middle">Plats</text>
+  <text x="560" y="925" class="txt" font-size="14" font-weight="bold">Chapon fermier aux morilles</text>
+  <rect x="560" y="938" width="60" height="22" rx="11" class="pill"/>
+  <text x="590" y="953" class="mut" font-size="11" text-anchor="middle">lactose</text>
+  <text x="560" y="1000" class="txt" font-size="14" font-weight="bold">Purée truffée de la maison</text>
+  <rect x="560" y="1013" width="60" height="22" rx="11" class="pill"/>
+  <text x="590" y="1028" class="mut" font-size="11" text-anchor="middle">lactose</text>
+
+  <!-- Desserts -->
+  <rect x="960" y="845" width="380" height="280" rx="12" fill="#FAF4EA" filter="url(#sh)"/>
+  <text x="1150" y="885" class="serif" font-size="20" font-weight="bold" fill="#7B2D35" text-anchor="middle">Desserts</text>
+  <text x="990" y="925" class="txt" font-size="14" font-weight="bold">Bûche signature chocolat-praliné</text>
+  <rect x="990" y="938" width="56" height="22" rx="11" class="pill"/>
+  <text x="1018" y="953" class="mut" font-size="11" text-anchor="middle">gluten</text>
+  <rect x="1052" y="938" width="60" height="22" rx="11" class="pill"/>
+  <text x="1082" y="953" class="mut" font-size="11" text-anchor="middle">lactose</text>
+  <rect x="1118" y="938" width="110" height="22" rx="11" class="pill"/>
+  <text x="1173" y="953" class="mut" font-size="11" text-anchor="middle">fruits à coque</text>
+  <text x="990" y="1000" class="txt" font-size="14" font-weight="bold">Mignardises de fête</text>
+  <rect x="990" y="1013" width="56" height="22" rx="11" class="pill"/>
+  <text x="1018" y="1028" class="mut" font-size="11" text-anchor="middle">gluten</text>
+
+  <!-- ===== FOOTER ===== -->
+  <rect y="1240" width="1440" height="90" fill="#5E2129"/>
+  <text x="60" y="1278" class="blanc" font-size="14" font-weight="bold">Horaires</text>
+  <text x="60" y="1302" fill="#E8D5D0" font-size="13">Lun – Ven : 9h – 19h · Sam : 9h – 20h · Dim : 10h – 16h</text>
+  <text x="720" y="1278" class="serif blanc" font-size="16" font-style="italic" text-anchor="middle">Vite &amp; Gourmand</text>
+  <text x="720" y="1302" fill="#E8D5D0" font-size="13" text-anchor="middle">Bordeaux — depuis 25 ans</text>
+  <text x="1380" y="1278" fill="#E8D5D0" font-size="13" text-anchor="end">Mentions légales</text>
+  <text x="1380" y="1302" fill="#E8D5D0" font-size="13" text-anchor="end">Conditions générales de vente</text>
+</svg>

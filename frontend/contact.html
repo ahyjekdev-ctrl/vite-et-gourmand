@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contactez le traiteur Vite & Gourmand à Bordeaux : une question sur nos menus ou une demande particulière ?">
+  <title>Contact — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="menus.html">Nos menus</a></li>
+          <li><a class="nav__lien" href="contact.html" aria-current="page">Contact</a></li>
+          <li><a class="nav__lien nav__connexion" href="connexion.html">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur">
+    <h1>Nous contacter</h1>
+    <p>Une question, une demande particulière&nbsp;? Écrivez-nous&nbsp;: votre demande est transmise directement à l'équipe, qui vous répondra par mail.</p>
+
+    <form class="formulaire" id="form-contact" action="#" method="post" novalidate>
+      <div class="champ">
+        <label for="ct-titre">Titre de votre demande *</label>
+        <input type="text" id="ct-titre" name="titre" required>
+      </div>
+      <div class="champ">
+        <label for="ct-description">Description *</label>
+        <textarea id="ct-description" name="description" rows="6" required></textarea>
+      </div>
+      <div class="champ">
+        <label for="ct-email">Votre adresse mail *</label>
+        <input type="email" id="ct-email" name="email" autocomplete="email" required>
+        <p class="aide">Utilisée uniquement pour vous répondre.</p>
+      </div>
+      <button type="submit" class="btn btn--primaire btn--large">Envoyer ma demande</button>
+    </form>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Espace employé — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="../index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="../index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="dashboard.html" aria-current="page">Espace employé</a></li>
+          <li><a class="nav__lien nav__connexion" href="../index.html">Déconnexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur dashboard">
+    <h1>Espace employé</h1>
+    <p>Connectée en tant que <strong>Julie Bernard</strong> <small>(contenu de démonstration)</small></p>
+
+    <nav class="dashboard__nav" aria-label="Sections de l'espace">
+      <ul>
+        <li><a href="#commandes" aria-current="true">Commandes</a></li>
+        <li><a href="#catalogue">Menus, plats &amp; horaires</a></li>
+        <li><a href="#moderation">Avis à modérer</a></li>
+      </ul>
+    </nav>
+
+    <!-- Gestion des commandes : filtre par statut ou par client -->
+    <section id="commandes" aria-labelledby="titre-commandes">
+      <h2 id="titre-commandes">Commandes</h2>
+
+      <form class="filtres" aria-label="Filtrer les commandes">
+        <div class="grille grille--2">
+          <div class="champ">
+            <label for="fc-statut">Filtrer par statut</label>
+            <select id="fc-statut" name="statut">
+              <option value="">Tous les statuts</option>
+              <option value="cree">En attente</option>
+              <option value="accepte">Acceptée</option>
+              <option value="en_preparation">En préparation</option>
+              <option value="en_livraison">En cours de livraison</option>
+              <option value="livre">Livrée</option>
+              <option value="attente_materiel">En attente du retour de matériel</option>
+              <option value="terminee">Terminée</option>
+              <option value="annulee">Annulée</option>
+            </select>
+          </div>
+          <div class="champ">
+            <label for="fc-client">Filtrer par client</label>
+            <input type="search" id="fc-client" name="client" placeholder="Nom ou mail du client">
+          </div>
+        </div>
+      </form>
+
+      <div class="tableau-defilant">
+        <table class="tableau">
+          <caption class="sr-only">Commandes en cours et passées</caption>
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Client</th>
+              <th scope="col">Menu</th>
+              <th scope="col">Prestation</th>
+              <th scope="col">Total</th>
+              <th scope="col">Statut</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CMD-2026-0006</td>
+              <td>Jean Dupont</td>
+              <td>Pâques Gourmand</td>
+              <td>18/07 à 12h00</td>
+              <td>180,00&nbsp;€</td>
+              <td><span class="statut statut--cree">En attente</span></td>
+              <td><a href="#">Accepter</a></td>
+            </tr>
+            <tr>
+              <td>CMD-2026-0005</td>
+              <td>Marc Lefevre</td>
+              <td>Évènement Grand Format</td>
+              <td>28/06 à 18h00</td>
+              <td>628,47&nbsp;€</td>
+              <td><span class="statut statut--alerte">Attente matériel</span></td>
+              <td><a href="#">Matériel restitué</a></td>
+            </tr>
+            <tr>
+              <td>CMD-2026-0004</td>
+              <td>Jean Dupont</td>
+              <td>Vegan Découverte</td>
+              <td>27/06 à 12h30</td>
+              <td>261,00&nbsp;€</td>
+              <td><span class="statut statut--terminee">Terminée</span></td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="aide">⚠ Une commande ne peut être modifiée ou annulée qu'<strong>après avoir contacté le client</strong> (appel GSM ou mail)&nbsp;: le motif et le mode de contact sont alors obligatoires.</p>
+    </section>
+
+    <!-- Gestion du catalogue -->
+    <section id="catalogue" aria-labelledby="titre-catalogue">
+      <h2 id="titre-catalogue">Menus, plats &amp; horaires</h2>
+      <div class="grille grille--3">
+        <article class="carte">
+          <h3>Menus</h3>
+          <p>6 menus actifs. Créer, modifier ou supprimer un menu (titre, images, plats, conditions, stock…).</p>
+          <a class="btn btn--secondaire btn--large" href="#">Gérer les menus</a>
+        </article>
+        <article class="carte">
+          <h3>Plats</h3>
+          <p>21 plats au catalogue (entrées, plats, desserts) avec leurs allergènes.</p>
+          <a class="btn btn--secondaire btn--large" href="#">Gérer les plats</a>
+        </article>
+        <article class="carte">
+          <h3>Horaires</h3>
+          <p>Horaires affichés dans le pied de page du site, du lundi au dimanche.</p>
+          <a class="btn btn--secondaire btn--large" href="#">Gérer les horaires</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Modération des avis -->
+    <section id="moderation" aria-labelledby="titre-moderation">
+      <h2 id="titre-moderation">Avis à modérer</h2>
+      <article class="carte">
+        <p class="avis__note" aria-hidden="true">★★★★★</p>
+        <p><span class="sr-only">Note : 5 sur 5. </span>«&nbsp;Le menu vegan est une vraie découverte, la pavlova est incroyable.&nbsp;»</p>
+        <p class="avis__auteur">Jean D. — commande CMD-2026-0004</p>
+        <p>
+          <button type="button" class="btn btn--primaire">Valider</button>
+          <button type="button" class="btn btn--secondaire">Refuser</button>
+        </p>
+      </article>
+      <p class="aide">Seuls les avis validés apparaissent sur la page d'accueil.</p>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="../mentions-legales.html">Mentions légales</a></li>
+          <li><a href="../cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="../assets/js/nav.js"></script>
+</body>
+</html>

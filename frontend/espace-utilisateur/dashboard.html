@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Mon espace — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="../index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="../index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="../menus.html">Nos menus</a></li>
+          <li><a class="nav__lien" href="../contact.html">Contact</a></li>
+          <li><a class="nav__lien" href="dashboard.html" aria-current="page">Mon espace</a></li>
+          <li><a class="nav__lien nav__connexion" href="../index.html">Déconnexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur dashboard">
+    <h1>Mon espace</h1>
+    <p>Bonjour <strong>Jean Dupont</strong> <small>(contenu de démonstration — sera chargé depuis votre compte)</small></p>
+
+    <nav class="dashboard__nav" aria-label="Sections de l'espace">
+      <ul>
+        <li><a href="#mes-commandes" aria-current="true">Mes commandes</a></li>
+        <li><a href="#mes-infos">Mes informations</a></li>
+      </ul>
+    </nav>
+
+    <!-- Commandes du client : annulation/modification possibles tant que non acceptée -->
+    <section id="mes-commandes" aria-labelledby="titre-commandes">
+      <h2 id="titre-commandes">Mes commandes</h2>
+      <div class="tableau-defilant">
+        <table class="tableau">
+          <caption class="sr-only">Liste de vos commandes avec statut et actions possibles</caption>
+          <thead>
+            <tr>
+              <th scope="col">N° de commande</th>
+              <th scope="col">Menu</th>
+              <th scope="col">Prestation</th>
+              <th scope="col">Total</th>
+              <th scope="col">Statut</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CMD-2026-0006</td>
+              <td>Menu Pâques Gourmand</td>
+              <td>18/07/2026 à 12h00</td>
+              <td>180,00&nbsp;€</td>
+              <td><span class="statut statut--cree">En attente</span></td>
+              <td>
+                <a href="#">Modifier</a> · <a href="#">Annuler</a>
+              </td>
+            </tr>
+            <tr>
+              <td>CMD-2026-0004</td>
+              <td>Menu Vegan Découverte</td>
+              <td>27/06/2026 à 12h30</td>
+              <td>261,00&nbsp;€</td>
+              <td><span class="statut statut--terminee">Terminée</span></td>
+              <td>
+                <a href="#">Suivi</a> · <a href="#">Donner mon avis</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="aide">Une commande est modifiable et annulable tant qu'elle n'a pas été acceptée par l'équipe (tout est modifiable sauf le choix du menu). Une fois terminée, vous pouvez donner votre avis.</p>
+
+      <!-- Exemple de suivi détaillé : chaque état est daté -->
+      <details>
+        <summary>Suivi de la commande CMD-2026-0004</summary>
+        <ol>
+          <li>Créée — 15/06/2026 à 16h45</li>
+          <li>Acceptée — 16/06/2026 à 09h15</li>
+          <li>En préparation — 26/06/2026 à 08h00</li>
+          <li>En cours de livraison — 27/06/2026 à 11h15</li>
+          <li>Livrée — 27/06/2026 à 12h20</li>
+          <li>Terminée — 27/06/2026 à 12h20</li>
+        </ol>
+      </details>
+    </section>
+
+    <!-- Modification des informations personnelles -->
+    <section id="mes-infos" aria-labelledby="titre-infos">
+      <h2 id="titre-infos">Mes informations personnelles</h2>
+      <form class="formulaire" action="#" method="post" novalidate>
+        <div class="champ">
+          <label for="mi-nom">Nom</label>
+          <input type="text" id="mi-nom" name="nom" value="Dupont" autocomplete="family-name">
+        </div>
+        <div class="champ">
+          <label for="mi-prenom">Prénom</label>
+          <input type="text" id="mi-prenom" name="prenom" value="Jean" autocomplete="given-name">
+        </div>
+        <div class="champ">
+          <label for="mi-gsm">Numéro de GSM</label>
+          <input type="tel" id="mi-gsm" name="telephone" value="0612345603" autocomplete="tel">
+        </div>
+        <div class="champ">
+          <label for="mi-adresse">Adresse</label>
+          <input type="text" id="mi-adresse" name="adresse" value="5 cours de l'Intendance" autocomplete="street-address">
+        </div>
+        <div class="champ">
+          <label for="mi-ville">Ville</label>
+          <input type="text" id="mi-ville" name="ville" value="Bordeaux" autocomplete="address-level2">
+        </div>
+        <div class="champ">
+          <label for="mi-cp">Code postal</label>
+          <input type="text" id="mi-cp" name="code_postal" value="33000" inputmode="numeric" autocomplete="postal-code">
+        </div>
+        <button type="submit" class="btn btn--primaire">Enregistrer mes informations</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="../mentions-legales.html">Mentions légales</a></li>
+          <li><a href="../cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="../assets/js/nav.js"></script>
+</body>
+</html>

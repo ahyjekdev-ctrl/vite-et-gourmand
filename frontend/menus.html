@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tous les menus du traiteur Vite & Gourmand : Noël, Pâques, classique, évènement. Filtrez par prix, thème, régime et nombre de personnes.">
+  <title>Nos menus — Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="menus.html" aria-current="page">Nos menus</a></li>
+          <li><a class="nav__lien" href="contact.html">Contact</a></li>
+          <li><a class="nav__lien nav__connexion" href="connexion.html">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur">
+    <h1>Nos menus</h1>
+    <p id="compteur-resultats" role="status" aria-live="polite">6 menus disponibles</p>
+
+    <div class="page-menus">
+      <!-- Filtres : le rafraîchissement dynamique (sans rechargement) arrive en Phase 5 -->
+      <aside aria-label="Filtres de recherche">
+        <form class="filtres" id="form-filtres">
+          <details open>
+            <summary>Filtres</summary>
+
+            <div class="champ">
+              <label for="filtre-prix-max">Prix maximum : <output for="filtre-prix-max" id="sortie-prix-max">600&nbsp;€</output></label>
+              <input type="range" id="filtre-prix-max" name="prix_max" min="50" max="600" step="10" value="600">
+            </div>
+
+            <fieldset class="champ">
+              <legend>Fourchette de prix (€)</legend>
+              <div class="filtres__fourchette">
+                <div>
+                  <label for="filtre-prix-min">Min</label>
+                  <input type="number" id="filtre-prix-min" name="prix_min" min="0" inputmode="numeric" placeholder="0">
+                </div>
+                <div>
+                  <label for="filtre-prix-fourchette-max">Max</label>
+                  <input type="number" id="filtre-prix-fourchette-max" name="prix_fourchette_max" min="0" inputmode="numeric" placeholder="600">
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="champ">
+              <label for="filtre-theme">Thème</label>
+              <select id="filtre-theme" name="theme">
+                <option value="">Tous les thèmes</option>
+                <option value="1">Noël</option>
+                <option value="2">Pâques</option>
+                <option value="3">Classique</option>
+                <option value="4">Évènement</option>
+              </select>
+            </div>
+
+            <div class="champ">
+              <label for="filtre-regime">Régime</label>
+              <select id="filtre-regime" name="regime">
+                <option value="">Tous les régimes</option>
+                <option value="1">Classique</option>
+                <option value="2">Végétarien</option>
+                <option value="3">Vegan</option>
+              </select>
+            </div>
+
+            <div class="champ">
+              <label for="filtre-personnes">Nombre de personnes minimum</label>
+              <input type="number" id="filtre-personnes" name="personnes" min="1" inputmode="numeric" placeholder="Ex. : 8">
+            </div>
+
+            <button type="reset" class="btn btn--secondaire btn--large">Réinitialiser les filtres</button>
+          </details>
+        </form>
+      </aside>
+
+      <!-- Vue globale : contenu statique fidèle aux fixtures, dynamisé en Phase 5 -->
+      <section aria-label="Liste des menus">
+        <ul class="grille grille--3" id="liste-menus" style="list-style: none; padding: 0; margin: 0;">
+          <li>
+            <article class="carte carte--menu">
+              <div class="visuel visuel--assiette" role="img" aria-label="Chapon fermier aux morilles dressé sur plat de service (photo à venir)"></div>
+              <div class="carte__corps">
+                <h3>Menu Noël Prestige</h3>
+                <p class="carte__desc">Foie gras, chapon aux morilles, bûche signature maison.</p>
+                <p class="carte__meta"><span class="badge">≥ 8 pers.</span> <span class="prix">320&nbsp;€</span></p>
+                <a class="btn btn--primaire btn--large" href="menu-detail.html">Voir le détail<span class="sr-only"> du Menu Noël Prestige</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="carte carte--menu">
+              <div class="visuel visuel--assiette" role="img" aria-label="Agneau de sept heures et légumes printaniers (photo à venir)"></div>
+              <div class="carte__corps">
+                <h3>Menu Pâques Gourmand</h3>
+                <p class="carte__desc">Agneau de sept heures, légumes printaniers, nid chocolaté.</p>
+                <p class="carte__meta"><span class="badge">≥ 6 pers.</span> <span class="prix">180&nbsp;€</span></p>
+                <a class="btn btn--primaire btn--large" href="menu-detail.html">Voir le détail<span class="sr-only"> du Menu Pâques Gourmand</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="carte carte--menu">
+              <div class="visuel visuel--assiette" role="img" aria-label="Entrecôte à la bordelaise grillée (photo à venir)"></div>
+              <div class="carte__corps">
+                <h3>Menu Classique Bordelais</h3>
+                <p class="carte__desc">Entrecôte à la bordelaise, cannelés et douceurs locales.</p>
+                <p class="carte__meta"><span class="badge">≥ 6 pers.</span> <span class="prix">150&nbsp;€</span></p>
+                <a class="btn btn--primaire btn--large" href="menu-detail.html">Voir le détail<span class="sr-only"> du Menu Classique Bordelais</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="carte carte--menu">
+              <div class="visuel visuel--assiette" role="img" aria-label="Assiette de légumes rôtis du marché et risotto (photo à venir)"></div>
+              <div class="carte__corps">
+                <h3>Menu Végétarien du Marché</h3>
+                <p class="carte__desc">Légumes rôtis, risotto crémeux, tarte fine aux fruits de saison.</p>
+                <p class="carte__meta"><span class="badge">≥ 6 pers.</span> <span class="prix">140&nbsp;€</span></p>
+                <a class="btn btn--primaire btn--large" href="menu-detail.html">Voir le détail<span class="sr-only"> du Menu Végétarien du Marché</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="carte carte--menu">
+              <div class="visuel visuel--assiette" role="img" aria-label="Curry de légumes au lait de coco et houmos (photo à venir)"></div>
+              <div class="carte__corps">
+                <h3>Menu Vegan Découverte</h3>
+                <p class="carte__desc">Houmos de saison, curry coco, pavlova végétale aux fruits rouges.</p>
+                <p class="carte__meta"><span class="badge">≥ 6 pers.</span> <span class="prix">145&nbsp;€</span></p>
+                <a class="btn btn--primaire btn--large" href="menu-detail.html">Voir le détail<span class="sr-only"> du Menu Vegan Découverte</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="carte carte--menu">
+              <div class="visuel visuel--assiette" role="img" aria-label="Buffet dressé pour une réception (photo à venir)"></div>
+              <div class="carte__corps">
+                <h3>Menu Évènement Grand Format</h3>
+                <p class="carte__desc">Buffet complet pour réceptions, mariages et séminaires.</p>
+                <p class="carte__meta"><span class="badge">≥ 20 pers.</span> <span class="prix">550&nbsp;€</span></p>
+                <a class="btn btn--primaire btn--large" href="menu-detail.html">Voir le détail<span class="sr-only"> du Menu Évènement Grand Format</span></a>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/filtres.js"></script>
+</body>
+</html>

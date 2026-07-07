@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vite & Gourmand, traiteur événementiel à Bordeaux depuis 25 ans. Menus de saison pour Noël, Pâques, mariages et réceptions, livrés chez vous.">
+  <title>Vite &amp; Gourmand — Traiteur événementiel à Bordeaux</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur">
+      <div class="entete__barre">
+        <a class="logo" href="index.html">Vite &amp; Gourmand</a>
+        <button class="nav__bouton" aria-expanded="false" aria-controls="menu-principal">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Ouvrir le menu de navigation</span>
+        </button>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul class="nav__liste" id="menu-principal">
+          <li><a class="nav__lien" href="index.html" aria-current="page">Accueil</a></li>
+          <li><a class="nav__lien" href="menus.html">Nos menus</a></li>
+          <li><a class="nav__lien" href="contact.html">Contact</a></li>
+          <li><a class="nav__lien nav__connexion" href="connexion.html">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <!-- Présentation de l'entreprise -->
+    <section class="hero conteneur" aria-labelledby="titre-hero">
+      <div class="hero__texte">
+        <h1 id="titre-hero">Traiteur événementiel <span class="accent">à Bordeaux depuis 25 ans</span></h1>
+        <p>Julie et José composent pour vous des menus de saison, pour tous vos événements&nbsp;: Noël, Pâques, mariages, réceptions… Des produits frais, un savoir-faire artisanal, livrés chez vous.</p>
+        <a class="btn btn--primaire" href="menus.html">Découvrir nos menus</a>
+      </div>
+      <div class="visuel visuel--assiette" role="img" aria-label="Photo d'un plat signature de la maison (photo à venir)"></div>
+    </section>
+
+    <!-- Professionnalisme de l'équipe -->
+    <section class="section section--blanche" aria-labelledby="titre-equipe">
+      <div class="conteneur">
+        <h2 class="titre-section" id="titre-equipe">Une équipe de passionnés</h2>
+        <div class="grille grille--3">
+          <article class="carte carte--atout">
+            <span class="carte__icone" aria-hidden="true">25</span>
+            <h3>25 ans d'expérience</h3>
+            <p>Un savoir-faire reconnu à Bordeaux, au service de vos événements depuis 2001.</p>
+          </article>
+          <article class="carte carte--atout">
+            <span class="carte__icone" aria-hidden="true">J&amp;J</span>
+            <h3>Julie &amp; José</h3>
+            <p>Un duo complice, en cuisine comme en salle&nbsp;: conseil, préparation et livraison soignés.</p>
+          </article>
+          <article class="carte carte--atout">
+            <span class="carte__icone" aria-hidden="true">✓</span>
+            <h3>Produits frais et locaux</h3>
+            <p>Des menus en constante évolution, élaborés au rythme des saisons et du marché.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Avis clients validés (contenu statique en attendant l'API — Phase 5) -->
+    <section class="section" aria-labelledby="titre-avis">
+      <div class="conteneur">
+        <h2 class="titre-section" id="titre-avis">Ils nous font confiance</h2>
+        <div class="grille grille--3" id="liste-avis">
+          <article class="carte">
+            <p class="avis__note" aria-hidden="true">★★★★★</p>
+            <p><span class="sr-only">Note : 5 sur 5. </span>«&nbsp;Menu de Noël parfait, nos invités en parlent encore. Merci Julie et José&nbsp;!&nbsp;»</p>
+            <p class="avis__auteur">Claire D. — Bordeaux</p>
+          </article>
+          <article class="carte">
+            <p class="avis__note" aria-hidden="true">★★★★★</p>
+            <p><span class="sr-only">Note : 5 sur 5. </span>«&nbsp;Livraison ponctuelle, plats délicieux, rapport qualité-prix imbattable.&nbsp;»</p>
+            <p class="avis__auteur">Marc L. — Mérignac</p>
+          </article>
+          <article class="carte">
+            <p class="avis__note" aria-hidden="true">★★★★☆</p>
+            <p><span class="sr-only">Note : 4 sur 5. </span>«&nbsp;Le menu végétarien a conquis toute la tablée. Nous recommandons&nbsp;!&nbsp;»</p>
+            <p class="avis__auteur">Sophie R. — Pessac</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <section aria-labelledby="pied-horaires">
+        <h2 id="pied-horaires">Horaires</h2>
+        <ul>
+          <li>Lundi – Vendredi&nbsp;: 9h – 19h</li>
+          <li>Samedi&nbsp;: 9h – 20h</li>
+          <li>Dimanche&nbsp;: 10h – 16h</li>
+        </ul>
+      </section>
+      <section aria-labelledby="pied-marque">
+        <h2 id="pied-marque" class="sr-only">Vite &amp; Gourmand</h2>
+        <p><span class="logo">Vite &amp; Gourmand</span><br>Bordeaux — depuis 25 ans</p>
+      </section>
+      <section aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Informations légales</h2>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/accueil.js"></script>
+</body>
+</html>

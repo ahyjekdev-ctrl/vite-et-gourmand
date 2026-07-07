@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="1400" viewBox="0 0 375 1400" font-family="Arial, Helvetica, sans-serif">
+  <style>
+    .box { fill: #FFFFFF; stroke: #9E9E9E; stroke-width: 1.5; }
+    .boxg { fill: #E8E8E8; stroke: #9E9E9E; stroke-width: 1.5; }
+    .lab { fill: #616161; font-size: 13px; }
+    .labB { fill: #424242; font-size: 14px; font-weight: bold; }
+    .lab-s { fill: #757575; font-size: 11px; }
+    .bar { fill: #D6D6D6; }
+    .x { stroke: #BDBDBD; stroke-width: 1.5; }
+  </style>
+  <rect width="375" height="1400" fill="#F5F5F5"/>
+
+  <!-- HEADER -->
+  <rect class="boxg" x="0" y="0" width="375" height="64"/>
+  <text x="25" y="42" class="lab" font-size="18">‹</text>
+  <text x="22" y="16" class="lab-s">retour</text>
+  <rect class="bar" x="130" y="24" width="115" height="16"/>
+  <circle cx="343" cy="32" r="12" fill="none" stroke="#757575" stroke-width="1.5"/>
+
+  <!-- GALERIE plein écran -->
+  <rect class="box" x="0" y="64" width="375" height="230"/>
+  <line class="x" x1="0" y1="64" x2="375" y2="294"/>
+  <line class="x" x1="375" y1="64" x2="0" y2="294"/>
+  <text x="187" y="185" class="lab" text-anchor="middle">Galerie (carrousel swipe)</text>
+  <circle cx="167" cy="275" r="4" fill="#757575"/>
+  <circle cx="187" cy="275" r="4" fill="#D6D6D6"/>
+  <circle cx="207" cy="275" r="4" fill="#D6D6D6"/>
+
+  <!-- INFOS -->
+  <text x="27" y="330" class="labB">H1 — Titre du menu</text>
+  <rect class="bar" x="27" y="345" width="230" height="18"/>
+  <rect class="box" x="27" y="378" width="110" height="26"/>
+  <text x="82" y="396" class="lab-s" text-anchor="middle">badge thème</text>
+  <rect class="box" x="147" y="378" width="120" height="26"/>
+  <text x="207" y="396" class="lab-s" text-anchor="middle">badge régime</text>
+  <rect class="bar" x="27" y="425" width="320" height="10"/>
+  <rect class="bar" x="27" y="445" width="290" height="10"/>
+  <rect class="bar" x="27" y="465" width="250" height="10"/>
+
+  <!-- PRIX -->
+  <rect class="box" x="27" y="495" width="321" height="110"/>
+  <text x="47" y="530" class="labB">Prix (nb pers. minimum)</text>
+  <text x="47" y="556" class="lab-s">badge réduction −10 % (min + 5)</text>
+  <text x="47" y="585" class="lab-s">stock restant</text>
+
+  <!-- CONDITIONS -->
+  <rect class="box" x="27" y="625" width="321" height="130"/>
+  <rect x="27" y="625" width="5" height="130" fill="#757575"/>
+  <text x="50" y="655" class="labB">⚠ CONDITIONS DU MENU</text>
+  <text x="50" y="675" class="lab-s">(mise en évidence obligatoire)</text>
+  <rect class="bar" x="50" y="695" width="270" height="10"/>
+  <rect class="bar" x="50" y="720" width="230" height="10"/>
+
+  <!-- COMPOSITION -->
+  <text x="187" y="800" class="labB" text-anchor="middle">H2 — Composition (sections empilées)</text>
+  <rect class="box" x="27" y="820" width="321" height="130"/>
+  <text x="47" y="850" class="lab">Entrées</text>
+  <rect class="bar" x="47" y="870" width="250" height="10"/>
+  <rect class="box" x="47" y="890" width="65" height="20"/>
+  <rect class="box" x="120" y="890" width="65" height="20"/>
+  <text x="187" y="935" class="lab-s" text-anchor="middle">plats + pastilles allergènes</text>
+  <rect class="box" x="27" y="970" width="321" height="110"/>
+  <text x="47" y="1000" class="lab">Plats</text>
+  <rect class="box" x="27" y="1100" width="321" height="110"/>
+  <text x="47" y="1130" class="lab">Desserts</text>
+
+  <!-- CTA STICKY -->
+  <rect class="boxg" x="0" y="1320" width="375" height="80"/>
+  <text x="27" y="1355" class="lab">Prix</text>
+  <text x="27" y="1375" class="lab-s">rappel nb pers.</text>
+  <rect class="box" x="150" y="1338" width="198" height="46"/>
+  <text x="249" y="1367" class="lab" text-anchor="middle">CTA — Commander</text>
+  <text x="187" y="1310" class="lab-s" text-anchor="middle">barre fixe en bas d'écran (sticky)</text>
+</svg>
