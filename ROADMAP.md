@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 07/07/2026)
 
-**Phase actuelle : Phase 7 terminée — 7b (stats MongoDB) sur `feature/stats-mongodb`, en attente de validation avant merge**
+**Phase actuelle : Phase 8 — Contact, faite sur `feature/contact` (en attente de validation avant merge)**
 
-Phases 1 à 7a mergées dans `develop`. **7b écrite et testée** : extension PHP `mongodb` 2.3.3 installée, composant d'accès NoSQL (`backend/config/mongo.php`), écritures miroir automatiques à chaque création/évolution de commande, endpoint d'agrégation admin (`get-stats.php`, commandes annulées exclues), graphique en barres **canvas natif** + tableau CA avec filtres par menu et par période dans l'espace admin. Prochaines étapes : Phase 8 (contact) — rapide, puis 9 (sécurité/RGAA) et 10 (déploiement + livrables). Côté Alexandre : tester les stats dans l'espace admin, créer le board Trello.
+Phases 1 à 7 mergées dans `develop` : **toutes les fonctionnalités du cahier des charges sont développées**. Phase 8 écrite et testée : formulaire de contact public transmis par mail à l'entreprise, avec anti-spam honeypot. Il ne reste que la Phase 9 (passe sécurité + RGAA + jeux d'essai) et la Phase 10 (déploiement + livrables PDF + repo public). Côté Alexandre : créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -143,12 +143,14 @@ Phases 1 à 7a mergées dans `develop`. **7b écrite et testée** : extension PH
 - [x] **7b** — Chiffre d'affaires par menu (`get-stats.php`, admin uniquement), filtres cumulables par menu et par période, annulées exclues, totaux vérifiés (1 848,09 € sur les fixtures)
 - [x] Tests 7b : 7 scénarios (403 employé, agrégations exactes, filtres, insertion auto à la commande, maj du statut Mongo à chaque transition, annulée exclue des stats)
 
-## Phase 8 — Contact ⬜
+## Phase 8 — Contact 🔄
 
-> Branche : `feature/contact`
+> Branche : `feature/contact` — **en attente de validation avant merge**
 
-- [ ] Formulaire contact (titre, description, mail)
-- [ ] Envoi de la demande par mail à l'entreprise
+- [x] Formulaire contact (titre, description, mail) branché en fetch (`contact.js`)
+- [x] Envoi de la demande par mail à l'entreprise (`backend/contact/envoyer.php`, accessible aux visiteurs)
+- [x] Anti-spam honeypot : champ invisible, faux succès renvoyé aux robots, aucun mail envoyé
+- [x] Tests : envoi valide journalisé, 422 (mail invalide, champs vides), spam silencieusement ignoré
 
 ## Phase 9 — Qualité, sécurité, tests ⬜
 
@@ -178,6 +180,8 @@ Phases 1 à 7a mergées dans `develop`. **7b écrite et testée** : extension PH
 
 | Date | Décision |
 |---|---|
+| 08/07/2026 | Phase 8 sur `feature/contact` : le formulaire de contact reste public (les visiteurs doivent pouvoir écrire sans compte), anti-spam par honeypot (réponse identique au succès pour ne pas renseigner les robots), la demande part vers la boîte `MAIL_FROM` de l'entreprise avec l'adresse du demandeur en corps de mail. |
+| 08/07/2026 | Phase 7b mergée dans `develop` après validation. |
 | 08/07/2026 | Phase 7b sur `feature/stats-mongodb` : extension PHP mongodb via DLL PECL (2.3.3, 8.5-ts-vs17-x64), écritures statistiques « best effort » (Mongo en panne n'empêche jamais une vente), clé de rapprochement `numero_commande` + index unique côté Mongo, graphique en canvas natif (pas de dépendance externe, données accessibles dans le tableau voisin). |
 | 07/07/2026 | Phase 7a mergée dans `develop` après test navigateur validé. |
 | 07/07/2026 | Phase 6 mergée dans `develop` après test navigateur validé, puis **premier merge `develop` → `main`** : `main` porte désormais une version stable et testée (phases 1-6). Ajout d'un `index.php` à la racine (redirection vers l'accueil). |
