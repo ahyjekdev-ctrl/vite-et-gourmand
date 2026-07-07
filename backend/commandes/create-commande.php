@@ -14,6 +14,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../config/api.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/session.php';
+require_once __DIR__ . '/../config/mongo.php';
 require_once __DIR__ . '/../mail/send-mail.php';
 require_once __DIR__ . '/calcul-prix.php';
 
@@ -130,6 +131,10 @@ try {
     error_log('create-commande : ' . $e->getMessage());
     repondre(500, ['erreur' => 'La commande n\'a pas pu être enregistrée. Réessayez.']);
 }
+
+/* ---------- Statistiques NoSQL (miroir MongoDB, best effort) ---------- */
+
+statsInsererCommande($numero, $menuId, $menu['titre'], $nbPersonnes, $prix['prix_total'], 'cree');
 
 /* ---------- Mail de confirmation automatique ---------- */
 

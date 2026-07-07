@@ -18,8 +18,10 @@ db.createCollection("stats_commandes", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["menu_id", "titre_menu", "date_commande", "nb_personnes", "prix_total", "statut"],
+      required: ["numero_commande", "menu_id", "titre_menu", "date_commande",
+                 "nb_personnes", "prix_total", "statut"],
       properties: {
+        numero_commande: { bsonType: "string", description: "clé de rapprochement avec MySQL" },
         menu_id:       { bsonType: "int",    description: "menu_id MySQL correspondant" },
         titre_menu:    { bsonType: "string" },
         date_commande: { bsonType: "date" },
@@ -34,7 +36,8 @@ db.createCollection("stats_commandes", {
   }
 });
 
-// Index : agrégations par menu et filtres par période
+// Index : rapprochement MySQL, agrégations par menu et filtres par période
+db.stats_commandes.createIndex({ numero_commande: 1 }, { unique: true });
 db.stats_commandes.createIndex({ menu_id: 1 });
 db.stats_commandes.createIndex({ date_commande: 1 });
 
@@ -44,6 +47,7 @@ db.stats_commandes.createIndex({ date_commande: 1 });
 db.stats_commandes.insertMany([
   {
     menu_id: NumberInt(1),
+    numero_commande: "CMD-2026-0001",
     titre_menu: "Menu Noël Prestige",
     date_commande: ISODate("2026-06-01T10:15:00Z"),
     nb_personnes: NumberInt(13),
@@ -52,6 +56,7 @@ db.stats_commandes.insertMany([
   },
   {
     menu_id: NumberInt(3),
+    numero_commande: "CMD-2026-0002",
     titre_menu: "Menu Classique Bordelais",
     date_commande: ISODate("2026-06-05T14:30:00Z"),
     nb_personnes: NumberInt(6),
@@ -60,6 +65,7 @@ db.stats_commandes.insertMany([
   },
   {
     menu_id: NumberInt(4),
+    numero_commande: "CMD-2026-0003",
     titre_menu: "Menu Végétarien du Marché",
     date_commande: ISODate("2026-06-10T09:00:00Z"),
     nb_personnes: NumberInt(6),
@@ -68,6 +74,7 @@ db.stats_commandes.insertMany([
   },
   {
     menu_id: NumberInt(5),
+    numero_commande: "CMD-2026-0004",
     titre_menu: "Menu Vegan Découverte",
     date_commande: ISODate("2026-06-15T16:45:00Z"),
     nb_personnes: NumberInt(12),
@@ -76,6 +83,7 @@ db.stats_commandes.insertMany([
   },
   {
     menu_id: NumberInt(6),
+    numero_commande: "CMD-2026-0005",
     titre_menu: "Menu Évènement Grand Format",
     date_commande: ISODate("2026-06-12T11:20:00Z"),
     nb_personnes: NumberInt(25),
@@ -84,6 +92,7 @@ db.stats_commandes.insertMany([
   },
   {
     menu_id: NumberInt(2),
+    numero_commande: "CMD-2026-0006",
     titre_menu: "Menu Pâques Gourmand",
     date_commande: ISODate("2026-07-02T18:00:00Z"),
     nb_personnes: NumberInt(6),
