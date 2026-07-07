@@ -22,23 +22,23 @@
 - [x] **Fichiers SQL** :
   - [x] `database/schema.sql` — création de la base (15 tables, testé à l'import)
   - [x] `database/fixtures.sql` — intégration de données (SQL brut, testé à l'import)
-- [ ] **Manuel d'utilisation (PDF)** :
-  - [ ] Présentation de l'application
-  - [ ] Identifiants de test pour chaque parcours (utilisateur, employé, admin)
-- [ ] **Charte graphique (PDF)** :
+- [x] **Manuel d'utilisation** → [manuel-utilisation.md](manuel-utilisation.md) *(à exporter en PDF)* :
+  - [x] Présentation de l'application
+  - [x] Identifiants de test pour chaque parcours (client, employé, admin)
+- [x] **Charte graphique** *(à exporter en PDF depuis [charte-graphique-imprimable.html](charte-graphique-imprimable.html) → Imprimer → PDF)* :
   - [x] Palette de couleurs → [charte-graphique.md](charte-graphique.md)
   - [x] Police(s) utilisée(s) → Playfair Display + Lato
   - [x] Maquettes sources : 3 bureautiques + 3 mobiles, wireframes **et** mockups → [maquettes/](maquettes/)
-  - [ ] Export **PDF** de l'ensemble *(Phase 10)*
+  - [x] Page imprimable rassemblant palette + typo + maquettes
 - [x] **Documentation de gestion de projet** :
   - [x] Explication de la méthode de gestion de projet → [gestion-de-projet.md](gestion-de-projet.md)
-- [ ] **Documentation technique** :
+- [x] **Documentation technique** :
   - [x] Réflexions technologiques initiales → [cahier-des-charges.md](cahier-des-charges.md) §8, [mcd.md](conception/mcd.md) (choix justifiés), journal de la [ROADMAP](../ROADMAP.md)
   - [x] Configuration de l'environnement de travail → [technique/notes.md](technique/notes.md)
   - [x] Modèle conceptuel de données (MCD) → [conception/mcd.md](conception/mcd.md)
   - [x] Diagramme de cas d'utilisation → [conception/diagrammes.md](conception/diagrammes.md)
   - [x] Diagramme de séquence (commande + cycle de vie employé) → [conception/diagrammes.md](conception/diagrammes.md)
-  - [ ] Documentation du déploiement (démarche + étapes) *(Phase 10)*
+  - [x] Documentation du déploiement (démarche + étapes) → [deploiement.md](deploiement.md) *(exécution en fin de projet)*
 
 ## 3. Dossier projet (pour le jury)
 
