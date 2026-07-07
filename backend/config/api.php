@@ -5,8 +5,16 @@
 
 declare(strict_types=1);
 
+// Les erreurs PHP ne sont JAMAIS affichées au client (fuite d'informations :
+// chemins, requêtes SQL…) : elles partent dans le journal du serveur.
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('Referrer-Policy: same-origin');
 
 /**
  * Envoie une réponse JSON et termine la requête.
@@ -31,10 +39,19 @@ function exigerMethode(string $methode): void
 /**
  * Lit et décode le corps JSON de la requête.
  *
+ * Le Content-Type application/json est exigé : c'est une défense en
+ * profondeur contre le CSRF (un formulaire HTML classique ne peut pas
+ * envoyer ce type sans déclencher une pré-vérification CORS), qui
+ * s'ajoute au cookie de session SameSite=Lax.
+ *
  * @return array<string, mixed>
  */
 function lireJson(): array
 {
+    if (!str_contains($_SERVER['CONTENT_TYPE'] ?? '', 'application/json')) {
+        repondre(415, ['erreur' => 'Type de contenu attendu : application/json.']);
+    }
+
     $corps = file_get_contents('php://input');
     $donnees = json_decode($corps ?: '', true);
     if (!is_array($donnees)) {

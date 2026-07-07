@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 07/07/2026)
 
-**Phase actuelle : Phase 8 — Contact, faite sur `feature/contact` (en attente de validation avant merge)**
+**Phase actuelle : Phase 9 — Qualité/sécurité, faite sur `feature/qualite` (en attente de validation avant merge)**
 
-Phases 1 à 7 mergées dans `develop` : **toutes les fonctionnalités du cahier des charges sont développées**. Phase 8 écrite et testée : formulaire de contact public transmis par mail à l'entreprise, avec anti-spam honeypot. Il ne reste que la Phase 9 (passe sécurité + RGAA + jeux d'essai) et la Phase 10 (déploiement + livrables PDF + repo public). Côté Alexandre : créer le board Trello.
+Phases 1 à 8 mergées dans `develop`. Phase 9 écrite et testée : **faille critique trouvée et corrigée** (le serveur exposait `.env`, `mails.log` et les fichiers SQL → `router.php` + `.htaccess` en liste blanche), durcissement API (erreurs masquées, `Content-Type` JSON exigé, anti-force-brute), **CSP sur les 12 pages** (0 style/script inline, 0 `innerHTML`), passe RGAA (12/12 pages conformes), et les deux livrables du dossier rédigés : [jeux d'essai](docs/jeux-essai.md) et [veille sécurité](docs/veille-securite.md). Test de régression complet : OK. Reste la Phase 10 (déploiement + livrables PDF + repo public). Côté Alexandre : créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -143,24 +143,25 @@ Phases 1 à 7 mergées dans `develop` : **toutes les fonctionnalités du cahier 
 - [x] **7b** — Chiffre d'affaires par menu (`get-stats.php`, admin uniquement), filtres cumulables par menu et par période, annulées exclues, totaux vérifiés (1 848,09 € sur les fixtures)
 - [x] Tests 7b : 7 scénarios (403 employé, agrégations exactes, filtres, insertion auto à la commande, maj du statut Mongo à chaque transition, annulée exclue des stats)
 
-## Phase 8 — Contact 🔄
+## Phase 8 — Contact ✅
 
-> Branche : `feature/contact` — **en attente de validation avant merge**
+> Branche : `feature/contact` — mergée dans `develop` le 08/07/2026
 
 - [x] Formulaire contact (titre, description, mail) branché en fetch (`contact.js`)
 - [x] Envoi de la demande par mail à l'entreprise (`backend/contact/envoyer.php`, accessible aux visiteurs)
 - [x] Anti-spam honeypot : champ invisible, faux succès renvoyé aux robots, aucun mail envoyé
 - [x] Tests : envoi valide journalisé, 422 (mail invalide, champs vides), spam silencieusement ignoré
 
-## Phase 9 — Qualité, sécurité, tests ⬜
+## Phase 9 — Qualité, sécurité, tests 🔄
 
-> Branche : `fix/…` selon besoin
+> Branche : `feature/qualite` — **en attente de validation avant merge**
 
-- [ ] Passe sécurité complète (voir docs/conventions.md §3) : XSS, CSRF, injections, sessions
-- [ ] Passe accessibilité RGAA sur toutes les pages
-- [ ] Jeux d'essai documentés (front + back) pour le dossier projet
-- [ ] Tests manuels de tous les parcours (visiteur, utilisateur, employé, admin)
-- [ ] Veille sécurité documentée (front + back)
+- [x] Passe sécurité complète : **faille d'exposition de fichiers trouvée et corrigée** (`router.php` liste blanche + `.htaccess`), erreurs masquées, `Content-Type` JSON exigé (415), anti-force-brute, en-têtes `X-Frame-Options`/`X-Content-Type-Options`/`Referrer-Policy`
+- [x] Anti-XSS renforcé : CSP `default-src 'self'` sur les 12 pages, suppression de tous les styles inline et du dernier `innerHTML`
+- [x] Passe accessibilité RGAA : audit automatisé sur 12 pages (lang, title, skip-link, main, nav aria, h1 unique, tous les champs labellisés) → 12/12 conformes
+- [x] Jeux d'essai documentés (front + back) → [docs/jeux-essai.md](docs/jeux-essai.md)
+- [x] Veille sécurité documentée (OWASP + RGAA) → [docs/veille-securite.md](docs/veille-securite.md)
+- [x] Test de régression complet après durcissement : fichiers sensibles en 404, API et parcours connectés OK
 
 ## Phase 10 — Déploiement & livrables ⬜
 
@@ -180,6 +181,8 @@ Phases 1 à 7 mergées dans `develop` : **toutes les fonctionnalités du cahier 
 
 | Date | Décision |
 |---|---|
+| 08/07/2026 | Phase 9 sur `feature/qualite` : passe sécurité (OWASP Top 10). Vulnérabilité **critique** trouvée en test — le serveur `php -S` servait tout le dépôt (`.env`, tokens dans `mails.log`, hashs SQL) : corrigée par liste blanche (`router.php` en dev, `.htaccess` en prod). Choix CSP stricte `default-src 'self'` → refonte des styles inline en classes CSS et du dernier `innerHTML` en DOM. Livrables dossier rédigés (jeux d'essai, veille). Le lancement du serveur devient `php -S localhost:8000 router.php`. |
+| 08/07/2026 | Phase 8 mergée dans `develop` après validation. |
 | 08/07/2026 | Phase 8 sur `feature/contact` : le formulaire de contact reste public (les visiteurs doivent pouvoir écrire sans compte), anti-spam par honeypot (réponse identique au succès pour ne pas renseigner les robots), la demande part vers la boîte `MAIL_FROM` de l'entreprise avec l'adresse du demandeur en corps de mail. |
 | 08/07/2026 | Phase 7b mergée dans `develop` après validation. |
 | 08/07/2026 | Phase 7b sur `feature/stats-mongodb` : extension PHP mongodb via DLL PECL (2.3.3, 8.5-ts-vs17-x64), écritures statistiques « best effort » (Mongo en panne n'empêche jamais une vente), clé de rapprochement `numero_commande` + index unique côté Mongo, graphique en canvas natif (pas de dépendance externe, données accessibles dans le tableau voisin). |

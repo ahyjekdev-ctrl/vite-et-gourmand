@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
   <meta name="description" content="Tous les menus du traiteur Vite & Gourmand : Noël, Pâques, classique, évènement. Filtrez par prix, thème, régime et nombre de personnes.">
   <title>Nos menus — Vite &amp; Gourmand</title>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -93,7 +94,7 @@
 
       <!-- Vue globale : contenu statique fidèle aux fixtures, dynamisé en Phase 5 -->
       <section aria-label="Liste des menus">
-        <ul class="grille grille--3" id="liste-menus" style="list-style: none; padding: 0; margin: 0;">
+        <ul class="grille grille--3 liste-nue" id="liste-menus">
           <li>
             <article class="carte carte--menu">
               <div class="visuel visuel--assiette" role="img" aria-label="Chapon fermier aux morilles dressé sur plat de service (photo à venir)"></div>

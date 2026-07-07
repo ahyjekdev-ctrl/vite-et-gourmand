@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
   <meta name="robots" content="noindex">
   <title>Espace administrateur — Vite &amp; Gourmand</title>
   <link rel="stylesheet" href="../assets/css/style.css">
@@ -114,9 +115,8 @@
         <article class="carte">
           <h3>Nombre de commandes par menu</h3>
           <!-- Graphique alimenté par la base NoSQL (MongoDB) -->
-          <canvas id="graphique-stats" width="520" height="300"
-                  role="img" aria-label="Graphique en barres comparant le nombre de commandes par menu — les valeurs détaillées figurent dans le tableau ci-contre"
-                  style="max-width: 100%;"></canvas>
+          <canvas id="graphique-stats" width="520" height="300" class="pleine-largeur"
+                  role="img" aria-label="Graphique en barres comparant le nombre de commandes par menu — les valeurs détaillées figurent dans le tableau ci-contre"></canvas>
           <p class="aide" id="graphique-vide" hidden>Aucune commande sur la période sélectionnée.</p>
         </article>
         <article class="carte">
