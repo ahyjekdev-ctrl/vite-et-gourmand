@@ -16,28 +16,29 @@
 - [ ] Bonnes pratiques Git appliquées :
   - [x] Branche principale `main`
   - [x] Branche de développement `develop`
-  - [ ] Une branche `feature/xxx` par fonctionnalité, issue de `develop`
-  - [ ] Merge vers `develop` après test de chaque fonctionnalité
-  - [ ] Merge `develop` → `main` une fois `develop` correctement testée
-- [ ] **Fichiers SQL** :
-  - [ ] `database/schema.sql` — création de la base
-  - [ ] `database/fixtures.sql` — intégration de données (⚠️ fichier SQL brut exigé, pas seulement des fixtures/migrations d'un framework)
+  - [x] Une branche `feature/xxx` par fonctionnalité, issue de `develop` (conception, database, front-statique, auth, menus…)
+  - [x] Merge vers `develop` après test de chaque fonctionnalité (merges `--no-ff`, validés un par un)
+  - [ ] Merge `develop` → `main` une fois `develop` correctement testée *(prévu en fin de développement)*
+- [x] **Fichiers SQL** :
+  - [x] `database/schema.sql` — création de la base (15 tables, testé à l'import)
+  - [x] `database/fixtures.sql` — intégration de données (SQL brut, testé à l'import)
 - [ ] **Manuel d'utilisation (PDF)** :
   - [ ] Présentation de l'application
   - [ ] Identifiants de test pour chaque parcours (utilisateur, employé, admin)
 - [ ] **Charte graphique (PDF)** :
-  - [ ] Palette de couleurs
-  - [ ] Police(s) utilisée(s)
-  - [ ] Export des maquettes : **3 maquettes bureautiques + 3 maquettes mobiles** (wireframes & mockups)
-- [ ] **Documentation de gestion de projet** :
-  - [ ] Explication de la méthode de gestion de projet
+  - [x] Palette de couleurs → [charte-graphique.md](charte-graphique.md)
+  - [x] Police(s) utilisée(s) → Playfair Display + Lato
+  - [x] Maquettes sources : 3 bureautiques + 3 mobiles, wireframes **et** mockups → [maquettes/](maquettes/)
+  - [ ] Export **PDF** de l'ensemble *(Phase 10)*
+- [x] **Documentation de gestion de projet** :
+  - [x] Explication de la méthode de gestion de projet → [gestion-de-projet.md](gestion-de-projet.md)
 - [ ] **Documentation technique** :
-  - [ ] Réflexions technologiques initiales (justification des choix — très important pour le jury)
-  - [ ] Configuration de l'environnement de travail
-  - [ ] Modèle conceptuel de données (MCD) ou diagramme de classes
-  - [ ] Diagramme de cas d'utilisation
-  - [ ] Diagramme de séquence
-  - [ ] Documentation du déploiement (démarche + étapes)
+  - [x] Réflexions technologiques initiales → [cahier-des-charges.md](cahier-des-charges.md) §8, [mcd.md](conception/mcd.md) (choix justifiés), journal de la [ROADMAP](../ROADMAP.md)
+  - [x] Configuration de l'environnement de travail → [technique/notes.md](technique/notes.md)
+  - [x] Modèle conceptuel de données (MCD) → [conception/mcd.md](conception/mcd.md)
+  - [x] Diagramme de cas d'utilisation → [conception/diagrammes.md](conception/diagrammes.md)
+  - [x] Diagramme de séquence (commande + cycle de vie employé) → [conception/diagrammes.md](conception/diagrammes.md)
+  - [ ] Documentation du déploiement (démarche + étapes) *(Phase 10)*
 
 ## 3. Dossier projet (pour le jury)
 
@@ -71,13 +72,13 @@ Format : **20 à 30 pages max** (hors page de garde, sommaire, annexes) — **an
 ## 4. Compétences du référentiel à couvrir
 
 ### Activité type 1 — Front-end sécurisé
-- [ ] Installer et configurer son environnement de travail
-- [ ] Maquetter des interfaces utilisateur
-- [ ] Réaliser des interfaces utilisateur statiques
-- [ ] Développer la partie dynamique des interfaces
+- [x] Installer et configurer son environnement de travail → [technique/notes.md](technique/notes.md)
+- [x] Maquetter des interfaces utilisateur → wireframes + mockups, bureau + mobile
+- [x] Réaliser des interfaces utilisateur statiques → 12 pages HTML/CSS, RGAA
+- [x] Développer la partie dynamique des interfaces → filtres sans rechargement, détail par id, auth en fetch, avis dynamiques
 
 ### Activité type 2 — Back-end sécurisé
-- [ ] Mettre en place une base de données relationnelle
-- [ ] Développer des composants d'accès aux données **SQL et NoSQL**
-- [ ] Développer des composants métier côté serveur
-- [ ] Documenter le déploiement d'une application dynamique
+- [x] Mettre en place une base de données relationnelle → schema.sql + fixtures.sql testés
+- [ ] Développer des composants d'accès aux données **SQL et NoSQL** → SQL ✅ (PDO préparé) ; NoSQL *(Phase 7 : stats MongoDB)*
+- [x] Développer des composants métier côté serveur → règles d'authentification, politique de mdp, CRUD menus *(commandes en Phase 6)*
+- [ ] Documenter le déploiement d'une application dynamique *(Phase 10)*

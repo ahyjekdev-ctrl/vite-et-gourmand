@@ -12,11 +12,11 @@
 
 ---
 
-## 📍 Où on en est (mis à jour le 03/07/2026)
+## 📍 Où on en est (mis à jour le 07/07/2026)
 
-**Phase actuelle : Phase 5 — Menus dynamiques, faite sur `feature/menus` (en attente de validation avant merge)**
+**Phase actuelle : Phase 6 — Commandes, en cours sur `feature/commandes`**
 
-Phases 1 à 4 mergées dans `develop` le 03/07. Phase 5 écrite et **testée (15 scénarios)** : API menus (liste avec les 5 filtres cumulables, détail complet, référentiels, avis validés), CRUD menus protégé par rôle (401/403 vérifiés, suppression douce), filtres **dynamiques sans rechargement** (`filtres.js`), détail de menu chargé selon `?id=` (`menu-detail.js`), avis de l'accueil chargés depuis l'API (`accueil.js`). Le CRUD plats/horaires est déplacé en Phase 7, avec l'interface employé qui l'utilisera. Côté Alexandre : tester les filtres dans le navigateur, créer le board Trello.
+Phases 1 à 5 mergées dans `develop`. Le site fonctionne en local de bout en bout : catalogue avec filtres dynamiques sans rechargement, détail de menu par id, inscription/connexion/reset, CRUD menus protégé par rôle. Documentation à jour ([livrables.md](docs/livrables.md) coché, environnement de travail documenté dans [docs/technique/notes.md](docs/technique/notes.md)). Côté Alexandre : créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -89,9 +89,9 @@ Phases 1 à 4 mergées dans `develop` le 03/07. Phase 5 écrite et **testée (15
 - [x] `frontend/assets/js/auth.js` — connexion (redirection selon rôle), inscription, mot de passe oublié (demande + nouveau mdp via `?token=`)
 - [x] Test de bout en bout : 12 scénarios (mdp faible 422, doublon 409, mauvais mdp 401, rôles, reset complet, token à usage unique, ancien mdp refusé)
 
-## Phase 5 — Menus dynamiques 🔄
+## Phase 5 — Menus dynamiques ✅
 
-> Branche : `feature/menus` — **en attente de validation avant merge**
+> Branche : `feature/menus` — mergée dans `develop` le 03/07/2026
 
 - [x] `backend/menus/get-menus.php` — liste publique + 5 filtres cumulables (prix max, fourchette, thème, régime, nb personnes)
 - [x] `backend/menus/get-menu.php` — détail complet (galerie, plats groupés par type avec allergènes, conditions, stock, seuil de réduction)
