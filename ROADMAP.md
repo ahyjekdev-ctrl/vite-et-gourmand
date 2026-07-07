@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 07/07/2026)
 
-**Phase actuelle : Phase 6 — Commandes, faite sur `feature/commandes` (en attente de validation avant merge)**
+**Phase actuelle : Phase 7 — Avis & espaces, en cours sur `feature/avis-espaces`**
 
-Phases 1 à 5 mergées dans `develop`. Phase 6 écrite et **testée de bout en bout** : commande avec prix recalculé côté serveur (réduction 10 %, livraison 5 € + 0,59 €/km hors Bordeaux), verrou de stock, suivi historisé daté, annulation/modification client tant que non acceptée (tout sauf le menu), workflow de statuts employé avec transitions contrôlées et motif+mode de contact obligatoires, 3 mails automatiques (confirmation, matériel 600 €, invitation avis), page de commande dynamique (pré-remplissage, calcul du prix en direct). Bug corrigé en test : paramètre nommé PDO réutilisé (interdit avec les requêtes préparées réelles). L'insertion des stats MongoDB à la commande se fera en Phase 7 (extension PHP à installer). Côté Alexandre : tester le parcours dans le navigateur, créer le board Trello.
+Phases 1 à 6 mergées dans `develop`, et **premier merge `develop` → `main`** (version stable : catalogue filtrable, authentification, commandes complètes). Parcours visiteur→client testé par Alexandre dans le navigateur. En cours : dépôt et modération des avis, espaces utilisateur/employé/admin branchés sur l'API, CRUD plats/horaires, comptes employés, puis stats MongoDB (7b). Côté Alexandre : créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -104,9 +104,9 @@ Phases 1 à 5 mergées dans `develop`. Phase 6 écrite et **testée de bout en b
 - [x] Tests : 15 scénarios (filtres seuls et combinés, 404, 401 sans session, 403 pour un client, create/update/delete par employé)
 - [ ] ~~CRUD plats et horaires~~ → déplacé en Phase 7 avec l'interface employé qui l'utilise
 
-## Phase 6 — Commandes 🔄
+## Phase 6 — Commandes ✅
 
-> Branche : `feature/commandes` — **en attente de validation avant merge**
+> Branche : `feature/commandes` — mergée dans `develop` le 07/07/2026, testée par Alexandre dans le navigateur
 
 - [x] `backend/commandes/calcul-prix.php` — composant métier partagé (création **et** modification recalculent avec les mêmes règles)
 - [x] `backend/auth/me.php` — profil de la personne connectée (pré-remplissage, espace utilisateur)
@@ -175,6 +175,7 @@ Phases 1 à 5 mergées dans `develop`. Phase 6 écrite et **testée de bout en b
 
 | Date | Décision |
 |---|---|
+| 07/07/2026 | Phase 6 mergée dans `develop` après test navigateur validé, puis **premier merge `develop` → `main`** : `main` porte désormais une version stable et testée (phases 1-6). Ajout d'un `index.php` à la racine (redirection vers l'accueil). |
 | 07/07/2026 | Phase 6 sur `feature/commandes` : calcul de prix dans un composant partagé (création/modification cohérentes), verrou `FOR UPDATE` sur le stock, transitions de statut en liste blanche, stock restitué à l'annulation. Bug corrigé : un paramètre nommé PDO ne peut pas être réutilisé avec `EMULATE_PREPARES` désactivé (filtre client de l'espace employé). Stats MongoDB reportées en Phase 7 (extension PHP à installer). |
 | 03/07/2026 | Phase 5 sur `feature/menus` : suppression douce des menus (`actif=0`, FK RESTRICT préserve l'historique), rendu DOM en `textContent` uniquement (anti-XSS), filtre « personnes » = menus dont le minimum est accessible pour le nombre de convives saisi. CRUD plats/horaires déplacé en Phase 7 (avec son interface). |
 | 03/07/2026 | Phase 4 mergée dans `develop` après validation. |

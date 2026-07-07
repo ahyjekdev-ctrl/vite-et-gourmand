@@ -18,7 +18,7 @@
   - [x] Branche de développement `develop`
   - [x] Une branche `feature/xxx` par fonctionnalité, issue de `develop` (conception, database, front-statique, auth, menus…)
   - [x] Merge vers `develop` après test de chaque fonctionnalité (merges `--no-ff`, validés un par un)
-  - [ ] Merge `develop` → `main` une fois `develop` correctement testée *(prévu en fin de développement)*
+  - [x] Merge `develop` → `main` une fois `develop` correctement testée (premier snapshot stable le 07/07 ; merge final avant la remise)
 - [x] **Fichiers SQL** :
   - [x] `database/schema.sql` — création de la base (15 tables, testé à l'import)
   - [x] `database/fixtures.sql` — intégration de données (SQL brut, testé à l'import)
