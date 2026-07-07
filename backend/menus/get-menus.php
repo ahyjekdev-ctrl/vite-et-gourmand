@@ -16,11 +16,19 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../config/api.php';
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/session.php';
 
 exigerMethode('GET');
 
-$conditions = ['m.actif = 1'];
+// Par défaut : uniquement les menus actifs. L'espace employé peut demander
+// l'ensemble du catalogue (?tous=1), menus désactivés compris.
+$conditions = [];
 $parametres = [];
+
+$roleConnecte = utilisateurCourant()['role'] ?? null;
+if (empty($_GET['tous']) || !in_array($roleConnecte, ['employe', 'administrateur'], true)) {
+    $conditions[] = 'm.actif = 1';
+}
 
 /** Lit un paramètre d'URL numérique positif (null si absent ou invalide). */
 function parametreNumerique(string $cle): ?float
@@ -58,14 +66,15 @@ if (($personnes = parametreNumerique('personnes')) !== null) {
 }
 
 $sql = 'SELECT m.menu_id, m.titre, m.description, m.nb_personnes_min, m.prix_min,
-               m.quantite_restante, t.libelle AS theme, r.libelle AS regime,
+               m.quantite_restante, m.actif, m.theme_id, m.regime_id,
+               t.libelle AS theme, r.libelle AS regime,
                (SELECT i.alt FROM image_menu i
                 WHERE i.menu_id = m.menu_id ORDER BY i.position LIMIT 1) AS image_alt
         FROM menu m
         JOIN theme t ON t.theme_id = m.theme_id
-        JOIN regime r ON r.regime_id = m.regime_id
-        WHERE ' . implode(' AND ', $conditions) . '
-        ORDER BY m.titre';
+        JOIN regime r ON r.regime_id = m.regime_id'
+     . ($conditions !== [] ? ' WHERE ' . implode(' AND ', $conditions) : '')
+     . ' ORDER BY m.titre';
 
 $requete = getPDO()->prepare($sql);
 $requete->execute($parametres);

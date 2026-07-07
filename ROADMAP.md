@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 07/07/2026)
 
-**Phase actuelle : Phase 7 — Avis & espaces, en cours sur `feature/avis-espaces`**
+**Phase actuelle : Phase 7 — Avis & espaces. Partie 7a faite sur `feature/avis-espaces` (en attente de validation avant merge) ; reste 7b : stats MongoDB**
 
-Phases 1 à 6 mergées dans `develop`, et **premier merge `develop` → `main`** (version stable : catalogue filtrable, authentification, commandes complètes). Parcours visiteur→client testé par Alexandre dans le navigateur. En cours : dépôt et modération des avis, espaces utilisateur/employé/admin branchés sur l'API, CRUD plats/horaires, comptes employés, puis stats MongoDB (7b). Côté Alexandre : créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
+Phases 1 à 6 mergées dans `develop` + premier merge `develop` → `main`. **7a écrite et testée** : dépôt d'avis (commande terminée, un seul par commande) et modération, CRUD plats/horaires, les trois espaces branchés sur l'API (module commun `espace-commun.js`, garde par rôle), comptes employés (création avec mail **sans** mot de passe, désactivation → connexion refusée), profil modifiable. **Reste 7b** : extension PHP mongodb + stats (nb commandes/CA par menu, graphique, filtres période). Côté Alexandre : tester les 3 espaces dans le navigateur, créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -132,13 +132,15 @@ Phases 1 à 6 mergées dans `develop`, et **premier merge `develop` → `main`**
 
 > Branche : `feature/avis-espaces`
 
-- [ ] `backend/avis/gestion-avis.php` — dépôt (note 1–5 + commentaire, commande terminée uniquement), validation/refus par employé
-- [ ] CRUD plats et horaires (endpoints + interface employé) *(déplacé depuis la Phase 5)*
-- [ ] Espace utilisateur complet (commandes, suivi, infos perso, avis)
-- [ ] Espace employé complet (menus, plats, horaires, commandes, avis)
-- [ ] Espace admin : création compte employé (mail sans mdp), désactivation compte
-- [ ] **Statistiques MongoDB** : nb de commandes par menu + **graphique** comparatif
-- [ ] Chiffre d'affaires par menu, filtres par menu et par période
+- [x] `backend/avis/gestion-avis.php` — dépôt (note 1–5 + commentaire, commande terminée uniquement, un avis max par commande), validation/refus par employé
+- [x] CRUD plats (avec allergènes) et horaires — endpoints + interface employé *(déplacé depuis la Phase 5)*
+- [x] Espace utilisateur complet : commandes réelles, suivi daté, annulation/modification tant que non acceptée, dépôt d'avis, infos personnelles modifiables (`update-profil.php`)
+- [x] Espace employé complet : commandes filtrées + transitions de statut + annulation motivée, modération des avis, menus (y compris désactivés via `?tous=1`, réactivation, création complète), plats, horaires
+- [x] Espace admin : création compte employé (mail **sans** mot de passe — vérifié : 0 occurrence dans le journal), désactivation/réactivation
+- [x] Module front commun aux espaces (`espace-commun.js`) : garde par rôle, appels API, formats, badges — rendu DOM en `textContent` (anti-XSS)
+- [x] Tests 7a : 16 scénarios (409 avis en double/commande non terminée, 403 modération client et gestion employés, mail sans mdp, connexion refusée après désactivation, menus inactifs invisibles du public…)
+- [ ] **7b — Statistiques MongoDB** : extension PHP mongodb, insertion des stats à la commande, nb de commandes par menu + **graphique** comparatif
+- [ ] **7b** — Chiffre d'affaires par menu, filtres par menu et par période
 
 ## Phase 8 — Contact ⬜
 

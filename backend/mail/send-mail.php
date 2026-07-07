@@ -112,6 +112,22 @@ function mailMaterielAttente(string $destinataire, string $prenom, string $numer
 }
 
 /**
+ * Notification de création d'un compte employé.
+ * ⚠ Le mot de passe n'est JAMAIS envoyé par mail (exigence du cahier des
+ * charges) : l'employé doit se rapprocher de l'administrateur.
+ */
+function mailCompteEmploye(string $destinataire): bool
+{
+    $corps = "Bonjour,\n\n"
+        . "Un compte employé vient d'être créé pour vous sur l'application Vite & Gourmand.\n"
+        . "Votre identifiant de connexion est cette adresse mail : $destinataire\n\n"
+        . "Pour des raisons de sécurité, votre mot de passe ne vous est pas communiqué\n"
+        . "par mail : rapprochez-vous de l'administrateur pour l'obtenir.\n\n"
+        . "À bientôt,\nVite & Gourmand, Bordeaux";
+    return envoyerMail($destinataire, 'Votre compte employé Vite & Gourmand a été créé', $corps);
+}
+
+/**
  * Invitation à donner un avis quand la commande est terminée.
  */
 function mailInvitationAvis(string $destinataire, string $prenom, string $numero): bool
