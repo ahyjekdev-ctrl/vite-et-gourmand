@@ -101,11 +101,11 @@
           </div>
           <div class="champ">
             <label for="st-debut">Du</label>
-            <input type="date" id="st-debut" name="debut" value="2026-06-01">
+            <input type="date" id="st-debut" name="debut">
           </div>
           <div class="champ">
             <label for="st-fin">Au</label>
-            <input type="date" id="st-fin" name="fin" value="2026-06-30">
+            <input type="date" id="st-fin" name="fin">
           </div>
         </div>
       </form>
@@ -113,10 +113,11 @@
       <div class="grille grille--2">
         <article class="carte">
           <h3>Nombre de commandes par menu</h3>
-          <!-- Le graphique (canvas) sera alimenté par MongoDB en Phase 7 -->
-          <div class="visuel" role="img" aria-label="Graphique en barres comparant le nombre de commandes par menu (données de la base MongoDB, à venir)">
-            <p><em>Graphique comparatif — chargé depuis MongoDB</em></p>
-          </div>
+          <!-- Graphique alimenté par la base NoSQL (MongoDB) -->
+          <canvas id="graphique-stats" width="520" height="300"
+                  role="img" aria-label="Graphique en barres comparant le nombre de commandes par menu — les valeurs détaillées figurent dans le tableau ci-contre"
+                  style="max-width: 100%;"></canvas>
+          <p class="aide" id="graphique-vide" hidden>Aucune commande sur la période sélectionnée.</p>
         </article>
         <article class="carte">
           <h3>Chiffre d'affaires par menu</h3>
@@ -126,16 +127,15 @@
               <thead>
                 <tr><th scope="col">Menu</th><th scope="col">Commandes</th><th scope="col">CA</th></tr>
               </thead>
-              <tbody>
-                <tr><td>Évènement Grand Format</td><td>1</td><td>628,47&nbsp;€</td></tr>
-                <tr><td>Noël Prestige</td><td>1</td><td>468,00&nbsp;€</td></tr>
-                <tr><td>Vegan Découverte</td><td>1</td><td>261,00&nbsp;€</td></tr>
-                <tr><td>Pâques Gourmand</td><td>1</td><td>180,00&nbsp;€</td></tr>
-                <tr><td>Classique Bordelais</td><td>1</td><td>159,72&nbsp;€</td></tr>
-                <tr><td>Végétarien du Marché</td><td>1</td><td>150,90&nbsp;€</td></tr>
+              <tbody id="tbody-stats">
+                <tr><td colspan="3">Chargement des statistiques…</td></tr>
               </tbody>
+              <tfoot>
+                <tr><th scope="row">Total</th><td id="stats-total-commandes">—</td><td id="stats-total-ca">—</td></tr>
+              </tfoot>
             </table>
           </div>
+          <p class="aide">Données issues de la base NoSQL (MongoDB) — les commandes annulées sont exclues.</p>
         </article>
       </div>
     </section>
