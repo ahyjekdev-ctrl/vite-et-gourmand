@@ -33,8 +33,14 @@
   <main id="contenu" class="conteneur">
     <h1>Nous contacter</h1>
     <p>Une question, une demande particulière&nbsp;? Écrivez-nous&nbsp;: votre demande est transmise directement à l'équipe, qui vous répondra par mail.</p>
+    <p id="message-contact" role="alert" hidden></p>
 
     <form class="formulaire" id="form-contact" action="#" method="post" novalidate>
+      <!-- Piège anti-spam : invisible pour les humains, rempli par les robots -->
+      <div class="sr-only" aria-hidden="true">
+        <label for="ct-site-web">Ne pas remplir ce champ</label>
+        <input type="text" id="ct-site-web" name="site_web" tabindex="-1" autocomplete="off">
+      </div>
       <div class="champ">
         <label for="ct-titre">Titre de votre demande *</label>
         <input type="text" id="ct-titre" name="titre" required>
@@ -77,5 +83,6 @@
   </footer>
 
   <script src="assets/js/nav.js"></script>
+  <script src="assets/js/contact.js"></script>
 </body>
 </html>
