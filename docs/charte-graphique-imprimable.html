@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Charte graphique — Vite &amp; Gourmand</title>
+  <style>
+    /* Page prête à imprimer en PDF : navigateur → Imprimer → Enregistrer au format PDF */
+    :root {
+      --bordeaux: #7B2D35; --bordeaux-fonce: #5E2129; --creme: #FAF4EA;
+      --or: #C99B3F; --charbon: #2D2A26; --blanc: #FFFFFF;
+      --succes: #2E7D32; --alerte: #B3261E;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; color: var(--charbon); margin: 0; padding: 2rem; background: #fff; }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; color: var(--bordeaux); }
+    h1 { font-size: 2.2rem; border-bottom: 3px solid var(--or); padding-bottom: .5rem; }
+    h2 { margin-top: 2.5rem; border-left: 4px solid var(--or); padding-left: .6rem; }
+    .sous-titre { font-style: italic; color: #6B645C; margin-top: -.5rem; }
+
+    .palette { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .couleur { width: 150px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .couleur .echantillon { height: 70px; }
+    .couleur .info { padding: .5rem; font-size: .8rem; }
+    .couleur .nom { font-weight: bold; }
+    .couleur .hex { font-family: monospace; color: #6B645C; }
+
+    .typo-exemple { padding: 1rem; border: 1px solid #eee; border-radius: 8px; margin: .5rem 0; }
+    .titre-playfair { font-family: Georgia, serif; font-size: 1.8rem; color: var(--bordeaux); }
+    .texte-lato { font-family: Arial, Helvetica, sans-serif; font-size: 1rem; }
+
+    .maquettes { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .maquette { border: 1px solid #ddd; border-radius: 8px; padding: .75rem; text-align: center; page-break-inside: avoid; }
+    .maquette img { max-width: 100%; height: auto; border: 1px solid #eee; }
+    .maquette figcaption { margin-top: .5rem; font-size: .85rem; font-weight: bold; }
+    .maquette.mobile img { max-height: 520px; width: auto; }
+
+    @media print {
+      body { padding: 0; }
+      h2 { page-break-before: always; }
+      h2:first-of-type { page-break-before: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Charte graphique — Vite &amp; Gourmand</h1>
+  <p class="sous-titre">Traiteur événementiel à Bordeaux — identité artisanale et chaleureuse.</p>
+
+  <h2>Palette de couleurs</h2>
+  <div class="palette">
+    <div class="couleur"><div class="echantillon" style="background:#7B2D35"></div><div class="info"><div class="nom">Bordeaux</div><div class="hex">#7B2D35</div><div>Primaire</div></div></div>
+    <div class="couleur"><div class="echantillon" style="background:#5E2129"></div><div class="info"><div class="nom">Bordeaux profond</div><div class="hex">#5E2129</div><div>Hover, footer</div></div></div>
+    <div class="couleur"><div class="echantillon" style="background:#FAF4EA"></div><div class="info"><div class="nom">Crème</div><div class="hex">#FAF4EA</div><div>Fond de page</div></div></div>
+    <div class="couleur"><div class="echantillon" style="background:#C99B3F"></div><div class="info"><div class="nom">Or ambré</div><div class="hex">#C99B3F</div><div>Accent, prix</div></div></div>
+    <div class="couleur"><div class="echantillon" style="background:#2D2A26"></div><div class="info"><div class="nom">Charbon</div><div class="hex">#2D2A26</div><div>Texte</div></div></div>
+    <div class="couleur"><div class="echantillon" style="background:#2E7D32"></div><div class="info"><div class="nom">Vert validation</div><div class="hex">#2E7D32</div><div>Succès</div></div></div>
+    <div class="couleur"><div class="echantillon" style="background:#B3261E"></div><div class="info"><div class="nom">Rouge alerte</div><div class="hex">#B3261E</div><div>Erreur, conditions</div></div></div>
+  </div>
+
+  <h2>Typographie</h2>
+  <div class="typo-exemple">
+    <div class="titre-playfair">Playfair Display — Titres</div>
+    <p>Utilisée pour les titres (h1–h3). Fallback : Georgia, serif. Graisses 600–700.</p>
+  </div>
+  <div class="typo-exemple">
+    <div class="texte-lato" style="font-size:1.4rem;font-weight:bold">Lato — Texte courant</div>
+    <p class="texte-lato">Utilisée pour le corps de texte, les formulaires et les boutons. Fallback : Arial, Helvetica, sans-serif. Taille de base 16 px, interlignage 1,6.</p>
+  </div>
+  <p><small>Polices auto-hébergées en production (RGPD, pas d'appel à un CDN tiers).</small></p>
+
+  <h2>Maquettes — version bureau</h2>
+  <div class="maquettes">
+    <figure class="maquette"><img src="maquettes/mockups/desktop-accueil.svg" alt="Maquette bureau de la page d'accueil"><figcaption>Accueil (mockup)</figcaption></figure>
+    <figure class="maquette"><img src="maquettes/mockups/desktop-menus.svg" alt="Maquette bureau de la vue globale des menus"><figcaption>Nos menus (mockup)</figcaption></figure>
+    <figure class="maquette"><img src="maquettes/mockups/desktop-menu-detail.svg" alt="Maquette bureau du détail d'un menu"><figcaption>Détail d'un menu (mockup)</figcaption></figure>
+    <figure class="maquette"><img src="maquettes/wireframes/desktop-accueil.svg" alt="Wireframe bureau de la page d'accueil"><figcaption>Accueil (wireframe)</figcaption></figure>
+  </div>
+
+  <h2>Maquettes — version mobile</h2>
+  <div class="maquettes">
+    <figure class="maquette mobile"><img src="maquettes/mockups/mobile-accueil.svg" alt="Maquette mobile de la page d'accueil"><figcaption>Accueil (mockup)</figcaption></figure>
+    <figure class="maquette mobile"><img src="maquettes/mockups/mobile-menus.svg" alt="Maquette mobile de la vue globale des menus"><figcaption>Nos menus (mockup)</figcaption></figure>
+    <figure class="maquette mobile"><img src="maquettes/mockups/mobile-menu-detail.svg" alt="Maquette mobile du détail d'un menu"><figcaption>Détail d'un menu (mockup)</figcaption></figure>
+    <figure class="maquette mobile"><img src="maquettes/wireframes/mobile-accueil.svg" alt="Wireframe mobile de la page d'accueil"><figcaption>Accueil (wireframe)</figcaption></figure>
+  </div>
+
+  <p style="margin-top:2rem"><small>Charte détaillée (composants, contrastes RGAA) : voir <code>docs/charte-graphique.md</code>. Toutes les maquettes (3 bureau + 3 mobiles, wireframes &amp; mockups) : <code>docs/maquettes/</code>.</small></p>
+</body>
+</html>
