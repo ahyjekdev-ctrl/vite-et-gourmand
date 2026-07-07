@@ -1,0 +1,23 @@
+# ============================================================
+# Vite & Gourmand — protection des fichiers sensibles (Apache)
+# Équivalent production du router.php utilisé en développement :
+# rien d'autre que le front et les endpoints API ne doit être servi.
+# ============================================================
+
+# Fichiers d'environnement, git, documentation interne, données
+RedirectMatch 404 ^/\.env
+RedirectMatch 404 ^/\.git
+RedirectMatch 404 ^/database/
+RedirectMatch 404 ^/docs/
+RedirectMatch 404 ^/(README|ROADMAP)\.md
+RedirectMatch 404 ^/router\.php
+
+# Bibliothèques internes du back (jamais appelées directement)
+RedirectMatch 404 ^/backend/(config|mail)/
+
+# En-têtes de sécurité
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "same-origin"
+</IfModule>

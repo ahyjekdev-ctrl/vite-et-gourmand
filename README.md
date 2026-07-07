@@ -67,10 +67,11 @@ L'application permet aux visiteurs de consulter les menus du traiteur, de filtre
 
 5. **Lancer le serveur de développement** (depuis la racine du projet, pour servir le front **et** le back)
    ```bash
-   php -S localhost:8000
+   php -S localhost:8000 router.php
    ```
+   ⚠️ Le `router.php` est **important pour la sécurité** : sans lui, le serveur intégré de PHP exposerait `.env`, les journaux et les fichiers SQL. Il n'autorise que le front et les endpoints de l'API.
 
-6. Ouvrir [http://localhost:8000/frontend/index.html](http://localhost:8000/frontend/index.html)
+6. Ouvrir [http://localhost:8000](http://localhost:8000) (redirige vers l'accueil)
 
 ### Comptes de test
 
