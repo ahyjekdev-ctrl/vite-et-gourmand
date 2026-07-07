@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 07/07/2026)
 
-**Phase actuelle : Phase 9 — Qualité/sécurité, faite sur `feature/qualite` (en attente de validation avant merge)**
+**Phase actuelle : Phase 10 — Livrables. Partie « hors-ligne » faite sur `feature/livrables` (en attente de validation avant merge). Mise en ligne gardée pour la toute fin (choix d'Alexandre).**
 
-Phases 1 à 8 mergées dans `develop`. Phase 9 écrite et testée : **faille critique trouvée et corrigée** (le serveur exposait `.env`, `mails.log` et les fichiers SQL → `router.php` + `.htaccess` en liste blanche), durcissement API (erreurs masquées, `Content-Type` JSON exigé, anti-force-brute), **CSP sur les 12 pages** (0 style/script inline, 0 `innerHTML`), passe RGAA (12/12 pages conformes), et les deux livrables du dossier rédigés : [jeux d'essai](docs/jeux-essai.md) et [veille sécurité](docs/veille-securite.md). Test de régression complet : OK. Reste la Phase 10 (déploiement + livrables PDF + repo public). Côté Alexandre : créer le board Trello.
+Phases 1 à 9 mergées dans `develop`. Sur `feature/livrables` : manuel d'utilisation ([manuel-utilisation.md](docs/manuel-utilisation.md), avec identifiants de test), documentation de déploiement ([deploiement.md](docs/deploiement.md), **rédigée mais non exécutée**), page imprimable pour l'export PDF de la charte + maquettes ([charte-graphique-imprimable.html](docs/charte-graphique-imprimable.html)). **Restent à faire en dernier (quand Alexandre décidera)** : déploiement effectif en ligne, passage du dépôt en public, merge final `develop` → `main`. Côté Alexandre : exporter les 2 PDF (manuel + charte), créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -152,9 +152,9 @@ Phases 1 à 8 mergées dans `develop`. Phase 9 écrite et testée : **faille cri
 - [x] Anti-spam honeypot : champ invisible, faux succès renvoyé aux robots, aucun mail envoyé
 - [x] Tests : envoi valide journalisé, 422 (mail invalide, champs vides), spam silencieusement ignoré
 
-## Phase 9 — Qualité, sécurité, tests 🔄
+## Phase 9 — Qualité, sécurité, tests ✅
 
-> Branche : `feature/qualite` — **en attente de validation avant merge**
+> Branche : `feature/qualite` — mergée dans `develop` le 08/07/2026
 
 - [x] Passe sécurité complète : **faille d'exposition de fichiers trouvée et corrigée** (`router.php` liste blanche + `.htaccess`), erreurs masquées, `Content-Type` JSON exigé (415), anti-force-brute, en-têtes `X-Frame-Options`/`X-Content-Type-Options`/`Referrer-Policy`
 - [x] Anti-XSS renforcé : CSP `default-src 'self'` sur les 12 pages, suppression de tous les styles inline et du dernier `innerHTML`
@@ -163,16 +163,24 @@ Phases 1 à 8 mergées dans `develop`. Phase 9 écrite et testée : **faille cri
 - [x] Veille sécurité documentée (OWASP + RGAA) → [docs/veille-securite.md](docs/veille-securite.md)
 - [x] Test de régression complet après durcissement : fichiers sensibles en 404, API et parcours connectés OK
 
-## Phase 10 — Déploiement & livrables ⬜
+## Phase 10 — Déploiement & livrables 🔄
 
-- [ ] Choix de l'hébergeur + déploiement (app + MySQL + MongoDB)
-- [ ] Documentation du déploiement (démarche + étapes)
-- [ ] Manuel d'utilisation PDF (avec identifiants de test)
-- [ ] Charte graphique PDF (palette, police, export des 6 maquettes)
-- [ ] Documentation gestion de projet
-- [ ] Documentation technique finale (voir docs/livrables.md)
+> Branche : `feature/livrables` (partie hors-ligne) — **en attente de validation avant merge**
+> ⚠️ Décision d'Alexandre : **rien n'est mis en ligne pour l'instant**, la mise en ligne se fera en dernier.
+
+Préparé (hors-ligne) :
+- [x] Documentation du déploiement (démarche + étapes) → [docs/deploiement.md](docs/deploiement.md) *(rédigée, non exécutée)*
+- [x] Manuel d'utilisation (avec identifiants de test) → [docs/manuel-utilisation.md](docs/manuel-utilisation.md) *(à exporter en PDF)*
+- [x] Charte graphique : page imprimable palette + typo + maquettes → [docs/charte-graphique-imprimable.html](docs/charte-graphique-imprimable.html) *(à exporter en PDF)*
+- [x] Documentation gestion de projet → [docs/gestion-de-projet.md](docs/gestion-de-projet.md)
+- [x] Documentation technique → répartie dans `docs/` (voir [docs/livrables.md](docs/livrables.md) §2)
+
+À faire **en dernier** (mise en ligne — décision Alexandre) :
+- [ ] Choix de l'hébergeur + déploiement (app + MySQL + MongoDB Atlas)
 - [ ] Dépôt GitHub passé en **public**
-- [ ] **Dossier projet** (20–30 pages) + support de soutenance
+- [ ] Merge final `develop` → `main` (version livrée)
+- [ ] Exporter les 2 PDF (manuel + charte) et créer le board Trello *(actions Alexandre)*
+- [ ] **Dossier projet** (20–30 pages) + support de soutenance *(pour le jury nov./déc.)*
 - [ ] Copie à rendre remplie et déposée
 
 ---
@@ -181,6 +189,8 @@ Phases 1 à 8 mergées dans `develop`. Phase 9 écrite et testée : **faille cri
 
 | Date | Décision |
 |---|---|
+| 08/07/2026 | Phase 10 (hors-ligne) sur `feature/livrables` : manuel d'utilisation, doc de déploiement et page imprimable de la charte préparés. **Décision d'Alexandre : ne rien mettre en ligne pour l'instant** — déploiement, passage du repo en public et merge final vers `main` réservés à la toute fin. Piste d'hébergement : PHP/MySQL managé + MongoDB Atlas (gratuit). |
+| 08/07/2026 | Phase 9 mergée dans `develop` après validation. |
 | 08/07/2026 | Phase 9 sur `feature/qualite` : passe sécurité (OWASP Top 10). Vulnérabilité **critique** trouvée en test — le serveur `php -S` servait tout le dépôt (`.env`, tokens dans `mails.log`, hashs SQL) : corrigée par liste blanche (`router.php` en dev, `.htaccess` en prod). Choix CSP stricte `default-src 'self'` → refonte des styles inline en classes CSS et du dernier `innerHTML` en DOM. Livrables dossier rédigés (jeux d'essai, veille). Le lancement du serveur devient `php -S localhost:8000 router.php`. |
 | 08/07/2026 | Phase 8 mergée dans `develop` après validation. |
 | 08/07/2026 | Phase 8 sur `feature/contact` : le formulaire de contact reste public (les visiteurs doivent pouvoir écrire sans compte), anti-spam par honeypot (réponse identique au succès pour ne pas renseigner les robots), la demande part vers la boîte `MAIL_FROM` de l'entreprise avec l'adresse du demandeur en corps de mail. |
