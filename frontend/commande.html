@@ -33,6 +33,7 @@
   <main id="contenu" class="conteneur">
     <h1>Commander un menu</h1>
     <p>Les champs marqués d'un astérisque (<span aria-hidden="true">*</span><span class="sr-only">obligatoire</span>) sont obligatoires.</p>
+    <p id="message-commande" role="alert" hidden></p>
 
     <!-- Formulaire statique : pré-remplissage et calcul du prix branchés en Phase 6 -->
     <form class="formulaire" id="form-commande" action="#" method="post" novalidate>
@@ -67,6 +68,11 @@
           <label for="cmd-ville">Ville *</label>
           <input type="text" id="cmd-ville" name="ville_livraison" required>
           <p class="aide">Livraison offerte dans Bordeaux. Hors Bordeaux&nbsp;: 5&nbsp;€ + 0,59&nbsp;€ par kilomètre parcouru.</p>
+        </div>
+        <div class="champ" id="champ-distance" hidden>
+          <label for="cmd-distance">Distance depuis Bordeaux (km) *</label>
+          <input type="number" id="cmd-distance" name="distance_km" min="1" step="0.1" inputmode="decimal">
+          <p class="aide">Nécessaire pour calculer les frais de livraison hors Bordeaux.</p>
         </div>
         <div class="champ">
           <label for="cmd-date">Date de la prestation *</label>
@@ -104,12 +110,12 @@
         <legend>Détail du prix</legend>
         <table class="recap-prix" aria-live="polite">
           <tbody>
-            <tr><th scope="row">Menu (8 personnes × 40&nbsp;€)</th><td>320,00&nbsp;€</td></tr>
-            <tr><th scope="row">Réduction (−10&nbsp;%)</th><td>0,00&nbsp;€</td></tr>
-            <tr><th scope="row">Livraison</th><td>0,00&nbsp;€</td></tr>
+            <tr><th scope="row" id="recap-libelle-menu">Menu</th><td id="recap-menu">—</td></tr>
+            <tr><th scope="row">Réduction (−10&nbsp;% dès min&nbsp;+&nbsp;5 personnes)</th><td id="recap-reduction">—</td></tr>
+            <tr><th scope="row">Livraison</th><td id="recap-livraison">—</td></tr>
           </tbody>
           <tfoot>
-            <tr><th scope="row">Total</th><td>320,00&nbsp;€</td></tr>
+            <tr><th scope="row">Total</th><td id="recap-total">—</td></tr>
           </tfoot>
         </table>
         <p class="aide">Le détail est recalculé automatiquement selon le nombre de personnes et la ville de livraison.</p>
@@ -145,5 +151,6 @@
   </footer>
 
   <script src="assets/js/nav.js"></script>
+  <script src="assets/js/commande.js"></script>
 </body>
 </html>
