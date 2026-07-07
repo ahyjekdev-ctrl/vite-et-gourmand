@@ -453,6 +453,12 @@ legend {
 .statut--terminee { background: var(--succes); color: var(--blanc); }
 .statut--alerte { background: #FBEFEA; color: var(--alerte); }
 
+/* ---------- Utilitaires (remplacent les styles inline : CSP stricte) ---------- */
+.liste-nue { list-style: none; padding: 0; margin: 0; }
+.champ--espace { margin-top: 1rem; }
+.case-simple { width: auto; }
+.pleine-largeur { max-width: 100%; }
+
 /* ---------- Pied de page ---------- */
 .pied {
   background: var(--bordeaux-fonce);

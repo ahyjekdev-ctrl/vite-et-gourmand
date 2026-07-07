@@ -83,8 +83,14 @@
     if (!menu) return;
     personnes.min = menu.min;
     if (Number(personnes.value) < menu.min) personnes.value = menu.min;
-    document.getElementById('aide-personnes').innerHTML =
-      `Minimum pour ce menu&nbsp;: ${menu.min} personnes. <strong>−10&nbsp;% dès ${menu.min + REGLES.seuilReduction} personnes.</strong>`;
+    // Construction DOM (pas d'innerHTML : cohérent avec la CSP et l'anti-XSS)
+    const aide = document.getElementById('aide-personnes');
+    const gras = document.createElement('strong');
+    gras.textContent = `−10 % dès ${menu.min + REGLES.seuilReduction} personnes.`;
+    aide.replaceChildren(
+      document.createTextNode(`Minimum pour ce menu : ${menu.min} personnes. `),
+      gras,
+    );
     calculer();
   }
 
