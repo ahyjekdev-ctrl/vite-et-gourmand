@@ -14,9 +14,9 @@
 
 ## 📍 Où on en est (mis à jour le 07/07/2026)
 
-**Phase actuelle : Phase 6 — Commandes, en cours sur `feature/commandes`**
+**Phase actuelle : Phase 6 — Commandes, faite sur `feature/commandes` (en attente de validation avant merge)**
 
-Phases 1 à 5 mergées dans `develop`. Le site fonctionne en local de bout en bout : catalogue avec filtres dynamiques sans rechargement, détail de menu par id, inscription/connexion/reset, CRUD menus protégé par rôle. Documentation à jour ([livrables.md](docs/livrables.md) coché, environnement de travail documenté dans [docs/technique/notes.md](docs/technique/notes.md)). Côté Alexandre : créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
+Phases 1 à 5 mergées dans `develop`. Phase 6 écrite et **testée de bout en bout** : commande avec prix recalculé côté serveur (réduction 10 %, livraison 5 € + 0,59 €/km hors Bordeaux), verrou de stock, suivi historisé daté, annulation/modification client tant que non acceptée (tout sauf le menu), workflow de statuts employé avec transitions contrôlées et motif+mode de contact obligatoires, 3 mails automatiques (confirmation, matériel 600 €, invitation avis), page de commande dynamique (pré-remplissage, calcul du prix en direct). Bug corrigé en test : paramètre nommé PDO réutilisé (interdit avec les requêtes préparées réelles). L'insertion des stats MongoDB à la commande se fera en Phase 7 (extension PHP à installer). Côté Alexandre : tester le parcours dans le navigateur, créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -104,25 +104,29 @@ Phases 1 à 5 mergées dans `develop`. Le site fonctionne en local de bout en bo
 - [x] Tests : 15 scénarios (filtres seuls et combinés, 404, 401 sans session, 403 pour un client, create/update/delete par employé)
 - [ ] ~~CRUD plats et horaires~~ → déplacé en Phase 7 avec l'interface employé qui l'utilise
 
-## Phase 6 — Commandes ⬜
+## Phase 6 — Commandes 🔄
 
-> Branche : `feature/commandes`
+> Branche : `feature/commandes` — **en attente de validation avant merge**
 
-- [ ] `backend/commandes/create-commande.php` :
-  - [ ] Auto-remplissage infos client
-  - [ ] Contrôle nombre de personnes ≥ minimum du menu
-  - [ ] Réduction 10 % si ≥ min + 5 personnes
-  - [ ] Frais de livraison hors Bordeaux : 5 € + 0,59 €/km
-  - [ ] Décrément du stock du menu
-  - [ ] Mail de confirmation
-- [ ] `frontend/assets/js/commande.js` — calcul du prix en direct + récap détaillé avant validation
-- [ ] `backend/commandes/get-commandes.php` — par client (espace utilisateur) + filtres statut/client (employé)
-- [ ] `backend/commandes/update-commande.php` :
-  - [ ] Annulation/modification par le client tant que non « accepté » (tout sauf le menu)
-  - [ ] Changement de statut par l'employé (accepté → … → terminée)
-  - [ ] Motif + mode de contact obligatoires pour modif/annulation par employé
-  - [ ] Historique de suivi (statut + date + heure)
-  - [ ] Mails automatiques : matériel (600 € / 10 jours ouvrés), terminée (invitation avis)
+- [x] `backend/commandes/calcul-prix.php` — composant métier partagé (création **et** modification recalculent avec les mêmes règles)
+- [x] `backend/auth/me.php` — profil de la personne connectée (pré-remplissage, espace utilisateur)
+- [x] `backend/commandes/create-commande.php` :
+  - [x] Auto-remplissage infos client (via me.php, identité prise en session côté serveur)
+  - [x] Contrôle nombre de personnes ≥ minimum du menu (+ date future, heure, stock)
+  - [x] Réduction 10 % si ≥ min + 5 personnes
+  - [x] Frais de livraison hors Bordeaux : 5 € + 0,59 €/km (distance obligatoire hors Bordeaux)
+  - [x] Décrément du stock sous verrou (`SELECT … FOR UPDATE` : pas de survente en cas de commandes simultanées)
+  - [x] Mail de confirmation avec détail du prix
+- [x] `frontend/assets/js/commande.js` — pré-remplissage, menu pré-sélectionné (`?menu=X`), champ distance affiché hors Bordeaux, calcul du prix en direct + récap détaillé avant validation
+- [x] `backend/commandes/get-commandes.php` — client : ses commandes + suivi complet ; employé : toutes + filtres statut/client
+- [x] `backend/commandes/update-commande.php` :
+  - [x] Annulation/modification par le client tant que non « accepté » (tout sauf le menu, prix recalculé, stock restitué à l'annulation)
+  - [x] Changement de statut par l'employé avec transitions contrôlées (créé → accepté → … → terminée)
+  - [x] Motif + mode de contact obligatoires pour modif/annulation par employé
+  - [x] Historique de suivi (statut + date + heure) à chaque changement
+  - [x] Mails automatiques : matériel (600 € / 10 jours ouvrés), terminée (invitation avis)
+- [x] Tests de bout en bout : prix exacts (180 € / 477,72 €), 422 (minimum, distance, date passée), 409 après acceptation, transitions interdites, stock restitué, 4 mails journalisés
+- [ ] Insertion des statistiques MongoDB à la commande *(Phase 7, avec l'extension PHP mongodb)*
 
 ## Phase 7 — Avis & espaces ⬜
 
@@ -171,6 +175,7 @@ Phases 1 à 5 mergées dans `develop`. Le site fonctionne en local de bout en bo
 
 | Date | Décision |
 |---|---|
+| 07/07/2026 | Phase 6 sur `feature/commandes` : calcul de prix dans un composant partagé (création/modification cohérentes), verrou `FOR UPDATE` sur le stock, transitions de statut en liste blanche, stock restitué à l'annulation. Bug corrigé : un paramètre nommé PDO ne peut pas être réutilisé avec `EMULATE_PREPARES` désactivé (filtre client de l'espace employé). Stats MongoDB reportées en Phase 7 (extension PHP à installer). |
 | 03/07/2026 | Phase 5 sur `feature/menus` : suppression douce des menus (`actif=0`, FK RESTRICT préserve l'historique), rendu DOM en `textContent` uniquement (anti-XSS), filtre « personnes » = menus dont le minimum est accessible pour le nombre de convives saisi. CRUD plats/horaires déplacé en Phase 7 (avec son interface). |
 | 03/07/2026 | Phase 4 mergée dans `develop` après validation. |
 | 03/07/2026 | Phase 4 sur `feature/auth` : API JSON (un endpoint = un fichier), session PHP durcie plutôt que JWT (app même origine, plus simple et révocable), mails journalisés en dev dans `mails.log` (gitignoré), réponse anti-énumération sur login et reset. PHP local : `pdo_mysql`, `openssl`, `curl`, `mbstring` activés. |
