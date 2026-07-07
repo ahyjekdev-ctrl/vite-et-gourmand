@@ -37,6 +37,7 @@ if (
     || !password_verify($motDePasse, $utilisateur['password'])
     || !$utilisateur['actif']
 ) {
+    usleep(500000); // 0,5 s de délai : ralentit les attaques par force brute
     repondre(401, ['erreur' => 'Identifiants invalides.']);
 }
 
