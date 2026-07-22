@@ -58,16 +58,19 @@
         el('li', null, phrase.endsWith('.') ? phrase : `${phrase}.`))
     );
 
-    /* ---------- Galerie ---------- */
+    /* ---------- Galerie (photos réelles, crédits : docs/credits-images.md) ---------- */
     const galeriePrincipale = document.getElementById('galerie-principale');
-    if (menu.images[0]) galeriePrincipale.setAttribute('aria-label', `${menu.images[0].alt} (photo à venir)`);
+    if (menu.images[0]) {
+      galeriePrincipale.src = menu.images[0].chemin;
+      galeriePrincipale.alt = menu.images[0].alt;
+    }
     const vignettes = document.getElementById('galerie-vignettes');
     vignettes.replaceChildren(
       ...menu.images.slice(1).map((image) => {
-        const visuel = el('div', 'visuel');
-        visuel.setAttribute('role', 'img');
-        visuel.setAttribute('aria-label', `${image.alt} (photo à venir)`);
-        return visuel;
+        const img = el('img', 'photo-plat');
+        img.src = image.chemin;
+        img.alt = image.alt;
+        return img;
       })
     );
 

@@ -24,9 +24,17 @@
     const item = el('li');
     const article = el('article', 'carte carte--menu');
 
-    const visuel = el('div', 'visuel visuel--assiette');
-    visuel.setAttribute('role', 'img');
-    visuel.setAttribute('aria-label', menu.image_alt || `Photo du ${menu.titre} (photo à venir)`);
+    // Photo du menu si disponible, sinon visuel de substitution
+    let visuel;
+    if (menu.image) {
+      visuel = el('img', 'photo-plat');
+      visuel.src = menu.image;
+      visuel.alt = menu.image_alt || menu.titre;
+    } else {
+      visuel = el('div', 'visuel visuel--assiette');
+      visuel.setAttribute('role', 'img');
+      visuel.setAttribute('aria-label', `Photo du ${menu.titre} (photo à venir)`);
+    }
 
     const corps = el('div', 'carte__corps');
     corps.append(

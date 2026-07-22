@@ -12,11 +12,11 @@
 
 ---
 
-## 📍 Où on en est (mis à jour le 07/07/2026)
+## 📍 Où on en est (mis à jour le 22/07/2026)
 
-**Phase actuelle : Phase 10 — Livrables. Partie « hors-ligne » faite sur `feature/livrables` (en attente de validation avant merge). Mise en ligne gardée pour la toute fin (choix d'Alexandre).**
+**Phase actuelle : préparation de la mise en ligne. Photos libres de droit ajoutées sur `feature/images` (en attente de validation avant merge).**
 
-Phases 1 à 9 mergées dans `develop`. Sur `feature/livrables` : manuel d'utilisation ([manuel-utilisation.md](docs/manuel-utilisation.md), avec identifiants de test), documentation de déploiement ([deploiement.md](docs/deploiement.md), **rédigée mais non exécutée**), page imprimable pour l'export PDF de la charte + maquettes ([charte-graphique-imprimable.html](docs/charte-graphique-imprimable.html)). **Restent à faire en dernier (quand Alexandre décidera)** : déploiement effectif en ligne, passage du dépôt en public, merge final `develop` → `main`. Côté Alexandre : exporter les 2 PDF (manuel + charte), créer le board Trello.
+Phases 1 à 10 (partie hors-ligne) mergées dans `develop`. Sur `feature/images` : **12 photos libres de droit** (Wikimedia Commons — CC0/domaine public ou CC BY/BY-SA), vérifiées visuellement une à une, redimensionnées à 1200 px max, avec [crédits complets](docs/credits-images.md) ; intégrées partout (héros de l'accueil, cartes de menus statiques et dynamiques, galerie du détail, API `get-menus` qui renvoie désormais le chemin d'image). **Reste** : merge de cette branche, déploiement en ligne, passage du repo en public (à la remise), merge final `develop` → `main`. Côté Alexandre : exporter les 2 PDF, créer le board Trello.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -189,6 +189,7 @@ Préparé (hors-ligne) :
 
 | Date | Décision |
 |---|---|
+| 22/07/2026 | Photos sur `feature/images` : sources **Wikimedia Commons uniquement** (licences vérifiables), script PHP de récupération/redimensionnement (API Commons + GD), crédits consignés dans [docs/credits-images.md](docs/credits-images.md). Vérification visuelle systématique (plusieurs résultats hors sujet rejetés). Au passage : bundle CA SSL configuré pour PHP/curl (nécessaire aussi pour les mails en prod). |
 | 08/07/2026 | Phase 10 (hors-ligne) sur `feature/livrables` : manuel d'utilisation, doc de déploiement et page imprimable de la charte préparés. **Décision d'Alexandre : ne rien mettre en ligne pour l'instant** — déploiement, passage du repo en public et merge final vers `main` réservés à la toute fin. Piste d'hébergement : PHP/MySQL managé + MongoDB Atlas (gratuit). |
 | 08/07/2026 | Phase 9 mergée dans `develop` après validation. |
 | 08/07/2026 | Phase 9 sur `feature/qualite` : passe sécurité (OWASP Top 10). Vulnérabilité **critique** trouvée en test — le serveur `php -S` servait tout le dépôt (`.env`, tokens dans `mails.log`, hashs SQL) : corrigée par liste blanche (`router.php` en dev, `.htaccess` en prod). Choix CSP stricte `default-src 'self'` → refonte des styles inline en classes CSS et du dernier `innerHTML` en DOM. Livrables dossier rédigés (jeux d'essai, veille). Le lancement du serveur devient `php -S localhost:8000 router.php`. |

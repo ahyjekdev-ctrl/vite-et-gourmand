@@ -68,6 +68,8 @@ if (($personnes = parametreNumerique('personnes')) !== null) {
 $sql = 'SELECT m.menu_id, m.titre, m.description, m.nb_personnes_min, m.prix_min,
                m.quantite_restante, m.actif, m.theme_id, m.regime_id,
                t.libelle AS theme, r.libelle AS regime,
+               (SELECT i.chemin FROM image_menu i
+                WHERE i.menu_id = m.menu_id ORDER BY i.position LIMIT 1) AS image,
                (SELECT i.alt FROM image_menu i
                 WHERE i.menu_id = m.menu_id ORDER BY i.position LIMIT 1) AS image_alt
         FROM menu m
