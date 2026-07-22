@@ -6,8 +6,19 @@
 
 declare(strict_types=1);
 
+/** Clés de configuration attendues par l'application. */
+const CLES_ENV = [
+    'DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS',
+    'MONGO_URI', 'MONGO_DB',
+    'MAIL_API_KEY', 'MAIL_FROM',
+];
+
 /**
- * Charge les variables du fichier .env (une seule fois par requête).
+ * Charge la configuration (une seule fois par requête), depuis deux sources :
+ * - en développement, le fichier `.env` à la racine (jamais commité) ;
+ * - en production, les variables d'environnement du serveur, qui sont
+ *   prioritaires — l'hébergeur les injecte, aucun secret n'est donc écrit
+ *   sur le disque ni dans le dépôt.
  *
  * @return array<string, string>
  */
@@ -18,21 +29,35 @@ function chargerEnv(): array
         return $env;
     }
 
+    $env = [];
+
+    // 1) Fichier .env local, s'il existe
     $chemin = dirname(__DIR__, 2) . '/.env';
-    if (!is_readable($chemin)) {
-        http_response_code(500);
-        exit(json_encode(['erreur' => 'Configuration serveur manquante (.env introuvable).']));
+    if (is_readable($chemin)) {
+        foreach (file($chemin, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $ligne) {
+            $ligne = trim($ligne);
+            if ($ligne === '' || str_starts_with($ligne, '#') || !str_contains($ligne, '=')) {
+                continue;
+            }
+            [$cle, $valeur] = explode('=', $ligne, 2);
+            $env[trim($cle)] = trim($valeur);
+        }
     }
 
-    $env = [];
-    foreach (file($chemin, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $ligne) {
-        $ligne = trim($ligne);
-        if ($ligne === '' || str_starts_with($ligne, '#') || !str_contains($ligne, '=')) {
-            continue;
+    // 2) Variables d'environnement du serveur (production) — prioritaires
+    foreach (CLES_ENV as $cle) {
+        $valeur = getenv($cle);
+        if ($valeur !== false && $valeur !== '') {
+            $env[$cle] = $valeur;
         }
-        [$cle, $valeur] = explode('=', $ligne, 2);
-        $env[trim($cle)] = trim($valeur);
     }
+
+    if ($env === []) {
+        error_log('Configuration absente : ni fichier .env, ni variables d\'environnement.');
+        http_response_code(500);
+        exit(json_encode(['erreur' => 'Configuration serveur manquante.']));
+    }
+
     return $env;
 }
 
