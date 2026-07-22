@@ -189,6 +189,7 @@ Préparé (hors-ligne) :
 
 | Date | Décision |
 |---|---|
+| 22/07/2026 | Audit de confidentialité avant passage du dépôt en public, sur `feature/nettoyage-donnees-perso` : chemins locaux de la machine de développement remplacés par `%USERPROFILE%` dans la doc technique, et **historique Git réécrit** pour que les commits soient signés avec l'adresse anonyme GitHub (`@users.noreply.github.com`) au lieu d'une adresse personnelle. Contenu des fichiers et dates des commits inchangés — vérifié branche par branche. Données de démonstration confirmées entièrement fictives (noms, téléphones, adresses). |
 | 08/07/2026 | Phase 10 (hors-ligne) sur `feature/livrables` : manuel d'utilisation, doc de déploiement et page imprimable de la charte préparés. **Décision d'Alexandre : ne rien mettre en ligne pour l'instant** — déploiement, passage du repo en public et merge final vers `main` réservés à la toute fin. Piste d'hébergement : PHP/MySQL managé + MongoDB Atlas (gratuit). |
 | 08/07/2026 | Phase 9 mergée dans `develop` après validation. |
 | 08/07/2026 | Phase 9 sur `feature/qualite` : passe sécurité (OWASP Top 10). Vulnérabilité **critique** trouvée en test — le serveur `php -S` servait tout le dépôt (`.env`, tokens dans `mails.log`, hashs SQL) : corrigée par liste blanche (`router.php` en dev, `.htaccess` en prod). Choix CSP stricte `default-src 'self'` → refonte des styles inline en classes CSS et du dernier `innerHTML` en DOM. Livrables dossier rédigés (jeux d'essai, veille). Le lancement du serveur devient `php -S localhost:8000 router.php`. |
