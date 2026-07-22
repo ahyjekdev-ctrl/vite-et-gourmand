@@ -19,7 +19,7 @@
 
 ```powershell
 # 1. Démarrer les bases (MariaDB :3306 + MongoDB :27017)
-powershell -File C:\Users\ahyje\tools\demarrer-bdd.ps1
+powershell -File "$env:USERPROFILE\tools\demarrer-bdd.ps1"
 
 # 2. Lancer le serveur de développement (racine du projet)
 php -S localhost:8000
@@ -27,7 +27,7 @@ php -S localhost:8000
 # 3. Ouvrir http://localhost:8000/frontend/index.html
 ```
 
-Arrêt des bases : `powershell -File C:\Users\ahyje\tools\arreter-bdd.ps1`.
+Arrêt des bases : `powershell -File "$env:USERPROFILE\tools\arreter-bdd.ps1"`.
 Les binaires (`mysql`, `mongosh`, `mongod`) sont dans le PATH utilisateur.
 
 ## 3. Initialisation / réinitialisation des données
