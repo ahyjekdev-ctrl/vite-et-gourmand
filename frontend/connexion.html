@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
   <meta name="description" content="Connectez-vous à votre compte Vite & Gourmand pour commander et suivre vos commandes.">
   <title>Connexion — Vite &amp; Gourmand</title>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -68,7 +69,7 @@
       <!-- Mot de passe oublié : un lien de réinitialisation est envoyé par mail -->
       <details>
         <summary>Mot de passe oublié&nbsp;?</summary>
-        <div class="champ" style="margin-top: 1rem;">
+        <div class="champ champ--espace">
           <label for="con-email-reset">Votre adresse mail *</label>
           <input type="email" id="con-email-reset" name="email_reset" autocomplete="email">
           <p class="aide">Nous vous enverrons un lien par mail pour réinitialiser votre mot de passe.</p>

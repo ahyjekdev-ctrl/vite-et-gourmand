@@ -220,7 +220,20 @@ main { padding-block: 1.5rem 3rem; }
 .hero h1 .accent { color: var(--bordeaux); display: block; }
 .hero__texte p { color: var(--gris-doux); font-size: 1.05rem; }
 
-/* Visuel de substitution en attendant les photos */
+/* ---------- Photos (Wikimedia Commons — crédits : docs/credits-images.md) ---------- */
+.photo-plat {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+}
+.hero .photo-plat { min-height: 240px; max-height: 380px; height: 100%; }
+.carte--menu .photo-plat { height: 150px; border-radius: var(--rayon) var(--rayon) 0 0; box-shadow: none; }
+.galerie > .photo-plat { min-height: 240px; max-height: 420px; }
+.galerie__vignettes .photo-plat { height: 110px; border-radius: var(--rayon-petit); box-shadow: none; }
+
+/* Visuel de substitution si un menu n'a pas encore de photo */
 .visuel {
   display: grid;
   place-items: center;
@@ -452,6 +465,12 @@ legend {
 .statut--en-cours { background: #F5E9D0; color: #8A6516; }
 .statut--terminee { background: var(--succes); color: var(--blanc); }
 .statut--alerte { background: #FBEFEA; color: var(--alerte); }
+
+/* ---------- Utilitaires (remplacent les styles inline : CSP stricte) ---------- */
+.liste-nue { list-style: none; padding: 0; margin: 0; }
+.champ--espace { margin-top: 1rem; }
+.case-simple { width: auto; }
+.pleine-largeur { max-width: 100%; }
 
 /* ---------- Pied de page ---------- */
 .pied {

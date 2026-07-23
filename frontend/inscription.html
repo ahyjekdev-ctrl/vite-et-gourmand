@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
   <meta name="description" content="Créez votre compte Vite & Gourmand pour commander vos menus traiteur à Bordeaux.">
   <title>Créer un compte — Vite &amp; Gourmand</title>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -89,7 +90,7 @@
 
       <div class="champ">
         <label>
-          <input type="checkbox" name="consentement" required style="width: auto;">
+          <input type="checkbox" name="consentement" required class="case-simple">
           J'accepte que mes données soient utilisées pour la gestion de mon compte et de mes commandes, conformément aux <a href="mentions-legales.html">mentions légales</a> (RGPD). *
         </label>
       </div>

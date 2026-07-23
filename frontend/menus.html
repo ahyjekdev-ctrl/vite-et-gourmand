@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
   <meta name="description" content="Tous les menus du traiteur Vite & Gourmand : Noël, Pâques, classique, évènement. Filtrez par prix, thème, régime et nombre de personnes.">
   <title>Nos menus — Vite &amp; Gourmand</title>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -93,10 +94,10 @@
 
       <!-- Vue globale : contenu statique fidèle aux fixtures, dynamisé en Phase 5 -->
       <section aria-label="Liste des menus">
-        <ul class="grille grille--3" id="liste-menus" style="list-style: none; padding: 0; margin: 0;">
+        <ul class="grille grille--3 liste-nue" id="liste-menus">
           <li>
             <article class="carte carte--menu">
-              <div class="visuel visuel--assiette" role="img" aria-label="Chapon fermier aux morilles dressé sur plat de service (photo à venir)"></div>
+              <img class="photo-plat" src="assets/img/menus/noel-1.jpg" alt="Chapon fermier aux morilles dressé sur plat de service">
               <div class="carte__corps">
                 <h3>Menu Noël Prestige</h3>
                 <p class="carte__desc">Foie gras, chapon aux morilles, bûche signature maison.</p>
@@ -107,7 +108,7 @@
           </li>
           <li>
             <article class="carte carte--menu">
-              <div class="visuel visuel--assiette" role="img" aria-label="Agneau de sept heures et légumes printaniers (photo à venir)"></div>
+              <img class="photo-plat" src="assets/img/menus/paques-1.jpg" alt="Agneau de sept heures et légumes printaniers">
               <div class="carte__corps">
                 <h3>Menu Pâques Gourmand</h3>
                 <p class="carte__desc">Agneau de sept heures, légumes printaniers, nid chocolaté.</p>
@@ -118,7 +119,7 @@
           </li>
           <li>
             <article class="carte carte--menu">
-              <div class="visuel visuel--assiette" role="img" aria-label="Entrecôte à la bordelaise grillée (photo à venir)"></div>
+              <img class="photo-plat" src="assets/img/menus/bordelais-1.jpg" alt="Entrecôte à la bordelaise grillée">
               <div class="carte__corps">
                 <h3>Menu Classique Bordelais</h3>
                 <p class="carte__desc">Entrecôte à la bordelaise, cannelés et douceurs locales.</p>
@@ -129,7 +130,7 @@
           </li>
           <li>
             <article class="carte carte--menu">
-              <div class="visuel visuel--assiette" role="img" aria-label="Assiette de légumes rôtis du marché et risotto (photo à venir)"></div>
+              <img class="photo-plat" src="assets/img/menus/vege-1.jpg" alt="Assiette de légumes rôtis du marché et risotto">
               <div class="carte__corps">
                 <h3>Menu Végétarien du Marché</h3>
                 <p class="carte__desc">Légumes rôtis, risotto crémeux, tarte fine aux fruits de saison.</p>
@@ -140,7 +141,7 @@
           </li>
           <li>
             <article class="carte carte--menu">
-              <div class="visuel visuel--assiette" role="img" aria-label="Curry de légumes au lait de coco et houmos (photo à venir)"></div>
+              <img class="photo-plat" src="assets/img/menus/vegan-1.jpg" alt="Curry de légumes au lait de coco et houmos">
               <div class="carte__corps">
                 <h3>Menu Vegan Découverte</h3>
                 <p class="carte__desc">Houmos de saison, curry coco, pavlova végétale aux fruits rouges.</p>
@@ -151,7 +152,7 @@
           </li>
           <li>
             <article class="carte carte--menu">
-              <div class="visuel visuel--assiette" role="img" aria-label="Buffet dressé pour une réception (photo à venir)"></div>
+              <img class="photo-plat" src="assets/img/menus/event-1.jpg" alt="Buffet dressé pour une réception">
               <div class="carte__corps">
                 <h3>Menu Évènement Grand Format</h3>
                 <p class="carte__desc">Buffet complet pour réceptions, mariages et séminaires.</p>

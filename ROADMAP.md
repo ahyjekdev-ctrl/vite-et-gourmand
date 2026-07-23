@@ -5,18 +5,18 @@
 
 ## 📅 Dates clés
 
-- **28/07/2026 — rendu de l'ECF** : application déployée, repo public, tous les livrables.
+- **23/07/2026 — rendu de l'ECF** : application déployée, repo public, tous les livrables.
 - **Novembre/décembre 2026 — jury** : dossier projet (20-30 p.) + soutenance orale.
-- Planning de juillet : Phases 2-3 (semaine du 3), Phases 4-5 (semaine du 10), Phases 6-8 (semaine du 17), Phases 9-10 (24 → 28).
+- Planning de juillet : Phases 2-3 (semaine du 3), Phases 4-5 (semaine du 10), Phases 6-8 (semaine du 17), Phases 9-10 et mise en ligne (22-23).
 - D'août à novembre : relecture du code, dossier projet, support et répétition de l'oral.
 
 ---
 
-## 📍 Où on en est (mis à jour le 07/07/2026)
+## 📍 Où on en est (mis à jour le 22/07/2026)
 
-**Phase actuelle : Phase 7 — Avis & espaces, en cours sur `feature/avis-espaces`**
+**Phase actuelle : mise en ligne. Tout le code est dans `develop`, il ne reste que le déploiement et les livrables à remettre.**
 
-Phases 1 à 6 mergées dans `develop`, et **premier merge `develop` → `main`** (version stable : catalogue filtrable, authentification, commandes complètes). Parcours visiteur→client testé par Alexandre dans le navigateur. En cours : dépôt et modération des avis, espaces utilisateur/employé/admin branchés sur l'API, CRUD plats/horaires, comptes employés, puis stats MongoDB (7b). Côté Alexandre : créer le board Trello ([docs/gestion-de-projet.md](docs/gestion-de-projet.md) §5).
+Phases 1 à 10 mergées dans `develop`, ainsi que les **12 photos libres de droit** (Wikimedia Commons — CC0/domaine public ou CC BY/BY-SA, vérifiées une à une, [crédits complets](docs/credits-images.md)) et l'**audit de confidentialité** avant passage en public. **Reste** : déployer l'application (hébergeur Railway — PHP en conteneur, MySQL, MongoDB), passer le dépôt en public, merge final `develop` → `main`. Côté Alexandre : exporter les 2 PDF, créer le board Trello, remplir la copie à rendre Studi.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
@@ -132,41 +132,55 @@ Phases 1 à 6 mergées dans `develop`, et **premier merge `develop` → `main`**
 
 > Branche : `feature/avis-espaces`
 
-- [ ] `backend/avis/gestion-avis.php` — dépôt (note 1–5 + commentaire, commande terminée uniquement), validation/refus par employé
-- [ ] CRUD plats et horaires (endpoints + interface employé) *(déplacé depuis la Phase 5)*
-- [ ] Espace utilisateur complet (commandes, suivi, infos perso, avis)
-- [ ] Espace employé complet (menus, plats, horaires, commandes, avis)
-- [ ] Espace admin : création compte employé (mail sans mdp), désactivation compte
-- [ ] **Statistiques MongoDB** : nb de commandes par menu + **graphique** comparatif
-- [ ] Chiffre d'affaires par menu, filtres par menu et par période
+- [x] `backend/avis/gestion-avis.php` — dépôt (note 1–5 + commentaire, commande terminée uniquement, un avis max par commande), validation/refus par employé
+- [x] CRUD plats (avec allergènes) et horaires — endpoints + interface employé *(déplacé depuis la Phase 5)*
+- [x] Espace utilisateur complet : commandes réelles, suivi daté, annulation/modification tant que non acceptée, dépôt d'avis, infos personnelles modifiables (`update-profil.php`)
+- [x] Espace employé complet : commandes filtrées + transitions de statut + annulation motivée, modération des avis, menus (y compris désactivés via `?tous=1`, réactivation, création complète), plats, horaires
+- [x] Espace admin : création compte employé (mail **sans** mot de passe — vérifié : 0 occurrence dans le journal), désactivation/réactivation
+- [x] Module front commun aux espaces (`espace-commun.js`) : garde par rôle, appels API, formats, badges — rendu DOM en `textContent` (anti-XSS)
+- [x] Tests 7a : 16 scénarios (409 avis en double/commande non terminée, 403 modération client et gestion employés, mail sans mdp, connexion refusée après désactivation, menus inactifs invisibles du public…)
+- [x] **7b — Statistiques MongoDB** : extension PHP mongodb 2.3.3 (DLL PECL), `backend/config/mongo.php` (insertions best effort, agrégations), stats insérées/mises à jour à chaque événement de commande, nb de commandes par menu en **graphique canvas natif** (aucune librairie externe)
+- [x] **7b** — Chiffre d'affaires par menu (`get-stats.php`, admin uniquement), filtres cumulables par menu et par période, annulées exclues, totaux vérifiés (1 848,09 € sur les fixtures)
+- [x] Tests 7b : 7 scénarios (403 employé, agrégations exactes, filtres, insertion auto à la commande, maj du statut Mongo à chaque transition, annulée exclue des stats)
 
-## Phase 8 — Contact ⬜
+## Phase 8 — Contact ✅
 
-> Branche : `feature/contact`
+> Branche : `feature/contact` — mergée dans `develop` le 08/07/2026
 
-- [ ] Formulaire contact (titre, description, mail)
-- [ ] Envoi de la demande par mail à l'entreprise
+- [x] Formulaire contact (titre, description, mail) branché en fetch (`contact.js`)
+- [x] Envoi de la demande par mail à l'entreprise (`backend/contact/envoyer.php`, accessible aux visiteurs)
+- [x] Anti-spam honeypot : champ invisible, faux succès renvoyé aux robots, aucun mail envoyé
+- [x] Tests : envoi valide journalisé, 422 (mail invalide, champs vides), spam silencieusement ignoré
 
-## Phase 9 — Qualité, sécurité, tests ⬜
+## Phase 9 — Qualité, sécurité, tests ✅
 
-> Branche : `fix/…` selon besoin
+> Branche : `feature/qualite` — mergée dans `develop` le 08/07/2026
 
-- [ ] Passe sécurité complète (voir docs/conventions.md §3) : XSS, CSRF, injections, sessions
-- [ ] Passe accessibilité RGAA sur toutes les pages
-- [ ] Jeux d'essai documentés (front + back) pour le dossier projet
-- [ ] Tests manuels de tous les parcours (visiteur, utilisateur, employé, admin)
-- [ ] Veille sécurité documentée (front + back)
+- [x] Passe sécurité complète : **faille d'exposition de fichiers trouvée et corrigée** (`router.php` liste blanche + `.htaccess`), erreurs masquées, `Content-Type` JSON exigé (415), anti-force-brute, en-têtes `X-Frame-Options`/`X-Content-Type-Options`/`Referrer-Policy`
+- [x] Anti-XSS renforcé : CSP `default-src 'self'` sur les 12 pages, suppression de tous les styles inline et du dernier `innerHTML`
+- [x] Passe accessibilité RGAA : audit automatisé sur 12 pages (lang, title, skip-link, main, nav aria, h1 unique, tous les champs labellisés) → 12/12 conformes
+- [x] Jeux d'essai documentés (front + back) → [docs/jeux-essai.md](docs/jeux-essai.md)
+- [x] Veille sécurité documentée (OWASP + RGAA) → [docs/veille-securite.md](docs/veille-securite.md)
+- [x] Test de régression complet après durcissement : fichiers sensibles en 404, API et parcours connectés OK
 
-## Phase 10 — Déploiement & livrables ⬜
+## Phase 10 — Déploiement & livrables 🔄
 
-- [ ] Choix de l'hébergeur + déploiement (app + MySQL + MongoDB)
-- [ ] Documentation du déploiement (démarche + étapes)
-- [ ] Manuel d'utilisation PDF (avec identifiants de test)
-- [ ] Charte graphique PDF (palette, police, export des 6 maquettes)
-- [ ] Documentation gestion de projet
-- [ ] Documentation technique finale (voir docs/livrables.md)
+> Branche : `feature/livrables` (partie hors-ligne) — **en attente de validation avant merge**
+> ⚠️ Décision d'Alexandre : **rien n'est mis en ligne pour l'instant**, la mise en ligne se fera en dernier.
+
+Préparé (hors-ligne) :
+- [x] Documentation du déploiement (démarche + étapes) → [docs/deploiement.md](docs/deploiement.md) *(rédigée, non exécutée)*
+- [x] Manuel d'utilisation (avec identifiants de test) → [docs/manuel-utilisation.md](docs/manuel-utilisation.md) *(à exporter en PDF)*
+- [x] Charte graphique : page imprimable palette + typo + maquettes → [docs/charte-graphique-imprimable.html](docs/charte-graphique-imprimable.html) *(à exporter en PDF)*
+- [x] Documentation gestion de projet → [docs/gestion-de-projet.md](docs/gestion-de-projet.md)
+- [x] Documentation technique → répartie dans `docs/` (voir [docs/livrables.md](docs/livrables.md) §2)
+
+À faire **en dernier** (mise en ligne — décision Alexandre) :
+- [ ] Choix de l'hébergeur + déploiement (app + MySQL + MongoDB Atlas)
 - [ ] Dépôt GitHub passé en **public**
-- [ ] **Dossier projet** (20–30 pages) + support de soutenance
+- [ ] Merge final `develop` → `main` (version livrée)
+- [ ] Exporter les 2 PDF (manuel + charte) et créer le board Trello *(actions Alexandre)*
+- [ ] **Dossier projet** (20–30 pages) + support de soutenance *(pour le jury nov./déc.)*
 - [ ] Copie à rendre remplie et déposée
 
 ---
@@ -175,13 +189,23 @@ Phases 1 à 6 mergées dans `develop`, et **premier merge `develop` → `main`**
 
 | Date | Décision |
 |---|---|
+| 22/07/2026 | Photos sur `feature/images` : sources **Wikimedia Commons uniquement** (licences vérifiables), script PHP de récupération/redimensionnement (API Commons + GD), crédits consignés dans [docs/credits-images.md](docs/credits-images.md). Vérification visuelle systématique (plusieurs résultats hors sujet rejetés). Au passage : bundle CA SSL configuré pour PHP/curl (nécessaire aussi pour les mails en prod). |
+| 22/07/2026 | Audit de confidentialité avant passage du dépôt en public, sur `feature/nettoyage-donnees-perso` : chemins locaux de la machine de développement remplacés par `%USERPROFILE%` dans la doc technique, et **historique Git réécrit** pour que les commits soient signés avec l'adresse anonyme GitHub (`@users.noreply.github.com`) au lieu d'une adresse personnelle. Contenu des fichiers et dates des commits inchangés — vérifié branche par branche. Données de démonstration confirmées entièrement fictives (noms, téléphones, adresses). |
+| 08/07/2026 | Phase 10 (hors-ligne) sur `feature/livrables` : manuel d'utilisation, doc de déploiement et page imprimable de la charte préparés. **Décision d'Alexandre : ne rien mettre en ligne pour l'instant** — déploiement, passage du repo en public et merge final vers `main` réservés à la toute fin. Piste d'hébergement : PHP/MySQL managé + MongoDB Atlas (gratuit). |
+| 08/07/2026 | Phase 9 mergée dans `develop` après validation. |
+| 08/07/2026 | Phase 9 sur `feature/qualite` : passe sécurité (OWASP Top 10). Vulnérabilité **critique** trouvée en test — le serveur `php -S` servait tout le dépôt (`.env`, tokens dans `mails.log`, hashs SQL) : corrigée par liste blanche (`router.php` en dev, `.htaccess` en prod). Choix CSP stricte `default-src 'self'` → refonte des styles inline en classes CSS et du dernier `innerHTML` en DOM. Livrables dossier rédigés (jeux d'essai, veille). Le lancement du serveur devient `php -S localhost:8000 router.php`. |
+| 08/07/2026 | Phase 8 mergée dans `develop` après validation. |
+| 08/07/2026 | Phase 8 sur `feature/contact` : le formulaire de contact reste public (les visiteurs doivent pouvoir écrire sans compte), anti-spam par honeypot (réponse identique au succès pour ne pas renseigner les robots), la demande part vers la boîte `MAIL_FROM` de l'entreprise avec l'adresse du demandeur en corps de mail. |
+| 08/07/2026 | Phase 7b mergée dans `develop` après validation. |
+| 08/07/2026 | Phase 7b sur `feature/stats-mongodb` : extension PHP mongodb via DLL PECL (2.3.3, 8.5-ts-vs17-x64), écritures statistiques « best effort » (Mongo en panne n'empêche jamais une vente), clé de rapprochement `numero_commande` + index unique côté Mongo, graphique en canvas natif (pas de dépendance externe, données accessibles dans le tableau voisin). |
+| 07/07/2026 | Phase 7a mergée dans `develop` après test navigateur validé. |
 | 07/07/2026 | Phase 6 mergée dans `develop` après test navigateur validé, puis **premier merge `develop` → `main`** : `main` porte désormais une version stable et testée (phases 1-6). Ajout d'un `index.php` à la racine (redirection vers l'accueil). |
 | 07/07/2026 | Phase 6 sur `feature/commandes` : calcul de prix dans un composant partagé (création/modification cohérentes), verrou `FOR UPDATE` sur le stock, transitions de statut en liste blanche, stock restitué à l'annulation. Bug corrigé : un paramètre nommé PDO ne peut pas être réutilisé avec `EMULATE_PREPARES` désactivé (filtre client de l'espace employé). Stats MongoDB reportées en Phase 7 (extension PHP à installer). |
 | 03/07/2026 | Phase 5 sur `feature/menus` : suppression douce des menus (`actif=0`, FK RESTRICT préserve l'historique), rendu DOM en `textContent` uniquement (anti-XSS), filtre « personnes » = menus dont le minimum est accessible pour le nombre de convives saisi. CRUD plats/horaires déplacé en Phase 7 (avec son interface). |
 | 03/07/2026 | Phase 4 mergée dans `develop` après validation. |
 | 03/07/2026 | Phase 4 sur `feature/auth` : API JSON (un endpoint = un fichier), session PHP durcie plutôt que JWT (app même origine, plus simple et révocable), mails journalisés en dev dans `mails.log` (gitignoré), réponse anti-énumération sur login et reset. PHP local : `pdo_mysql`, `openssl`, `curl`, `mbstring` activés. |
 | 03/07/2026 | Phase 3 mergée dans `develop` après validation. |
-| 03/07/2026 | Phase 3 sur `feature/front-statique` : 12 pages statiques + charte appliquée en CSS (variables), burger en JS minimal accessible, visuels de substitution en CSS en attendant les photos. Env local : MariaDB 11.8 + MongoDB 8.3 portables (sans droits admin) dans `C:\Users\ahyje\tools`. |
+| 03/07/2026 | Phase 3 sur `feature/front-statique` : 12 pages statiques + charte appliquée en CSS (variables), burger en JS minimal accessible, visuels de substitution en CSS en attendant les photos. Env local : MariaDB 11.8 + MongoDB 8.3 portables (sans droits admin) dans `%USERPROFILE%\tools`. |
 | 03/07/2026 | Phase 2 mergée dans `develop` après test local validé par Alexandre. |
 | 03/07/2026 | Phase 2 sur `feature/database` : statuts en ENUM (lisibilité + intégrité), avis lié à la commande (UNIQUE, un avis par commande terminée), hashs bcrypt réels dans les fixtures, données de démo alignées sur les maquettes. Base Mongo séparée `vite_et_gourmand_stats`. |
 | 03/07/2026 | Phase 1 mergée dans `develop` après validation. |

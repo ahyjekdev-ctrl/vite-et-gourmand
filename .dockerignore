@@ -1,0 +1,8 @@
+# Rien de tout ceci n'a sa place dans l'image de production
+.git
+.gitignore
+.env
+.claude
+docs/maquettes
+node_modules
+backend/mail/mails.log

@@ -12,16 +12,25 @@ declare(strict_types=1);
  * - samesite=Lax   : le cookie n'est pas envoyé sur les requêtes intersites (protection CSRF)
  * - secure         : cookie réservé au HTTPS quand la connexion l'est
  * - use_strict_mode: refuse les identifiants de session non initialisés (protection fixation)
+ *
+ * En production, l'application est derrière un proxy inverse qui termine le
+ * TLS : la requête arrive donc en HTTP et `$_SERVER['HTTPS']` est vide. C'est
+ * l'en-tête `X-Forwarded-Proto` qui indique le protocole vu par le navigateur —
+ * sans lui, le cookie perdrait son attribut `secure` alors que le site est
+ * bien en HTTPS.
  */
 function demarrerSession(): void
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
         return;
     }
+    $httpsActif = !empty($_SERVER['HTTPS'])
+        || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
+
     session_start([
         'cookie_httponly' => true,
         'cookie_samesite' => 'Lax',
-        'cookie_secure'   => !empty($_SERVER['HTTPS']),
+        'cookie_secure'   => $httpsActif,
         'use_strict_mode' => true,
     ]);
 }

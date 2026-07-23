@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
   <meta name="robots" content="noindex">
   <title>Espace administrateur — Vite &amp; Gourmand</title>
   <link rel="stylesheet" href="../assets/css/style.css">
@@ -24,7 +25,7 @@
           <li><a class="nav__lien" href="../index.html">Accueil</a></li>
           <li><a class="nav__lien" href="../espace-employe/dashboard.html">Espace employé</a></li>
           <li><a class="nav__lien" href="dashboard.html" aria-current="page">Administration</a></li>
-          <li><a class="nav__lien nav__connexion" href="../index.html">Déconnexion</a></li>
+          <li><a class="nav__lien nav__connexion" href="../index.html" id="lien-deconnexion">Déconnexion</a></li>
         </ul>
       </nav>
     </div>
@@ -32,7 +33,8 @@
 
   <main id="contenu" class="conteneur dashboard">
     <h1>Espace administrateur</h1>
-    <p>Connecté en tant que <strong>José Martinez</strong> <small>(contenu de démonstration)</small></p>
+    <p id="salutation">Chargement…</p>
+    <p id="message-espace" role="alert" hidden></p>
     <p>L'administrateur dispose aussi de toutes les fonctions de l'<a href="../espace-employe/dashboard.html">espace employé</a> (commandes, catalogue, avis).</p>
 
     <nav class="dashboard__nav" aria-label="Sections de l'espace">
@@ -48,7 +50,7 @@
       <div class="grille grille--2">
         <article class="carte">
           <h3>Créer un compte employé</h3>
-          <form action="#" method="post" novalidate>
+          <form id="form-employe" action="#" method="post" novalidate>
             <div class="champ">
               <label for="emp-email">Adresse mail de l'employé *</label>
               <input type="email" id="emp-email" name="email" required>
@@ -56,7 +58,7 @@
             </div>
             <div class="champ">
               <label for="emp-password">Mot de passe *</label>
-              <input type="password" id="emp-password" name="password" required minlength="10">
+              <input type="password" id="emp-password" name="password" required minlength="10" autocomplete="new-password">
               <p class="aide">L'employé sera notifié par mail de la création de son compte, <strong>sans le mot de passe</strong>&nbsp;: communiquez-le-lui directement.</p>
             </div>
             <button type="submit" class="btn btn--primaire">Créer le compte</button>
@@ -70,12 +72,8 @@
               <thead>
                 <tr><th scope="col">Employé</th><th scope="col">Statut</th><th scope="col">Action</th></tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>julie@vite-et-gourmand.fr</td>
-                  <td><span class="statut statut--accepte">Actif</span></td>
-                  <td><a href="#">Désactiver</a></td>
-                </tr>
+              <tbody id="tbody-employes">
+                <tr><td colspan="3">Chargement des comptes…</td></tr>
               </tbody>
             </table>
           </div>
@@ -104,11 +102,11 @@
           </div>
           <div class="champ">
             <label for="st-debut">Du</label>
-            <input type="date" id="st-debut" name="debut" value="2026-06-01">
+            <input type="date" id="st-debut" name="debut">
           </div>
           <div class="champ">
             <label for="st-fin">Au</label>
-            <input type="date" id="st-fin" name="fin" value="2026-06-30">
+            <input type="date" id="st-fin" name="fin">
           </div>
         </div>
       </form>
@@ -116,10 +114,10 @@
       <div class="grille grille--2">
         <article class="carte">
           <h3>Nombre de commandes par menu</h3>
-          <!-- Le graphique (canvas) sera alimenté par MongoDB en Phase 7 -->
-          <div class="visuel" role="img" aria-label="Graphique en barres comparant le nombre de commandes par menu (données de la base MongoDB, à venir)">
-            <p><em>Graphique comparatif — chargé depuis MongoDB</em></p>
-          </div>
+          <!-- Graphique alimenté par la base NoSQL (MongoDB) -->
+          <canvas id="graphique-stats" width="520" height="300" class="pleine-largeur"
+                  role="img" aria-label="Graphique en barres comparant le nombre de commandes par menu — les valeurs détaillées figurent dans le tableau ci-contre"></canvas>
+          <p class="aide" id="graphique-vide" hidden>Aucune commande sur la période sélectionnée.</p>
         </article>
         <article class="carte">
           <h3>Chiffre d'affaires par menu</h3>
@@ -129,16 +127,15 @@
               <thead>
                 <tr><th scope="col">Menu</th><th scope="col">Commandes</th><th scope="col">CA</th></tr>
               </thead>
-              <tbody>
-                <tr><td>Évènement Grand Format</td><td>1</td><td>628,47&nbsp;€</td></tr>
-                <tr><td>Noël Prestige</td><td>1</td><td>468,00&nbsp;€</td></tr>
-                <tr><td>Vegan Découverte</td><td>1</td><td>261,00&nbsp;€</td></tr>
-                <tr><td>Pâques Gourmand</td><td>1</td><td>180,00&nbsp;€</td></tr>
-                <tr><td>Classique Bordelais</td><td>1</td><td>159,72&nbsp;€</td></tr>
-                <tr><td>Végétarien du Marché</td><td>1</td><td>150,90&nbsp;€</td></tr>
+              <tbody id="tbody-stats">
+                <tr><td colspan="3">Chargement des statistiques…</td></tr>
               </tbody>
+              <tfoot>
+                <tr><th scope="row">Total</th><td id="stats-total-commandes">—</td><td id="stats-total-ca">—</td></tr>
+              </tfoot>
             </table>
           </div>
+          <p class="aide">Données issues de la base NoSQL (MongoDB) — les commandes annulées sont exclues.</p>
         </article>
       </div>
     </section>
@@ -169,5 +166,7 @@
   </footer>
 
   <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/espace-commun.js"></script>
+  <script src="../assets/js/espace-admin.js"></script>
 </body>
 </html>
