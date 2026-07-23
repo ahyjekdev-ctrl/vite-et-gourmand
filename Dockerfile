@@ -23,7 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # --- Apache ------------------------------------------------------------------
 # AllowOverride All : sans cela le .htaccess serait ignoré et les fichiers
 # sensibles (.env, database/, docs/) redeviendraient accessibles.
-RUN a2enmod rewrite headers \
+RUN a2dismod mpm_event mpm_worker 2>/dev/null; \
+    a2enmod mpm_prefork rewrite headers \
     && printf '<Directory /var/www/html>\n    AllowOverride All\n    Require all granted\n</Directory>\n' \
          > /etc/apache2/conf-available/vite-et-gourmand.conf \
     && a2enconf vite-et-gourmand \
