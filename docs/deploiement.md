@@ -21,9 +21,32 @@ l'énoncé) :
 | **[Azure](https://azure.microsoft.com)** | Crédits étudiants, complet | Prise en main plus lourde |
 | Hébergement mutualisé (OVH, o2switch…) | PHP/MySQL natif, peu cher | MongoDB rarement inclus → Mongo sur **MongoDB Atlas** (gratuit) |
 
-**Piste retenue** : hébergement PHP + MySQL managé (Render/Railway ou mutualisé)
-et **MongoDB Atlas** (offre gratuite M0) pour la base NoSQL. Choix définitif à
-arrêter au moment de la mise en ligne.
+**Choix retenu (22/07/2026) : Railway**, avec les trois composants sur la même
+plateforme (application conteneurisée, MySQL, MongoDB).
+
+Le facteur décisif a été l'extension PHP **`mongodb`**. Elle n'est pas fournie
+d'origine avec PHP : elle s'installe via PECL et doit être compilée. La plupart
+des hébergements mutualisés ne la proposent pas, ce qui aurait cassé la page de
+statistiques de l'espace administrateur — or le NoSQL est une exigence du
+cahier des charges. Déployer une **image Docker** (voir [`Dockerfile`](../Dockerfile))
+permet de maîtriser exactement les extensions installées, au lieu de dépendre de
+ce que l'hébergeur a bien voulu activer.
+
+Apache a été préféré au serveur intégré de PHP pour que le
+[`.htaccess`](../.htaccess) de la racine s'applique tel quel : c'est lui qui
+porte la liste blanche des fichiers servis (Phase 9) et les en-têtes de
+sécurité. L'image active donc `AllowOverride All`, sans quoi le fichier serait
+purement et simplement ignoré et les fichiers sensibles redeviendraient
+accessibles.
+
+Deux adaptations du code ont été nécessaires pour la production :
+
+- `chargerEnv()` lit désormais aussi les **variables d'environnement** du
+  serveur, et plus seulement un fichier `.env` — l'hébergeur injecte les
+  secrets, aucun n'est écrit sur disque ni dans le dépôt ;
+- la session détecte le HTTPS via l'en-tête **`X-Forwarded-Proto`** : derrière
+  un proxy inverse qui termine le TLS, `$_SERVER['HTTPS']` est vide et le
+  cookie aurait perdu son attribut `secure` alors que le site est bien en HTTPS.
 
 ## 2. Pré-requis avant mise en ligne
 

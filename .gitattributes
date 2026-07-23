@@ -1,0 +1,7 @@
+# Les fichiers exécutés dans le conteneur Linux doivent conserver des fins de
+# ligne LF. Des CRLF (Windows) casseraient le shebang du script de démarrage :
+# le conteneur échouerait sur « bad interpreter: /bin/sh^M ».
+*.sh             text eol=lf
+Dockerfile       text eol=lf
+.dockerignore    text eol=lf
+.htaccess        text eol=lf

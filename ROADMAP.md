@@ -5,18 +5,18 @@
 
 ## 📅 Dates clés
 
-- **28/07/2026 — rendu de l'ECF** : application déployée, repo public, tous les livrables.
+- **23/07/2026 — rendu de l'ECF** : application déployée, repo public, tous les livrables.
 - **Novembre/décembre 2026 — jury** : dossier projet (20-30 p.) + soutenance orale.
-- Planning de juillet : Phases 2-3 (semaine du 3), Phases 4-5 (semaine du 10), Phases 6-8 (semaine du 17), Phases 9-10 (24 → 28).
+- Planning de juillet : Phases 2-3 (semaine du 3), Phases 4-5 (semaine du 10), Phases 6-8 (semaine du 17), Phases 9-10 et mise en ligne (22-23).
 - D'août à novembre : relecture du code, dossier projet, support et répétition de l'oral.
 
 ---
 
 ## 📍 Où on en est (mis à jour le 22/07/2026)
 
-**Phase actuelle : préparation de la mise en ligne. Photos libres de droit ajoutées sur `feature/images` (en attente de validation avant merge).**
+**Phase actuelle : mise en ligne. Tout le code est dans `develop`, il ne reste que le déploiement et les livrables à remettre.**
 
-Phases 1 à 10 (partie hors-ligne) mergées dans `develop`. Sur `feature/images` : **12 photos libres de droit** (Wikimedia Commons — CC0/domaine public ou CC BY/BY-SA), vérifiées visuellement une à une, redimensionnées à 1200 px max, avec [crédits complets](docs/credits-images.md) ; intégrées partout (héros de l'accueil, cartes de menus statiques et dynamiques, galerie du détail, API `get-menus` qui renvoie désormais le chemin d'image). **Reste** : merge de cette branche, déploiement en ligne, passage du repo en public (à la remise), merge final `develop` → `main`. Côté Alexandre : exporter les 2 PDF, créer le board Trello.
+Phases 1 à 10 mergées dans `develop`, ainsi que les **12 photos libres de droit** (Wikimedia Commons — CC0/domaine public ou CC BY/BY-SA, vérifiées une à une, [crédits complets](docs/credits-images.md)) et l'**audit de confidentialité** avant passage en public. **Reste** : déployer l'application (hébergeur Railway — PHP en conteneur, MySQL, MongoDB), passer le dépôt en public, merge final `develop` → `main`. Côté Alexandre : exporter les 2 PDF, créer le board Trello, remplir la copie à rendre Studi.
 
 **⚠️ Rappel workflow : aucun merge vers `develop` ou `main` sans validation d'Alexandre.**
 
