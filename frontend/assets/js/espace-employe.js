@@ -9,6 +9,11 @@
   document.getElementById('salutation').textContent =
     `Connecté(e) : ${profil.prenom || profil.email} — ${profil.role}`;
 
+  // Un administrateur qui visite l'espace employé doit pouvoir revenir au sien
+  if (profil.role === 'administrateur') {
+    document.getElementById('nav-retour-admin')?.removeAttribute('hidden');
+  }
+
   /* ============================================================
      COMMANDES : filtres, transitions de statut, annulation motivée
      ============================================================ */
