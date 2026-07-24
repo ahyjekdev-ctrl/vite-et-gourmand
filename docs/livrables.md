@@ -4,11 +4,14 @@
 
 ## 1. Livrables principaux
 
-- [ ] **Lien du dépôt GitHub PUBLIC** avec le code de l'application
-  - Dépôt : https://github.com/ahyjekdev-ctrl/vite-et-gourmand *(à passer en public avant la remise)*
-- [ ] **Lien de l'application déployée** (en ligne et fonctionnelle — pénalités sinon)
-- [ ] **Lien du logiciel de gestion de projet** (Jira, Notion, Trello…)
-- [ ] **Copie à rendre** (Word/Excel) renommée : `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_HYJEK_Alexandre`
+- [x] **Lien du dépôt GitHub PUBLIC** avec le code de l'application
+  - Dépôt : https://github.com/atelierducode/vite-et-gourmand
+- [x] **Lien de l'application déployée** (en ligne et fonctionnelle — pénalités sinon)
+  - https://vite-et-gourmand-production-9346.up.railway.app
+- [x] **Lien du logiciel de gestion de projet** (Jira, Notion, Trello…)
+  - https://trello.com/b/6a627d325c9c8c0708056925/ecf-vite-et-gourmand
+- [x] **Copie à rendre** (Word/Excel) renommée selon la convention Studi
+  `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_NOM_Prenom` — déposée le 23/07/2026
 
 ## 2. Contenu obligatoire du dépôt Git
 

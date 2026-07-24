@@ -35,7 +35,7 @@ L'application permet aux visiteurs de consulter les menus du traiteur, de filtre
 
 1. **Cloner le dépôt**
    ```bash
-   git clone https://github.com/ahyjekdev-ctrl/vite-et-gourmand.git
+   git clone https://github.com/atelierducode/vite-et-gourmand.git
    cd vite-et-gourmand
    ```
 
